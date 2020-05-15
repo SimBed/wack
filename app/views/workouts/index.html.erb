@@ -22,10 +22,12 @@
   <tbody>
     <% @workouts.each do |workout| %>
       <tr>
-        <td><%= link_to workout.name, "http://#{workout.url}", target: "_blank" %></td>
+        <td><%= link_to workout.name, "#{workout.url}", target: "_blank" %></td>
         <td><%= workout.style %></td>
         <td><%= workout.length %></td>
         <td><%= workout.intensity %></td>
+        <td><iframe width="140" height="78" src="https://www.youtube.com/embed/SNNKQlkoPqQ">
+        </iframe></td>
 
         <% if current_user && current_user.admin? %>
         <td><%= link_to 'Edit', edit_workout_path(workout) %></td>

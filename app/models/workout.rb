@@ -1,5 +1,5 @@
 class Workout < ApplicationRecord
-  before_save   :downcase_url
+  #before_save   :downcase_url
   validates :name,  presence: true, length: { maximum: 50 },
                     uniqueness: { case_sensitive: false }
   #VALID_URL_REGEX = /

@@ -19,7 +19,7 @@ User.create!(name:  "Kunal",
 #Problems
 Workout.create!(name: "Rakis Beetroot Bootcamp",
              style: "Cardio",
-             url: "http://www.beetrootbootcamp.com",
+             url: "https://www.youtube.com/watch?v=OEsW3S_NAuc",
              length: 60,
              intensity: "High")
 
