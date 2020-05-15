@@ -15,7 +15,7 @@ class WorkoutsIndexTest < ActionDispatch::IntegrationTest
     assert_select 'div.pagination'
     first_page_of_workouts = Workout.all.order("name asc").paginate(page: 1, per_page: 10)
     first_page_of_workouts.each do |workout|
-      assert_select 'a[href=?]', "http://#{workout.url}", text: workout.name
+      assert_select 'a[href=?]', "#{workout.url}", text: workout.name
       assert_select 'a[href=?]', workout_path(workout), text: 'Delete'
     end
     assert_difference 'Workout.count', -1 do
@@ -30,7 +30,7 @@ class WorkoutsIndexTest < ActionDispatch::IntegrationTest
     assert_select 'div.pagination'
     first_page_of_workouts = Workout.all.order("name asc").paginate(page: 1, per_page: 10)
     first_page_of_workouts.each do |workout|
-      assert_select 'a[href=?]', "http://#{workout.url}", text: workout.name
+      assert_select 'a[href=?]', "#{workout.url}", text: workout.name
       assert_select 'a[href=?]', workout_path(workout), count: 0
     end
     assert_no_difference 'Workout.count' do

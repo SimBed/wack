@@ -60,11 +60,12 @@ class WorkoutTest < ActiveSupport::TestCase
     assert_not duplicate_workout.valid?
   end
 
+=begin
   test "url addresses should be saved as lower-case" do
     mixed_case_url = "WWW.EXamPLE.Com"
     @workout.url = mixed_case_url
     @workout.save
     assert_equal mixed_case_url.downcase, @workout.reload.url
-  end
+=end
 
 end
