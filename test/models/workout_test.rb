@@ -24,6 +24,7 @@ class WorkoutTest < ActiveSupport::TestCase
     assert_not @workout.valid?
   end
 
+#needs updating
   test "url validation should accept valid addresses" do
     valid_addresses = %w[www.example.com WWW.EXAMPLE.com www.ex_am_ple.in]
     valid_addresses.each do |valid_address|
@@ -55,7 +56,7 @@ class WorkoutTest < ActiveSupport::TestCase
 
   test "url should be unique" do
     duplicate_workout = @workout.dup
-    duplicate_workout.url = @workout.url.upcase
+    duplicate_workout.name = "differentname"
     @workout.save
     assert_not duplicate_workout.valid?
   end

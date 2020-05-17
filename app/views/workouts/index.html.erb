@@ -2,47 +2,42 @@
 <p id="notice"><%= notice %></p>
 
 <h2>All Workouts</h2>
-
-<%= will_paginate %>
-
-<table class ="Problemtable">
-
-  <thead>
-    <tr>
-      <!--th><%#= link_to "Name", {:sort => "name"}, {title: 'Name', "data-toggle" => "tooltip"} %></th>
-      <th><%#= link_to "Style", {:sort => "style"}, {title: 'style', "data-toggle" => "tooltip"} %></th>
-      <th><%#= link_to "URL", {:sort => "url"}, {title: 'urly', "data-toggle" => "tooltip"} %></th-->
-      <th><%= sortable "name", "Name", "Name"%></th>
-      <th><%= sortable "style", "Style", "Style"%></th>
-      <th><%= sortable "length", "Length", "Length"%></th>
-      <th><%= sortable "intensity", "Intensity", "Intensity"%></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @workouts.each do |workout| %>
-      <tr>
-        <td><%= link_to workout.name, "#{workout.url}", target: "_blank" %></td>
-        <td><%= workout.style %></td>
-        <td><%= workout.length %></td>
-        <td><%= workout.intensity %></td>
-        <td><iframe width="140" height="78" src="https://www.youtube.com/embed/SNNKQlkoPqQ">
-        </iframe></td>
-
-        <% if current_user && current_user.admin? %>
-        <td><%= link_to 'Edit', edit_workout_path(workout) %></td>
-        <td><%= link_to 'Delete', workout, method: :delete, data: { confirm: "Are you sure? All workout data for #{workout.name} will be lost." } %></td>
-        <% end %>
-
-      </tr>
-    <% end %>
-
-  </tbody>
-</table>
-    <ul class="listgroup-table pl-0">
-    		<em>click underlined headings to sort:</em>
-    </ul>
-
 <% if current_user && current_user.admin? %>
 <%= link_to 'New Workout', new_workout_path %>
 <% end %>
+<%= will_paginate %>
+<div class="container p-goal mt-1 mb-0">
+  <ul class="Sort mb-0 ">
+    <li> Sort by:</li>
+    <li class="Witharrow"> <%= sortable "name", "Name", "Name"%></li>
+    <li class="Witharrow"><%= sortable "style", "Style", "Style"%></li>
+    <li class="Witharrow"><%= sortable "length", "Length", "Length"%></li>
+    <li class="Witharrow"><%= sortable "intensity", "Intensity", "Intensity"%></li>
+    </ul>
+</div>
+
+<% @workouts.each do |workout| %>
+    <div class="p-flex"><div class="p-flex-in">
+          <div class = "bg-dark text-center ml-2 mr-2 mb-0"><h4 class ="InstructorName"><%= workout.name %></h4></div>
+      <div class="container">
+         <div class="row p-1 bg-light">
+          <div class ="col-4">
+            <div class="p-goal"><%= workout.style %></div>
+            <div class="p-goal"><%= workout.length%></div>
+            <div class="p-goal"><%= workout.intensity%></div>
+          </div>
+            <div class ="col-6">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" src=<%= workout.url%> allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class ="col-2">
+            <% if current_user && current_user.admin? %>
+            <div class="p-edit pl-0"><%= link_to 'Edit', edit_workout_path(workout) %></div>
+            <div class="p-edit pl-0"><%= link_to 'Delete', workout, method: :delete, data: { confirm: "Are you sure? All workout data for #{workout.name} will be lost." } %></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      </div></div>
+    <% end %>

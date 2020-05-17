@@ -22,21 +22,19 @@ $state-danger-text: #a94442 !default;
 /* universal */
 
 body {
-  padding-top: 60px;
-  /*DPS 'mobile first'*/
-  font-size: 1.5rem;
+  padding-top: 20px;
+  font-size: 1.0em;
 }
 
-/*DPS mobile first*/
 .container {
     padding-right: 0;
     padding-left: 0;
     max-width: 99%;
 }
 
-@media (min-width: 992px) {
+@media screen and (min-width: 810px) {
 	body {
-    font-size: 1rem;
+    font-size: 1.5em;
     padding-right: 15px;
     padding-left: 15px;
 	}
@@ -53,7 +51,7 @@ textarea {
 .center {
   text-align: center;
   h1 {
-    margin-bottom: 10px;
+    margin-bottom: 1px;
   }
 }
 
@@ -71,19 +69,15 @@ h1 {
 }
 
 h2 {
-/*  font-size: 1.2em; */
   letter-spacing: -1px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   text-align: center;
- /* font-weight: normal;*/
   color: $gray-darker;
 }
 
 p {
   font-size: 1.1em;
-  line-height: 1.7em;
 }
-
 
 /* header */
 
@@ -175,29 +169,6 @@ aside {
   margin-top: 15px;
 }
 
-.stats {
-  overflow: auto;
-  margin-top: 0;
-  padding: 0;
-  a {
-    float: left;
-    padding: 0 10px;
-    border-left: 1px solid $gray-lighter;
-    color: gray;
-    &:first-child {
-      padding-left: 0;
-      border: 0;
-    }
-    &:hover {
-      text-decoration: none;
-      color: blue;
-    }
-  }
-  strong {
-    display: block;
-  }
-}
-
 .user_avatars {
   overflow: auto;
   margin-top: 10px;
@@ -209,12 +180,7 @@ aside {
   }
 }
 
-.users.follow {
-  padding: 0;
-}
-
 /* forms */
-
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
@@ -270,37 +236,6 @@ input {
 
 /* microposts */
 
-.microposts {
-  list-style: none;
-  padding: 0;
-  li {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
-  }
-  .user {
-    margin-top: 5em;
-    padding-top: 0;
-  }
-  .content {
-    display: block;
-    margin-left: 60px;
-    img {
-      display: block;
-      padding: 5px 0;
-    }
-  }
-  .timestamp {
-    color: $gray-light;
-    display: block;
-    margin-left: 60px;
-  }
-  .gravatar {
-    float: left;
-    margin-right: 10px;
-    margin-top: 5px;
-  }
-}
-
 aside {
   textarea {
     height: 100px;
@@ -320,14 +255,13 @@ span.picture {
 .Problemtable td {
    padding: 0 0.4vw 0 0.4vw;
  }
- 
+
  .Problemtable th a {
 	 border-bottom: 1px dashed #999;
   text-decoration: none
 }
 
-
-.Problemtable th{ 
+.Problemtable th{
    padding: 0 0.4vw 0 0.4vw;
    color: $gray-darker;
  }
@@ -338,19 +272,19 @@ span.picture {
   background-position: right center;
   color: $gray-darker
  }
- 
+
 .Problemtable th .notcurrent{
    color: $gray-darker;
  }
- 
-.Problemtable th .asc { 
+
+.Problemtable th .asc {
 /*background-image: url(/images/up_arrow.gif);*/
-background-image: image-url('up_arrow.gif'); 
+background-image: image-url('up_arrow.gif');
 }
 
-.Problemtable th .desc { 
+.Problemtable th .desc {
 /*background-image: url(/images/down_arrow.gif);*/
-background-image: image-url('down_arrow.gif'); 
+background-image: image-url('down_arrow.gif');
 }
 
 .nav a{
@@ -369,9 +303,9 @@ background-image: image-url('down_arrow.gif');
   display: block;
   font-size: 90%;
     }
-	
+
 	@media (min-width: 576px) {
-		
+
 	.listgroup-table {
 
 	}
@@ -386,37 +320,147 @@ background-image: image-url('down_arrow.gif');
   width:10px;
   height:10px;
  }
- 
+
  .Grey {
   background-color: #707070;
   color: #dddddd;
  }
- 
+
  .Lightgrey {
   background-color: #d8d8d8;
   color: #dddddd;
  }
 
 .nav li a {
-	font-size: 2.0rem;
+	font-size: 1.0em;
 }
 
-.btn { 
-	font-size: 1.5rem;
+.btn {
+	font-size: 0.8em;
 }
 
 @media (min-width: 992px) {
-  body {
-    font-size: 1rem;
-    padding-right: 15px;
-    padding-left: 15px;
-  }
+
 .nav li a {
 	font-size: 1.0rem;
 }
-.btn { 
+.btn {
 	font-size: 1.0rem;
 }
 }
 
+/* workouts */
 
+div.p-flex {
+        width: 100%;
+      }
+
+      div.p-flex-in {
+        box-sizing: border-box;
+        margin-left: 5px;
+    		margin-right: 5px;
+    		margin-top: 0px;
+    		margin-bottom: 5px;
+        padding: 10px;
+  	    background: #f6fff2;
+  		  background: #fff;
+        border: 1px solid #e7fcde;
+		    position: relative;
+      }
+
+	  div.p-goal {
+		color: #635869; /*dark purple*/
+		font-family: "Quicksand", "Arial";
+    font-size: 0.9em;
+		padding-left: 1.0em;
+		font-weight: bold;
+	      }
+
+    div.p-edit {
+		color: #635869; /*dark purple*/
+		font-family: "Quicksand", "Arial";
+    font-size: 0.8em;
+		padding-left: 1.0em;
+		font-weight: bold;
+	      }
+
+	h4.InstructorName {
+		color:white;
+		font-weight: lighter;
+		font-family: "Montserrat", "Arial";
+		margin-bottom:0;
+		margin-top:0.25em;
+		letter-spacing: 0.3em;
+		font-size: 1.0em;
+	}
+
+
+  @media screen and (min-width: 810px) {
+        h4.InstructorName {
+			letter-spacing: 0.3em;
+			font-size: 1.4em;
+			}
+		div.p-goal {
+        font-size: 1.4em;
+		    padding-left: 1.0em;
+	      }
+    div.p-edit {
+        font-size: 1.2em;
+		    padding-left: 1.0em;
+	      }
+      }
+
+/*     @media only screen and (min-width: 1100px) {
+        div.p-flex { width: 25%; }
+
+	  @media only screen and (min-width: 810px) {
+        div.p-flex { width: 25%; }
+      }	  */
+
+  .Sort {
+  display:block;
+  background-color: white;
+  list-style: none;
+  margin-right:0;
+  margin-left:0;
+  padding-left:0;
+  padding-right:0;
+  text-align:center;
+ }
+
+ .Sort li{
+  display: inline-block;
+  padding: 0 0.3em 0.3em 0;
+  color: #635869;
+   }
+
+    .Sort li a{
+  color: #635869;
+   }
+
+   /* Arrow for sorting asc/desc */
+.Witharrow {
+   padding: 0 0.4vw 0 0.4vw;
+   color: $gray-darker;
+ }
+
+.Witharrow .current{
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+  color: $gray-darker
+ }
+
+.Witharrow .notcurrent{
+   color: $gray-darker;
+ }
+
+.Witharrow .asc {
+/*background-image: url(/images/up_arrow.gif);*/
+background-image: image-url('up_arrow.gif');
+}
+
+.Witharrow .desc {
+/*background-image: url(/images/down_arrow.gif);*/
+background-image: image-url('down_arrow.gif');
+}
