@@ -31,12 +31,16 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   config.action_mailer.raise_delivery_errors = true
-  host = 'https://cf7599b824e24aa09efed3e203ce2b93.vfs.cloud9.eu-west-1.amazonaws.com/'
-  # Don't use this literally; use your local dev host instead
+#this line is in tutorial but was absent from Wack..unsure deliberately or by mistake
+  config.action_mailer.delivery_method = :test
+
+  # Use this if developing on localhost
+  host = 'localhost:3000'
+  config.action_mailer.default_url_options = { host: host, protocol: 'http' }
+
   # Use this on the cloud IDE.
-  config.action_mailer.default_url_options = { host: host, protocol: 'https' }
-  # Use this if developing on localhost.
-  # config.action_mailer.default_url_options = { host: host, protocol: 'http' }
+  #host = 'https://cf7599b824e24aa09efed3e203ce2b93.vfs.cloud9.eu-west-1.amazonaws.com/'
+  #config.action_mailer.default_url_options = { host: host, protocol: 'https' }
 
   config.action_mailer.perform_caching = false
 
