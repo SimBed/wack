@@ -24,6 +24,7 @@ $state-danger-text: #a94442 !default;
 body {
   padding-top: 20px;
   font-size: 1.0em;
+  font-family: "Quicksand", "Arial";
 }
 
 .container {
@@ -183,7 +184,7 @@ aside {
 /* forms */
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
-  width: 100%;
+  /*width: 100%;*/
   margin-bottom: 15px;
   @include box_sizing;
 }
@@ -463,4 +464,9 @@ background-image: image-url('up_arrow.gif');
 .Witharrow .desc {
 /*background-image: url(/images/down_arrow.gif);*/
 background-image: image-url('down_arrow.gif');
+}
+
+/*workouts indexing*/
+.pagination{
+  margin-bottom: 0;
 }

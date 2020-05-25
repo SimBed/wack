@@ -1,11 +1,18 @@
 <% provide(:title, 'All Workouts') %>
-<p id="notice"><%= notice %></p>
 
 <h2>All Workouts</h2>
+
+<%= render 'workouts/filterform' %>
+
 <% if current_user && current_user.admin? %>
 <%= link_to 'New Workout', new_workout_path %>
 <% end %>
+
+<div class="container mb-0">
 <%= will_paginate %>
+</div>
+
+<% if false %>
 <div class="container p-goal mt-1 mb-0">
   <ul class="Sort mb-0 ">
     <li> Sort by:</li>
@@ -15,6 +22,7 @@
     <li class="Witharrow"><%= sortable "intensity", "Intensity", "Intensity"%></li>
     </ul>
 </div>
+<% end %>
 
 <% @workouts.each do |workout| %>
     <div class="p-flex"><div class="p-flex-in">

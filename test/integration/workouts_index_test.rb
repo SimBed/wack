@@ -13,8 +13,9 @@ class WorkoutsIndexTest < ActionDispatch::IntegrationTest
     get workouts_path
     assert_template 'workouts/index'
     assert_select 'div.pagination'
-    first_page_of_workouts = Workout.all.order("name asc").paginate(page: 1, per_page: 10)
+    first_page_of_workouts = Workout.all.paginate(page: 1,per_page: 10)
     first_page_of_workouts.each do |workout|
+      assert_select 'h4', "#{workout.name}"
       assert_select 'iframe[src=?]', "#{workout.url}"
       assert_select 'a[href=?]', workout_path(workout), text: 'Delete'
     end
@@ -28,7 +29,7 @@ class WorkoutsIndexTest < ActionDispatch::IntegrationTest
     get workouts_path
     assert_template 'workouts/index'
     assert_select 'div.pagination'
-    first_page_of_workouts = Workout.all.order("name asc").paginate(page: 1, per_page: 10)
+    first_page_of_workouts = Workout.all.paginate(page: 1,per_page: 10)
     first_page_of_workouts.each do |workout|
       assert_select 'iframe[src=?]', "#{workout.url}"
       assert_select 'a[href=?]', workout_path(workout), count: 0

@@ -1,3 +1,6 @@
+#DPS added to try to deal with timeout error with byebug
+worker_timeout 900 if ENV["RAILS_ENV"] == "development"
+
 workers Integer(ENV['WEB_CONCURRENCY'] || 2)
 threads_count = Integer(ENV['RAILS_MAX_THREADS'] || 5)
 threads threads_count, threads_count
