@@ -1,13 +1,18 @@
 class WorkoutsController < ApplicationController
   before_action :initialize_search, only: :index
   before_action :set_workout, only: [:edit, :update, :destroy]
-  before_action :admin_user, only: [:edit, :update, :destroy]
+  before_action :admin_user, only: [:new, :edit, :update, :destroy]
 
   def index
     #@workouts = Workout.paginate(page: params[:page])
     #@workouts = Workout.all.order(sort_column + " " + sort_direction, :name).paginate(page: params[:page],per_page: 10)
     handle_search_name
     handle_filters
+  end
+
+  def show
+    @workout = Workout.find(params[:id])
+    @microposts = @workout.microposts.paginate(page: params[:page])
   end
 
   def new

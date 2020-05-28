@@ -32,7 +32,7 @@ class WorkoutsIndexTest < ActionDispatch::IntegrationTest
     first_page_of_workouts = Workout.all.paginate(page: 1,per_page: 10)
     first_page_of_workouts.each do |workout|
       assert_select 'iframe[src=?]', "#{workout.url}"
-      assert_select 'a[href=?]', workout_path(workout), count: 0
+      assert_select 'a[href=?]', workout_path(workout), count: 2
     end
     assert_no_difference 'Workout.count' do
       delete workout_path(@workout2)

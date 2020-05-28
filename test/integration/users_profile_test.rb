@@ -12,7 +12,7 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     get user_path(@admin)
     assert_redirected_to root_url
   end
-  
+
   test "profile display of other user for nonadmin logged in user" do
     log_in_as(@nonadmin)
     get user_path(@admin)
@@ -26,5 +26,11 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     assert_select 'title', full_title(@nonadmin.name)
     assert_select 'h1', text: @nonadmin.name
     assert_select 'h1>img.gravatar'
+    assert_match @nonadmin.microposts.count.to_s, response.body
+    assert_select 'div.pagination'
+    @nonadmin.microposts.paginate(page: 1).each do |micropost|
+      assert_match micropost.content, response.body
+      assert_match micropost.workout.name, response.body
+    end
   end
 end

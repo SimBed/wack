@@ -7,14 +7,26 @@ User.create!(name:  "Dan SimBed",
              activated: true,
              activated_at: Time.zone.now)
 
-User.create!(name:  "Kunal",
-             email: "example@railstutorial.org",
+User.create!(name:  "Gigi B",
+             email: "Gigi@wack.org",
              password:              "foobar",
              password_confirmation: "foobar",
              admin:     false,
              activated: true,
              activated_at: Time.zone.now)
 
+5.times do |n|
+ name  = Faker::Name.name
+ email = "example-#{n+1}@thespacejuhu.in"
+ password = "password"
+ User.create!(name:  name,
+              email: email,
+              password:              password,
+              password_confirmation: password,
+              activated: true,
+              activated_at: Time.zone.now)
+
+end
 
 #Workouts
 Workout.create!(name: "Rakis Beetroot Bootcamp",
@@ -52,7 +64,18 @@ Workout.create!(name: "Gigis Big Bum Row",
   url = domain.shuffle.first
   length = [30,60,90].shuffle.first
   intensity = %w[High Medium Low].shuffle.first
-  spacesays = ["d boss of all workouts", "we love this workout for its simplicity", "a complex workout that will take some time to master", "we really stared to see the benefit of this afte 3-4 sessions" "definitely incorporate this into your day several times a week"].shuffle.first
+  spacesays = ["d boss of all workouts", "we love this workout for its simplicity", "a complex workout that will take some time to master", "we really stared to see the benefit of this afte 3-4 sessions" \
+  "definitely incorporate this into your day several times a week", "The BodyWeight Warrior is a legend. Recommend all his vids", "Starts off slowly, but gathers pace" ].shuffle.first
   equipment = [true, false].shuffle.first
   Workout.create!(name: name, style: style, url: url, length: length, intensity: intensity, spacesays: spacesays, equipment: equipment)
         end
+
+#Posts
+exampleposts = ["Absolutely brill!", "I loved this one", "Disappointing workout. Seemed like instructor was doing this for the first time", \
+  "Still recovering...", "Instructor's hair too long", "This is wrong", "Very distracted by shapeliness of instructors buttock", "How can workout do such bosom is there only", \
+  "bahut sundar workout hai", "perhaps more focus on technique and lesson the infuenermania", "an instructive follow-on by a highly experienced instructor", "turd"]
+users = User.order(:created_at).take(10)
+15.times do
+  #content = Faker::Lorem.sentence(5)
+  users.each { |user| user.microposts.create!(content: exampleposts.shuffle.first,workout_id: (1..13).to_a.shuffle.first.to_i) }
+end

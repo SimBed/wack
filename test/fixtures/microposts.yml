@@ -1,0 +1,47 @@
+brillo:
+  content: "Absolutely brill!"
+  created_at: <%= 10.minutes.ago %>
+  user: archer
+  workout: workouttwo
+
+lovedit:
+  content: "I loved this one"
+  created_at: <%= 3.years.ago %>
+  user: archer
+  workout: workoutone
+
+rubbish:
+  content: "Disappointing workout. Seemed like instructor was doing this for the first time"
+  created_at: <%= 2.hours.ago %>
+  user: archer
+  workout: workoutone
+
+most_recent:
+  content: "Still recovering..."
+  created_at: <%= Time.zone.now %>
+  user: archer
+  workout: workoutone
+
+<% 10.times do |n| %>
+micropost_<%= n %>:
+  content: <%= Faker::Lorem.sentence(5) %>
+  created_at: <%= 42.days.ago %>
+  user: archer
+  workout: workoutone
+<% end %>
+
+<% 10.times do |n| %>
+micropost_<%= n+10 %>:
+  content: <%= Faker::Lorem.sentence(5) %>
+  created_at: <%= 42.days.ago %>
+  user: archer
+  workout: workouttwo
+<% end %>
+
+<% 10.times do |n| %>
+micropost_<%= n+20 %>:
+  content: <%= Faker::Lorem.sentence(5) %>
+  created_at: <%= 42.days.ago %>
+  user: archer
+  workout: workoutthree
+<% end %>

@@ -356,48 +356,62 @@ div.p-flex {
         width: 100%;
       }
 
-      div.p-flex-in {
-        box-sizing: border-box;
-        margin-left: 5px;
-    		margin-right: 5px;
-    		margin-top: 0px;
-    		margin-bottom: 5px;
-        padding: 10px;
-  	    background: #f6fff2;
-  		  background: #fff;
-        border: 1px solid #e7fcde;
-		    position: relative;
-      }
+div.p-flex-in {
+  box-sizing: border-box;
+  margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+  padding: 10px;
+  background: #f6fff2;
+  background: #fff;
+  border: 1px solid #e7fcde;
+  position: relative;
+}
 
-	  div.p-goal {
-		color: #635869; /*dark purple*/
-		font-family: "Quicksand", "Arial";
-    font-size: 0.9em;
-		padding-left: 1.0em;
-		font-weight: bold;
-	      }
+div.p-goal {
+color: #635869; /*dark purple*/
+font-family: "Quicksand", "Arial";
+font-size: 0.9em;
+padding-left: 1.0em;
+font-weight: bold;
+    }
 
-    div.p-edit {
-		color: #635869; /*dark purple*/
-		font-family: "Quicksand", "Arial";
-    font-size: 0.8em;
-		padding-left: 1.0em;
-		font-weight: bold;
-	      }
+div.p-edit {
+color: #635869; /*dark purple*/
+font-family: "Quicksand", "Arial";
+font-size: 0.8em;
+padding-left: 1.0em;
+font-weight: bold;
+    }
 
-	h4.InstructorName {
-		color:white;
-		font-weight: lighter;
-		font-family: "Montserrat", "Arial";
-		margin-bottom:0;
-		margin-top:0.25em;
-		letter-spacing: 0.3em;
-		font-size: 1.0em;
-	}
+.WorkoutName {
+	margin-bottom:0;
+	margin-top:0.25em;
+	letter-spacing: 0.2em;
+	font-size: 1.4em;
+  line-height: 1.0;
+    a{
+      color:white;
+    	font-weight: lighter;
+    	font-family: "Montserrat", "Arial";
+    }
+}
 
+.WorkoutComment {
+	margin-bottom:0;
+	margin-top:0.25em;
+  line-height: 1.0;
+  font-size: 0.9em;
+    a{
+      color: #635869; /*dark purple*/
+      font-family: "Quicksand", "Arial";
+      padding-left: 1.0em;
+    }
+}
 
   @media screen and (min-width: 810px) {
-        h4.InstructorName {
+    h4.WorkoutName {
 			letter-spacing: 0.3em;
 			font-size: 1.4em;
 			}
@@ -469,4 +483,51 @@ background-image: image-url('down_arrow.gif');
 /*workouts indexing*/
 .pagination{
   margin-bottom: 0;
+}
+
+/* microposts */
+
+.microposts {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .user {
+    margin-top: 5em;
+    padding-top: 0;
+  }
+  .content {
+    display: block;
+    margin-left: 60px;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .timestamp {
+    color: $gray-light;
+    display: block;
+    margin-left: 60px;
+  }
+  .gravatar {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+}
+
+aside {
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
+  }
+}
+
+span.picture {
+  margin-top: 10px;
+  input {
+    border: 0;
+  }
 }

@@ -12,6 +12,8 @@
 <%= will_paginate %>
 </div>
 
+  <%= render @workouts %>
+
 <% if false %>
 <div class="container p-goal mt-1 mb-0">
   <ul class="Sort mb-0 ">
@@ -23,36 +25,3 @@
     </ul>
 </div>
 <% end %>
-
-<% @workouts.each do |workout| %>
-    <div class="p-flex"><div class="p-flex-in">
-      <div class = "bg-dark text-center ml-2 mr-2 mb-0"><h4 class ="InstructorName"><%= workout.name %></h4></div>
-      <div class="container">
-         <div class="row p-1 bg-light">
-          <div class ="col-4">
-            <div class="p-goal"><%= workout.style %></div>
-            <div class="p-goal"><%= workout.length%></div>
-            <div class="p-goal"><%= workout.intensity%></div>
-
-            <div class="p-goal"><%= workout.equipment ? "equipment" : "no equipment"%></div>
-          </div>
-            <div class ="col-6">
-            <div class="embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" src=<%= workout.url%> allowfullscreen></iframe>
-            </div>
-          </div>
-          <div class ="col-2">
-            <% if current_user && current_user.admin? %>
-            <div class="p-edit pl-0"><%= link_to 'Edit', edit_workout_path(workout) %></div>
-            <div class="p-edit pl-0"><%= link_to 'Delete', workout, method: :delete, data: { confirm: "Are you sure? All workout data for #{workout.name} will be lost." } %></div>
-            <% end %>
-          </div>
-        </div>
-        <div class="row p-1 bg-light">
-          <div class ="col-12">
-             <div class="p-goal"><%= "\"#{workout.spacesays}\""%></div>
-          </div>
-        </div>
-      </div>
-      </div></div>
-    <% end %>
