@@ -15,13 +15,13 @@ User.create!(name:  "Gigi B",
              activated: true,
              activated_at: Time.zone.now)
 
- User.create!(name:  "Wacky Raki",
-              email: "Raki@wack.org",
-              password:              "foobar",
-              password_confirmation: "foobar",
-              admin:     false,
-              activated: true,
-              activated_at: Time.zone.now)
+User.create!(name:  "Wacky Raki",
+            email: "Raki@wack.org",
+            password:              "foobar",
+            password_confirmation: "foobar",
+            admin:     false,
+            activated: true,
+            activated_at: Time.zone.now)
 
 10.times do |n|
  name  = Faker::Name.name
@@ -43,8 +43,8 @@ Workout.create!(name: "Rakis Beetroot Bootcamp",
              length: 60,
              intensity: "High",
              spacesays: "a carefully planned workout that will send you home crimson!",
-             equipment: true
-           )
+             equipment: true,
+             created_at: 10.minutes.ago)
 
 Workout.create!(name: "DanZ GainZ",
              style: "Strength",
@@ -52,7 +52,8 @@ Workout.create!(name: "DanZ GainZ",
              length: 90,
              intensity: "High",
              spacesays: "alwayZ wnid a bodE like DanZ. Now U CanZ!",
-             equipment: true)
+             equipment: true,
+             created_at: 10.minutes.ago)
 
 Workout.create!(name: "Gigis Big Bum Row",
              style: "Cardio",
@@ -60,19 +61,20 @@ Workout.create!(name: "Gigis Big Bum Row",
              length: 30,
              intensity: "Medium",
              spacesays: "alwayZ wnid a bootE like d G. Now U Can!",
-             equipment: true)
+             equipment: true,
+             created_at: 10.minutes.ago)
 
- Workout.create!(name: "Strength & Conditioning",
-              style: "Strength",
-              url: "https://www.youtube.com/embed/vI1Yf-MBczI",
-              length: 32,
-              intensity: "Medium",
-              spacesays: "basic lower body exercises, easy to follow",
-              equipment: false,
-              addedby: "Wacky Raki",
-              brand: "SELF",
-              eqpitems: "yoga mat"
-            )
+Workout.create!(name: "Strength & Conditioning",
+            style: "Strength",
+            url: "https://www.youtube.com/embed/vI1Yf-MBczI",
+            length: 32,
+            intensity: "Medium",
+            spacesays: "basic lower body exercises, easy to follow",
+            equipment: false,
+            addedby: "Wacky Raki",
+            brand: "SELF",
+            eqpitems: "yoga mat",
+            created_at: 10.minutes.ago)
 
 Workout.create!(name: "HIIT Cardio",
              style: "Cardio",
@@ -83,10 +85,8 @@ Workout.create!(name: "HIIT Cardio",
              equipment: false,
              addedby: "Wacky Raki",
              brand: "SELF",
-             eqpitems: "yoga mat"
-           )
-
-
+             eqpitems: "yoga mat",
+             created_at: Time.zone.now)
 
 10.times do |n|
   name  = Faker::Superhero.name
@@ -101,13 +101,13 @@ Workout.create!(name: "HIIT Cardio",
   spacesays = ["d boss of all workouts", "we love this workout for its simplicity", "a complex workout that will take some time to master", "we really stared to see the benefit of this afte 3-4 sessions" \
   "definitely incorporate this into your day several times a week", "The BodyWeight Warrior is a legend. Recommend all his vids", "Starts off slowly, but gathers pace" ].shuffle.first
   equipment = [true, false].shuffle.first
-  Workout.create!(name: name, style: style, url: url, length: length, intensity: intensity, spacesays: spacesays, equipment: equipment)
+  Workout.create!(name: name, style: style, url: url, length: length, intensity: intensity, spacesays: spacesays, equipment: equipment, created_at: 10.minutes.ago)
         end
 
 #Posts
 exampleposts = ["Absolutely brill!", "I loved this one", "Disappointing workout. Seemed like instructor was doing this for the first time", \
   "Still recovering...", "Instructor's hair too long", "This is wrong", "Very distracted by shapeliness of instructors buttock", "How can workout do such bosom is there only", \
-  "bahut sundar workout hai", "perhaps more focus on technique and lesson the infuenermania", "an instructive follow-on by a highly experienced instructor", "meh", "is mainly for beginner only", "too easy for an Olympian like me", \
+  "bahut sundar workout hai", "perhaps more focus on technique and less on the infuencermania", "an instructive follow-on by a highly experienced instructor", "meh", "is mainly for beginner only", "too easy for an Olympian like me", \
   "Her:Don't forget to breath.  Me:I'm not forgetting, I just can't.", "after 7 minutes the screen turned black. 10 minutes later im sitting with god", "Luckily my life insurance is already activated.", \
   "Is it normal to see angels while doing this exercise?", "I am doing this for past 15 days. Initially I was not able to complete 15 minutes but now I can complete 25 minutes. I will hit 28 mins soon", \
   "me and mine pati get sweaty doing the same"]
