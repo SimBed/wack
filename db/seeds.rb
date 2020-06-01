@@ -15,7 +15,15 @@ User.create!(name:  "Gigi B",
              activated: true,
              activated_at: Time.zone.now)
 
-5.times do |n|
+ User.create!(name:  "Wacky Raki",
+              email: "Raki@wack.org",
+              password:              "foobar",
+              password_confirmation: "foobar",
+              admin:     false,
+              activated: true,
+              activated_at: Time.zone.now)
+
+10.times do |n|
  name  = Faker::Name.name
  email = "example-#{n+1}@thespacejuhu.in"
  password = "password"
@@ -54,6 +62,32 @@ Workout.create!(name: "Gigis Big Bum Row",
              spacesays: "alwayZ wnid a bootE like d G. Now U Can!",
              equipment: true)
 
+ Workout.create!(name: "Strength & Conditioning",
+              style: "Strength",
+              url: "https://www.youtube.com/embed/vI1Yf-MBczI",
+              length: 32,
+              intensity: "Medium",
+              spacesays: "basic lower body exercises, easy to follow",
+              equipment: false,
+              addedby: "Wacky Raki",
+              brand: "SELF",
+              eqpitems: "yoga mat"
+            )
+
+Workout.create!(name: "HIIT Cardio",
+             style: "Cardio",
+             url: "https://www.youtube.com/embed/ml6cT4AZdqI",
+             length: 28,
+             intensity: "Medium",
+             spacesays: "lower body, easy to follow, set your own pace",
+             equipment: false,
+             addedby: "Wacky Raki",
+             brand: "SELF",
+             eqpitems: "yoga mat"
+           )
+
+
+
 10.times do |n|
   name  = Faker::Superhero.name
   style = Rails.application.config_for(:workoutinfo)["styles"]
@@ -73,7 +107,10 @@ Workout.create!(name: "Gigis Big Bum Row",
 #Posts
 exampleposts = ["Absolutely brill!", "I loved this one", "Disappointing workout. Seemed like instructor was doing this for the first time", \
   "Still recovering...", "Instructor's hair too long", "This is wrong", "Very distracted by shapeliness of instructors buttock", "How can workout do such bosom is there only", \
-  "bahut sundar workout hai", "perhaps more focus on technique and lesson the infuenermania", "an instructive follow-on by a highly experienced instructor", "turd"]
+  "bahut sundar workout hai", "perhaps more focus on technique and lesson the infuenermania", "an instructive follow-on by a highly experienced instructor", "meh", "is mainly for beginner only", "too easy for an Olympian like me", \
+  "Her:Don't forget to breath.  Me:I'm not forgetting, I just can't.", "after 7 minutes the screen turned black. 10 minutes later im sitting with god", "Luckily my life insurance is already activated.", \
+  "Is it normal to see angels while doing this exercise?", "I am doing this for past 15 days. Initially I was not able to complete 15 minutes but now I can complete 25 minutes. I will hit 28 mins soon", \
+  "me and mine pati get sweaty doing the same"]
 users = User.order(:created_at).take(10)
 15.times do
   #content = Faker::Lorem.sentence(5)

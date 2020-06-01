@@ -5,7 +5,7 @@ module SessionsHelper
       session[session_key] = nil
     end
   end
-  
+
   # Logs in the given user.
   def log_in(user)
     session[:user_id] = user.id
@@ -22,6 +22,11 @@ module SessionsHelper
   def current_user?(user)
     user == current_user
   end
+
+  # Returns true if the given user is the current user or admin.
+   def current_user_or_admin?(user)
+     (user == current_user) or (current_user.admin?)
+   end
 
   # Returns the user corresponding to the remember token cookie.
   def current_user

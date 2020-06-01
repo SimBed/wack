@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_27_100027) do
+ActiveRecord::Schema.define(version: 2020_05_29_114434) do
 
   create_table "microposts", force: :cascade do |t|
     t.text "content"
@@ -50,6 +50,9 @@ ActiveRecord::Schema.define(version: 2020_05_27_100027) do
     t.datetime "updated_at", null: false
     t.text "spacesays"
     t.boolean "equipment"
+    t.string "addedby"
+    t.string "brand"
+    t.string "eqpitems"
   end
 
 end

@@ -30,7 +30,8 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     assert_select 'div.pagination'
     @nonadmin.microposts.paginate(page: 1).each do |micropost|
       assert_match micropost.content, response.body
-      assert_match micropost.workout.name, response.body
+      assert_select 'a', text: micropost.workout.name
+      assert_select 'span', text: @nonadmin.name, count:0
     end
   end
 end

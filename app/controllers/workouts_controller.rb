@@ -1,7 +1,8 @@
 class WorkoutsController < ApplicationController
   before_action :initialize_search, only: :index
+  before_action :logged_in_user, only: [:show]
   before_action :set_workout, only: [:edit, :update, :destroy]
-  before_action :admin_user, only: [:new, :edit, :update, :destroy]
+  before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     #@workouts = Workout.paginate(page: params[:page])
@@ -12,7 +13,9 @@ class WorkoutsController < ApplicationController
 
   def show
     @workout = Workout.find(params[:id])
+    session[:workout_id]=@workout.id
     @microposts = @workout.microposts.paginate(page: params[:page])
+    @micropost = current_user.microposts.build()
   end
 
   def new
@@ -21,7 +24,7 @@ class WorkoutsController < ApplicationController
 
   def create
     @workout = Workout.new(workout_params)
-
+    @workout.addedby = current_user
     if @workout.save
       redirect_to workouts_path
       flash[:success] = "New workout, #{@workout.name} added!"
@@ -59,7 +62,7 @@ class WorkoutsController < ApplicationController
   private
   # Never trust parameters from the scary internet, only allow the white list through.
   def workout_params
-    params.require(:workout).permit(:name, :style, :url, :length, :intensity)
+    params.require(:workout).permit(:name, :style, :url, :length, :intensity, :spacesays, :brand, :equipment, :eqpitems)
   end
 
   def set_workout

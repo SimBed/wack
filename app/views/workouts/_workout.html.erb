@@ -12,11 +12,12 @@
              </div>
            </div>
           <div class ="col-4">
+            <div class="p-goal"><%= workout.brand %></div>
             <div class="p-goal"><%= workout.style %></div>
             <div class="p-goal"><%= workout.length%></div>
             <div class="p-goal"><%= workout.intensity%></div>
+            <div class="p-goal"><%= workout.equipment ? workout.eqpitems : "no equipment"%></div>
 
-            <div class="p-goal"><%= workout.equipment ? "equipment" : "no equipment"%></div>
           </div>
 
           <div class ="col-2">
@@ -29,7 +30,10 @@
         <div class="row p-1 bg-light">
           <div class ="col-12">
              <div class="p-goal"><%= "\"#{workout.spacesays}\""%></div>
-             <div class="WorkoutComment"><%= link_to "#{workout.microposts.count} comments", workout%></div>
+             <div class="WorkoutComment"><%= link_to "#{pluralize(workout.microposts.count, "comment")}", workout%></div>
+             <% if setting == "addcommentyes" %>
+             <section class="micropost_form"><%= render 'shared/micropost_form' %></section>
+             <% end %>
           </div>
         </div>
       </div>

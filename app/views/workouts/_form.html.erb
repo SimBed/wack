@@ -28,6 +28,27 @@
     <%= form.select :intensity, Rails.application.config_for(:workoutinfo)["intensities"]%>
   </div>
 
+  <div class="field">
+    <%= form.label :brand, "Brand" %>
+    <%= form.text_field :brand %>
+  </div>
+
+  <div class="field">
+    <%= form.label :equipment, "Equipment Needed" %>
+    <%= form.select :equipment, [true, false]%>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :eqpitems, "Equipment Items" %>
+    <%= form.text_field :eqpitems %>
+  </div>
+
+  <div class="field">
+    <%= form.label :spacesays, "The Space Says" %>
+    <%= form.text_area :spacesays %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
