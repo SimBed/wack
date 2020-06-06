@@ -1,14 +1,17 @@
 @import "bootstrap";
 
+$font-stack:  Montserrat, Arial;
 /* mixins, variables, etc. */
 $gray-light:  #d8d8d8; /*medium grey*/
 $gray-darker:  #808080;
+$gray-darkest: #474444;
 /*bg-light/dark are bootstrap classes* light-grey/dark-black*/
 $bg-light: #f8f9fa; /*lighter than gray-light*/
 $bg-dark:#343a40;
 $blue-search: #6cbbf7;
 $black-light: #050617;
 $purple-dark: #635869;
+$greenfly: #126774;
 
 
 /*taken from https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_variables.scss
@@ -337,62 +340,154 @@ background-image: image-url('down_arrow.gif');
 }
 
 /* workouts */
+%WorkoutName0 {
+	margin-bottom:0;
+	margin-top:0.25em;
+	letter-spacing: 0.08em;
+	font-size: 1.3em;
+  line-height: 1.0;
+  color:$bg-light;
+    a{
+    	font-family: $font-stack;
+    }
+}
 
-div.p-flex {
-  width: 100%;
-  margin-bottom: 15px;
-      }
+/* i is for the index view */
+.WorkoutName-i {
+  @extend %WorkoutName0;
+  a{
+    font-weight: bold;
+    color:$bg-dark;
+  }
+}
 
-div.p-brand {
-color: $gray-darker;
-font-family: "Montserrat", "Arial";
-letter-spacing: 0.08em;
-font-size: 0.9em;
-padding-left: 1.0em;
-font-weight: bold;
-position: absolute;
-top:0;
-left:0;
+/* s is for the show view */
+.WorkoutName-s {
+  @extend %WorkoutName0;
+  letter-spacing: 0.1em;
+  a{
+    font-weight: bold;
+    color:$bg-light;
+  }
+}
+
+%WkAttribute {
+  color: $gray-darker;
+  font-family: $font-stack;
+  font-size: 0.9em;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  position: absolute;
+  top:0;
+  left:0;
+  padding-left: 1.0em;
+}
+
+div.brand-i {
+  @extend %WkAttribute;
     }
 
-div.p-wksummary {
+div.brand-s {
+  color: $greenfly;
+  font-family: $font-stack;
+  font-size: 1.1em;
+  font-weight: normal;
+  letter-spacing: 0.08em;
+    }
+
+div.wksummary {
   position: absolute;
   bottom:0;
   left:0;
 }
 
-div.p-goal {
+%wkstyle {
 color: $gray-darker;
-font-family: "Montserrat", "Arial";
+font-family: $font-stack;
 letter-spacing: 0.08em;
 font-size: 0.9em;
 padding-left: 1.0em;
 font-weight: bold;
     }
 
-div.p-spacesays {
-color: $bg-light;
-font-family: "Montserrat", "Arial";
-letter-spacing: 0.08em;
-font-size: 0.8em;
-padding-left: 1.0em;
-font-weight: bold;
-text-align: right;
+div.wkstyle-i {
+  @extend %wkstyle;
+}
+
+div.wkstyle-s {
+  @extend %wkstyle;
+  font-size: 1.0em;
+  padding-bottom: 0.2em;
+  color: $gray-darkest;
+}
+
+div.social-s {
+  position:absolute;
+  right: 0;
+  padding-right: 3em;
     }
 
-div.p-comment {
+i.fa-heart {
+  color: $greenfly;
+  opacity: 0.75;
+  font-size: 2em;
+}
+
+%wkspacsays {
+  color: $bg-light;
+  font-family: "Quicksand", "Arial";
+  font-weight: normal;
+  letter-spacing: 0.08em;
+  font-size: 1.0em;
+  font-style: italic;
+  text-align: right;
+}
+
+div.spacesays-i {
+  @extend %wkspacsays;
+
+    }
+
+div.spacesays-i::before {
+  color: white;
+  font-weight: bold;
+  font-style: normal;
+  content: "The Space says: ";
+}
+
+div.spacesays-s {
+  @extend %wkspacsays;
+    }
+
+div.spacesays-s::before {
+  color: white;
+  font-weight: bold;
+  font-style: normal;
+  content: "The Space says: ";
+}
+
+%wkcomment {
   	margin-bottom:0;
   	margin-top:0.25em;
     line-height: 1.0;
-    font-size: 0.7em;
+    font-size: 0.9em;
     text-align: right;
+    color: $bg-light;
       a{
         color: $bg-light;
-        font-family: "Montserrat", "Arial";
+        font-family: $font-stack;
         letter-spacing: 0.08em;
         padding-left: 1.0em;
       }
   }
+
+div.comment-i {
+  @extend %wkcomment;
+}
+
+div.comment-s {
+  @extend %wkcomment;
+}
 
 div.p-edit {
 color: $purple-dark;
@@ -401,19 +496,6 @@ font-size: 0.8em;
 padding-left: 1.0em;
 font-weight: bold;
     }
-
-.WorkoutName {
-	margin-bottom:0;
-	margin-top:0.25em;
-	letter-spacing: 0.08em;
-	font-size: 1.3em;
-  line-height: 1.0;
-    a{
-      color:$bg-dark;
-    	font-weight: bold;
-    	font-family: "Montserrat", "Arial";
-    }
-}
 
   @media screen and (min-width: 810px) {
     h4.WorkoutName {
@@ -493,7 +575,7 @@ background-image: image-url('down_arrow.gif');
 /* microposts */
 .btnpost {
   width: 100%;
-  background-color: $blue-search;
+  background-color: $greenfly;
 }
 
 aside {
@@ -544,14 +626,14 @@ span.picture {
 
 
 /* search on workout index*/
-i {
-	   color: #bbc0c4;
-	   margin-top: -9px;
-	   right:auto;
-	   left: 1.4em;
-	   position:absolute;
-	   vertical-align: bottom;
-	   top: 40%;
+i.fa-search {
+   color: $gray-light;
+   margin-top: -9px;
+   right:auto;
+   left: 1.4em;
+   position:absolute;
+   vertical-align: bottom;
+   top: 40%;
    }
 
 hr.search {
@@ -621,15 +703,8 @@ input:-webkit-autofill {
 option:disabled {
   color: black;
 }
-div.p-flex-in {
-  box-sizing: border-box;
-  margin-left: 5px;
-	margin-right: 5px;
-	margin-top: 0px;
-	margin-bottom: 5px;
-  padding: 10px;
-  background: #f6fff2;
-  background: #fff;
-  border: 1px solid #e7fcde;
-  position: relative;
-}
+
+div.p-flex {
+  width: 100%;
+  margin-bottom: 15px;
+      }

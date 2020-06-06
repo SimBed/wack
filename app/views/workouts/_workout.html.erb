@@ -2,7 +2,7 @@
       <div class = "container bg-light p-1 mb-1">
         <!--ml-2 mr-2-->
         <!--text-center-->
-        <h4 class="WorkoutName">
+        <h4 class="WorkoutName-i">
             <%= link_to workout.name.upcase, workout%>
         </h4>
       </div>
@@ -10,11 +10,11 @@
          <div class="row bg-light py-1 mx-0">
 
           <div class ="col-5 p-0">
-            <div class="p-brand mb-1"><%= workout.brand ? workout.brand.upcase : "BRAND" %></div>
-            <div class="p-wksummary"">
-              <div class="p-goal"><%= workout.style %></div>
-              <div class="p-goal"><%= workout.intensity%></div>
-              <div class="p-goal"><%= "#{workout.length} minutes"%></div>
+            <div class="brand-i mb-1"><%= workout.brand ? workout.brand.upcase : "BRAND" %></div>
+            <div class="wksummary">
+              <div class="wkstyle-i"><%= workout.style %></div>
+              <div class="wkstyle-i"><%= workout.intensity%></div>
+              <div class="wkstyle-i"><%= "#{workout.length} minutes"%></div>
             <!--div class="p-goal"><#%= workout.equipment ? workout.eqpitems : "no equipment"%></div-->
             </div>
           </div>
@@ -27,8 +27,8 @@
 
         <div class="row bg-dark py-1 mx-0">
           <div class ="col-12">
-             <div class="p-spacesays"><%= "\"#{workout.spacesays}\""%></div>
-             <div class="p-comment"><%= link_to "#{pluralize(workout.microposts.count, "comment")}", workout%></div>
+             <div class="spacesays-i"><%= "\"#{workout.spacesays}\""%></div>
+             <div class="comment-i"><%= link_to "#{pluralize(workout.microposts.count, "comment")}", workout%></div>
           </div>
         </div>
       </div>

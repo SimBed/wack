@@ -2,44 +2,58 @@
   <h1>WeeklyWack</h1>
   <p>..for Wacking on your own or in small groups</p>
   <h3>This week's wack</h3>
+</div>
 
-  <div class="p-flex"><div class="p-flex-in">
-    <div class = "bg-dark text-center ml-2 mr-2 mb-0">
-      <h4 class="WorkoutName">
-          <%= @workouts.first.name%>
-      </h4>
-    </div>
-    <div class="container">
-       <div class="row p-1 bg-light">
-         <div class ="col-6">
-           <div class="embed-responsive embed-responsive-16by9">
-             <iframe class="embed-responsive-item" src=<%= @workouts.first.url%> allowfullscreen></iframe>
-           </div>
-         </div>
-        <div class ="col-6">
-          <div class="p-goal"><%= @workouts.first.brand %></div>
-          <div class="p-goal"><%= @workouts.first.style %></div>
-          <div class="p-goal"><%= @workouts.first.length%></div>
-          <div class="p-goal"><%= @workouts.first.intensity%></div>
-          <div class="p-goal"><%= @workouts.first.equipment ? @workouts.first.eqpitems : "no equipment"%></div>
-
-        </div>
-
-        <div class ="col-2">
-
-        </div>
-      </div>
-      <div class="row p-1 bg-light">
+  <div class="p-flex">
+    <div class = "container">
+      <div class="row bg-dark px-1 pt-2 pb-1 text-center">
         <div class ="col-12">
-           <div class="p-goal"><%= "\"#{@workouts.first.spacesays}\""%></div>
-           <div class="WorkoutComment"><%= "#{pluralize(@workouts.first.microposts.count, "comment")}"%></div>
+          <h4 class="WorkoutName-s">
+            <%= @workouts.first.name %>
+          </h4>
         </div>
       </div>
     </div>
-    </div></div>
+
+    <div class = "container bg-light px-1 pt-1 pb-1 text-center">
+        <div class="brand-s">BY <%= @workouts.first.brand ? @workouts.first.brand.upcase : "BRAND" %></div>
+    </div>
+
+    <div class="container mb-2">
+       <div class="row bg-light py-1 mx-0">
+        <div class ="col-12">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src=<%= @workouts.first.url %> allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+       <div class="row bg-light">
+        <div class ="col-8">
+            <div class="wkstyle-s">Style: <%= @workouts.first.style %></div>
+            <div class="wkstyle-s">Equipment: <%= @workouts.first.equipment ? @workouts.first.eqpitems : "Not Required"%></div>
+            <div class="wkstyle-s">Level: <%= @workouts.first.intensity%></div>
+            <div class="wkstyle-s">Duration: <%= "#{@workouts.first.length} minutes"%></div>
+        </div>
+
+        <div class ="col-4">
+          <div class="social-s"><i class="fa fa-heart icon-large"></i></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row bg-dark py-1 mx-0">
+      <div class ="col-12">
+         <div class="spacesays-s"><%= "\"#{@workouts.first.spacesays}\""%></div>
+         <div class="comment-s"><%= "#{pluralize(@workouts.first.microposts.count, "comment")}"%></div>
+      </div>
+    </div>
 
 <% unless logged_in? %>
 <div class = "container mt-2 text-center">
-  <%= link_to "Sign up Now to Keep on Wacking!", signup_path, class: "btn btn-lg btn-primary" %>
+  <%= link_to "Sign up Now to Keep on Wacking!", signup_path, class: "btn btn-lg btn-primary btnpost" %>
 </div>
 <% end %>

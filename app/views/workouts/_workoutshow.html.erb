@@ -1,0 +1,66 @@
+    <div class="p-flex">
+      <div class = "container">
+        <div class="row bg-dark px-1 pt-2 pb-1 text-center">
+          <div class ="col-12">
+            <h4 class="WorkoutName-s">
+              <%= link_to workoutshow.name.upcase, workoutshow%>
+            </h4>
+          </div>
+        </div>
+      </div>
+
+      <div class = "container bg-light px-1 pt-1 pb-1 text-center">
+          <div class="brand-s">BY <%= workoutshow.brand ? workoutshow.brand.upcase : "BRAND" %></div>
+      </div>
+
+      <div class="container mb-2">
+         <div class="row bg-light py-1 mx-0">
+          <div class ="col-12">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" src=<%= workoutshow.url %> allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+         <div class="row bg-light">
+          <div class ="col-8">
+              <div class="wkstyle-s">Style: <%= workoutshow.style %></div>
+              <div class="wkstyle-s">Equipment: <%= workoutshow.equipment ? workoutshow.eqpitems : "Not Required"%></div>
+              <div class="wkstyle-s">Level: <%= workoutshow.intensity%></div>
+              <div class="wkstyle-s">Duration: <%= "#{workoutshow.length} minutes"%></div>
+          </div>
+
+          <div class ="col-4">
+            <div class="social-s"><i class="fa fa-heart icon-large"></i></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row bg-dark py-1 mx-0">
+        <div class ="col-12">
+           <div class="spacesays-s"><%= "\"#{workoutshow.spacesays}\""%></div>
+           <div class="comment-s"><%= link_to "#{pluralize(workoutshow.microposts.count, "comment")}", workoutshow%></div>
+        </div>
+      </div>
+
+      <div class="container">
+         <div class="row bg-light py-1 mx-0">
+          <div class ="col-12">
+             <% if setting == "addcommentyes" %>
+             <section class="mt-1"><%= render 'shared/micropost_form' %></section>
+             <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class = "container bg-light p-1 mb-1">
+        <% if current_user && current_user.admin? %>
+        <div class="p-edit pl-0"><%= link_to 'Edit', edit_workout_path(workoutshow), class: "admin" %></div>
+        <div class="p-edit pl-0"><%= link_to 'Delete', workoutshow, method: :delete, data: { confirm: "Are you sure? All workout data for #{workoutshow.name} will be lost." }, class: "admin" %></div>
+        <% end %>
+      </div>
+
+</div>
