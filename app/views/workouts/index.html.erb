@@ -5,7 +5,9 @@
 <%= render 'workouts/filterform' %>
 
 <% if current_user && current_user.admin? %>
-<%= link_to 'New Workout', new_workout_path %>
+  <div class="container search mb-2">
+  <%= link_to 'New Workout', new_workout_path, class: "admin" %>
+  </div>
 <% end %>
 
 <div class="container mb-0">

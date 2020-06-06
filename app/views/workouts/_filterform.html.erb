@@ -1,38 +1,34 @@
-<% if false%> <form class="form-control" action="/workouts" method="GET">
-  <input class="mb-1" type="text" name="search_name" value= <%= session[:search_name] %>>
-  <input class="mb-1" type="submit" value="Search for Workout">
-</form>
-value= <%= session[:search_name] %> <%end%>
-
-
-
 <form action="/workouts" method="GET">
-
-  <input class="form-control-sm mb-2" type="text" name="search_name" value= <%= session[:search_name] %>>
-  <input class="form-control-sm mb-2" type="submit" value="Search for Workout">
-
-  <!--label for="filter">Filter Options</label-->
-
-  <select class="form-control-sm mb-2" id="filter" name="filter" onchange="this.form.submit()">
-    <option value="">Pick a Filter Option</option>
-    <option value="style" <%= "selected" if session[:filter] == "style" %>>Filter by Style</option>
-    <option value="intensity" <%= "selected" if session[:filter] == "intensity" %>>Filter by Intensity</option>
-  </select>
-  <% if session[:filter] == "style" %>
-    <select class="form-control-sm mb-2" name="filter_option" onchange="this.form.submit()">
-      <option value="">Pick a Style</option>
+  <!-- search-->
+  <div class="container search">
+    <input class="form-control-sm mb-2 search" type="text" name="search_name" placeholder="Search…" value= <%= session[:search_name] %>  >
+          <i class="fa fa-search"></i>
+  </div>
+  <div class="container">
+      <hr class = "search"></hr>
+  </div>
+  <!-- search-->
+  <div class="container search">
+    <select class="form-control-sm mb-2 search pr-3" id="filter" name="filter" onchange="this.form.submit()">
+      <option disabled="disabled" selected="selected" value="">Filter Workouts</option>
+      <option value="style" <%= "selected" if session[:filter] == "style" %>>Filter by Style</option>
+      <option value="intensity" <%= "selected" if session[:filter] == "intensity" %>>Filter by Intensity</option>
+    </select>
+    <% if session[:filter] == "style" %>
+    <select class="form-control-sm mb-2 search pr-3" name="filter_option" onchange="this.form.submit()">
+      <option disabled="disabled" selected="selected" value="">Pick a Style</option>
       <% Rails.application.config_for(:workoutinfo)["styles"].each do |style| %>
         <option value="<%= style %>" <%="selected" if session[:filter_option] == style%>><%= style %></option>
       <% end %>
     </select>
   <% elsif session[:filter] == "intensity" %>
-    <select class="form-control-sm mb-2" name="filter_option" onchange="this.form.submit()">
-      <option value="">Pick an Intensity</option>
+    <select class="form-control-sm mb-2 search pr-3" name="filter_option" onchange="this.form.submit()">
+      <option disabled="disabled" selected="selected" value="">Pick an Intensity</option>
       <% Rails.application.config_for(:workoutinfo)["intensities"].each do |intensity| %>
         <option value="<%= intensity %>"<%="selected" if session[:filter_option] == intensity%>><%= intensity %></option>
       <% end %>
     </select>
   <% end %>
-  <%= link_to "Clear Filters", clear_path %>
-
+  <%= link_to "Clear Filters", clear_path, class: "search"%>
+  </div>
 </form>

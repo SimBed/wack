@@ -1,40 +1,54 @@
-    <div class="p-flex"><div class="p-flex-in">
-      <div class = "bg-dark text-center ml-2 mr-2 mb-0">
+    <div class="p-flex"><!--div class="p-flex-in"-->
+      <div class = "container bg-light p-1 mb-1">
+        <!--ml-2 mr-2-->
+        <!--text-center-->
         <h4 class="WorkoutName">
-            <%= link_to workout.name, workout%>
+            <%= link_to workout.name.upcase, workout%>
         </h4>
       </div>
       <div class="container">
-         <div class="row p-1 bg-light">
-           <div class ="col-6">
-             <div class="embed-responsive embed-responsive-16by9">
-               <iframe class="embed-responsive-item" src=<%= workout.url%> allowfullscreen></iframe>
-             </div>
-           </div>
-          <div class ="col-4">
-            <div class="p-goal"><%= workout.brand %></div>
-            <div class="p-goal"><%= workout.style %></div>
-            <div class="p-goal"><%= workout.length%></div>
-            <div class="p-goal"><%= workout.intensity%></div>
-            <div class="p-goal"><%= workout.equipment ? workout.eqpitems : "no equipment"%></div>
+         <div class="row bg-light py-1 mx-0">
 
+          <div class ="col-5 p-0">
+            <div class="p-brand mb-1"><%= workout.brand ? workout.brand.upcase : "BRAND" %></div>
+            <div class="p-wksummary"">
+              <div class="p-goal"><%= workout.style %></div>
+              <div class="p-goal"><%= workout.intensity%></div>
+              <div class="p-goal"><%= "#{workout.length} minutes"%></div>
+            <!--div class="p-goal"><#%= workout.equipment ? workout.eqpitems : "no equipment"%></div-->
+            </div>
           </div>
-
-          <div class ="col-2">
-            <% if current_user && current_user.admin? %>
-            <div class="p-edit pl-0"><%= link_to 'Edit', edit_workout_path(workout) %></div>
-            <div class="p-edit pl-0"><%= link_to 'Delete', workout, method: :delete, data: { confirm: "Are you sure? All workout data for #{workout.name} will be lost." } %></div>
-            <% end %>
+          <div class ="col-7 p-0">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" src=<%= workout.url %> allowfullscreen></iframe>
+            </div>
           </div>
         </div>
-        <div class="row p-1 bg-light">
+
+        <div class="row bg-dark py-1 mx-0">
           <div class ="col-12">
-             <div class="p-goal"><%= "\"#{workout.spacesays}\""%></div>
-             <div class="WorkoutComment"><%= link_to "#{pluralize(workout.microposts.count, "comment")}", workout%></div>
+             <div class="p-spacesays"><%= "\"#{workout.spacesays}\""%></div>
+             <div class="p-comment"><%= link_to "#{pluralize(workout.microposts.count, "comment")}", workout%></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+         <div class="row bg-light py-1 mx-0">
+          <div class ="col-12">
              <% if setting == "addcommentyes" %>
-             <section class="micropost_form"><%= render 'shared/micropost_form' %></section>
+             <section class="mt-1"><%= render 'shared/micropost_form' %></section>
              <% end %>
           </div>
         </div>
       </div>
-      </div></div>
+
+      <div class = "container bg-light p-1 mb-1">
+        <% if current_user && current_user.admin? %>
+        <div class="p-edit pl-0"><%= link_to 'Edit', edit_workout_path(workout), class: "admin" %></div>
+        <div class="p-edit pl-0"><%= link_to 'Delete', workout, method: :delete, data: { confirm: "Are you sure? All workout data for #{workout.name} will be lost." }, class: "admin" %></div>
+        <% end %>
+      </div>
+
+
+      <!--/div--></div>

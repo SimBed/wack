@@ -15,7 +15,7 @@ class WorkoutsIndexTest < ActionDispatch::IntegrationTest
     assert_select 'div.pagination'
     first_page_of_workouts = Workout.all.paginate(page: 1,per_page: 10)
     first_page_of_workouts.each do |workout|
-      assert_select 'h4', "#{workout.name}"
+      assert_select 'h4', "#{workout.name.upcase}"
       assert_select 'iframe[src=?]', "#{workout.url}"
       assert_select 'a[href=?]', workout_path(workout), text: 'Delete'
     end

@@ -1,13 +1,15 @@
 @import "bootstrap";
 
 /* mixins, variables, etc. */
-
-$gray-medium-light: #eaeaea;
- /*DPS added this as referred to below but not defined, so when directly copied over from tutorial, it errored*/
-$gray-lighter:  #d8d8d8;
-$gray-light:  #d8d8d8;
+$gray-light:  #d8d8d8; /*medium grey*/
 $gray-darker:  #808080;
-$gray:  #d8d8d8;
+/*bg-light/dark are bootstrap classes* light-grey/dark-black*/
+$bg-light: #f8f9fa; /*lighter than gray-light*/
+$bg-dark:#343a40;
+$blue-search: #6cbbf7;
+$black-light: #050617;
+$purple-dark: #635869;
+
 
 /*taken from https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_variables.scss
 as couldsnt get sass to work*/
@@ -30,7 +32,7 @@ body {
 .container {
     padding-right: 0;
     padding-left: 0;
-    max-width: 99%;
+    max-width: 97%;
 }
 
 @media screen and (min-width: 810px) {
@@ -103,10 +105,10 @@ p {
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  border-top: 1px solid $gray-medium-light;
+  border-top: 1px solid $bg-light;
   color: $gray-light;
   a {
-    color: $gray;
+    color: $gray-light;
     &:hover {
       color: $gray-darker;
     }
@@ -236,22 +238,6 @@ input {
   }
 }
 
-/* microposts */
-
-aside {
-  textarea {
-    height: 100px;
-    margin-bottom: 5px;
-  }
-}
-
-span.picture {
-  margin-top: 10px;
-  input {
-    border: 0;
-  }
-}
-
 /* Problems */
 
 .Problemtable td {
@@ -342,7 +328,6 @@ background-image: image-url('down_arrow.gif');
 }
 
 @media (min-width: 992px) {
-
 .nav li a {
 	font-size: 1.0rem;
 }
@@ -354,33 +339,64 @@ background-image: image-url('down_arrow.gif');
 /* workouts */
 
 div.p-flex {
-        width: 100%;
+  width: 100%;
+  margin-bottom: 15px;
       }
 
-div.p-flex-in {
-  box-sizing: border-box;
-  margin-left: 5px;
-	margin-right: 5px;
-	margin-top: 0px;
-	margin-bottom: 5px;
-  padding: 10px;
-  background: #f6fff2;
-  background: #fff;
-  border: 1px solid #e7fcde;
-  position: relative;
+div.p-brand {
+color: $gray-darker;
+font-family: "Montserrat", "Arial";
+letter-spacing: 0.08em;
+font-size: 0.9em;
+padding-left: 1.0em;
+font-weight: bold;
+position: absolute;
+top:0;
+left:0;
+    }
+
+div.p-wksummary {
+  position: absolute;
+  bottom:0;
+  left:0;
 }
 
 div.p-goal {
-color: #635869; /*dark purple*/
-font-family: "Quicksand", "Arial";
+color: $gray-darker;
+font-family: "Montserrat", "Arial";
+letter-spacing: 0.08em;
 font-size: 0.9em;
 padding-left: 1.0em;
 font-weight: bold;
     }
 
+div.p-spacesays {
+color: $bg-light;
+font-family: "Montserrat", "Arial";
+letter-spacing: 0.08em;
+font-size: 0.8em;
+padding-left: 1.0em;
+font-weight: bold;
+text-align: right;
+    }
+
+div.p-comment {
+  	margin-bottom:0;
+  	margin-top:0.25em;
+    line-height: 1.0;
+    font-size: 0.7em;
+    text-align: right;
+      a{
+        color: $bg-light;
+        font-family: "Montserrat", "Arial";
+        letter-spacing: 0.08em;
+        padding-left: 1.0em;
+      }
+  }
+
 div.p-edit {
-color: #635869; /*dark purple*/
-font-family: "Quicksand", "Arial";
+color: $purple-dark;
+font-family: "Montserrat", "Arial";
 font-size: 0.8em;
 padding-left: 1.0em;
 font-weight: bold;
@@ -389,28 +405,13 @@ font-weight: bold;
 .WorkoutName {
 	margin-bottom:0;
 	margin-top:0.25em;
-	letter-spacing: 0.2em;
-	font-size: 1.4em;
+	letter-spacing: 0.08em;
+	font-size: 1.3em;
   line-height: 1.0;
-  color:white;
-  font-weight: lighter;
-  font-family: "Montserrat", "Arial";
     a{
-      color:white;
-    	font-weight: lighter;
+      color:$bg-dark;
+    	font-weight: bold;
     	font-family: "Montserrat", "Arial";
-    }
-}
-
-.WorkoutComment {
-	margin-bottom:0;
-	margin-top:0.25em;
-  line-height: 1.0;
-  font-size: 0.9em;
-    a{
-      color: #635869; /*dark purple*/
-      font-family: "Quicksand", "Arial";
-      padding-left: 1.0em;
     }
 }
 
@@ -490,6 +491,25 @@ background-image: image-url('down_arrow.gif');
 }
 
 /* microposts */
+.btnpost {
+  width: 100%;
+  background-color: $blue-search;
+}
+
+aside {
+  textarea {
+    height: 50px;
+    margin-bottom: 5px;
+    width: 100%;
+  }
+}
+
+span.picture {
+  margin-top: 10px;
+  input {
+    border: 0;
+  }
+}
 
 .microposts {
   list-style: none;
@@ -522,16 +542,94 @@ background-image: image-url('down_arrow.gif');
   }
 }
 
-aside {
-  textarea {
-    height: 100px;
-    margin-bottom: 5px;
-  }
+
+/* search on workout index*/
+i {
+	   color: #bbc0c4;
+	   margin-top: -9px;
+	   right:auto;
+	   left: 1.4em;
+	   position:absolute;
+	   vertical-align: bottom;
+	   top: 40%;
+   }
+
+hr.search {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: -2em;
+  margin-right: -2em;
+}
+input.search[type="text"] {
+	  color: $bg-light;
+		border:solid;
+		border-color:$bg-light;
+    background-color: $bg-light;
+    border-width: 1px;
+		width:100%;
+		padding: .3em;
+	  border-radius: 0.5em;
+		padding-left: 32px;
 }
 
-span.picture {
-  margin-top: 10px;
-  input {
-    border: 0;
-  }
+input.search[type="text"]:focus {
+  color: $bg-light;
+  border-color: $blue-search;
+  outline: 0;
+}
+
+div.search {
+	position:relative;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+a.search, a.admin, div.pagination a {
+  color: $blue-search /*#2ea2af*/;
+}
+
+div.pagination li {
+  padding-right: .2em;
+}
+
+select.search {
+  color: $gray-darker;
+  border: solid;
+  border-color: $bg-light;
+  border-width: 1px;
+  background-color: $bg-light;
+}
+
+select.search:focus {
+  border-color: $blue-search;
+  outline: 0;
+}
+
+/* stakoverflow solution to prevent the background off the input changing colour on input */
+/* search Removing input background colour for Chrome autocomplete*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px $bg-light inset !important;
+}
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: $gray-darker;
+}
+
+option:disabled {
+  color: black;
+}
+div.p-flex-in {
+  box-sizing: border-box;
+  margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+  padding: 10px;
+  background: #f6fff2;
+  background: #fff;
+  border: 1px solid #e7fcde;
+  position: relative;
 }

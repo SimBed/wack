@@ -19,7 +19,7 @@ class WorkoutsProfileTest < ActionDispatch::IntegrationTest
     get workout_path(@workout)
     assert_template 'workouts/show'
     assert_select 'title', full_title(@workout.name)
-    assert_select 'h4', text: @workout.name
+    assert_select 'h4', text: @workout.name.upcase
     assert_select 'form.new_micropost'
     assert_select 'iframe[src=?]', "#{@workout.url}"
     assert_select 'a[href=?]', workout_path(@workout)
@@ -44,7 +44,7 @@ class WorkoutsProfileTest < ActionDispatch::IntegrationTest
     get workout_path(@workout)
     assert_template 'workouts/show'
     assert_select 'title', full_title(@workout.name)
-    assert_select 'h4', text: @workout.name
+    assert_select 'h4', text: @workout.name.upcase
     assert_select 'iframe[src=?]', "#{@workout.url}"
     assert_select 'a[href=?]', workout_path(@workout)
     assert_select 'a[href=?]', workout_path(@workout), text: 'Delete', count:1
