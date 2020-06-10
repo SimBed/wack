@@ -116,3 +116,9 @@ users = User.order(:created_at).take(10)
   #content = Faker::Lorem.sentence(5)
   users.each { |user| user.microposts.create!(content: exampleposts.shuffle.first,workout_id: (1..13).to_a.shuffle.first.to_i) }
 end
+
+# Favourite Workouts
+User.all.each do |user|
+  faves = Workout.take(Workout.count).shuffle[0..4]
+  faves.each { |fave| user.wkfollow(fave)}
+  end

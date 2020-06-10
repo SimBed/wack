@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_29_114434) do
+ActiveRecord::Schema.define(version: 2020_06_08_084419) do
 
   create_table "microposts", force: :cascade do |t|
     t.text "content"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 2020_05_29_114434) do
     t.index ["user_id"], name: "index_microposts_on_user_id"
     t.index ["workout_id", "created_at"], name: "index_microposts_on_workout_id_and_created_at"
     t.index ["workout_id"], name: "index_microposts_on_workout_id"
+  end
+
+  create_table "rel_user_workouts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "workout_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "workout_id"], name: "index_rel_user_workouts_on_user_id_and_workout_id", unique: true
+    t.index ["user_id"], name: "index_rel_user_workouts_on_user_id"
+    t.index ["workout_id"], name: "index_rel_user_workouts_on_workout_id"
   end
 
   create_table "users", force: :cascade do |t|

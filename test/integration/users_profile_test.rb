@@ -24,8 +24,8 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     get user_path(@nonadmin)
     assert_template 'users/show'
     assert_select 'title', full_title(@nonadmin.name)
-    assert_select 'h1', text: @nonadmin.name
-    assert_select 'h1>img.gravatar'
+    assert_select 'h4', text: @nonadmin.name.upcase
+    assert_select 'div>img.gravatar'
     assert_match @nonadmin.microposts.count.to_s, response.body
     assert_select 'div.pagination'
     @nonadmin.microposts.paginate(page: 1).each do |micropost|

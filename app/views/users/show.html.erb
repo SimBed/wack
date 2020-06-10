@@ -1,20 +1,42 @@
 <% provide(:title, @user.name) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
-  </aside>
-  <div class="col-md-8">
-      <% if @user.microposts.any? %>
-        <h3>Reviews (<%= @user.microposts.count %>)</h3>
-        <ol class="microposts">
-          <%= render @microposts, setting: "usernameno" %>
-        </ol>
-        <%= will_paginate @microposts %>
-      <% end %>
-    </div>
+<div class="flex-container">
+  <div class="flex-grow-1">
+    <%= gravatar_for @user %>
+  </div>
+  <div style="flex-grow: 8" class ="bg-dark pl-2">
+       <h4 class="WorkoutName-s">
+         <%= @user.name.upcase %>
+       </h4>
+       <div class="user-profile">
+         <div class="user-date"><%= date_reformat @user.activated_at %></div>
+         <div class="user-rank">Wack Newbie</div>
+       </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center mb-5">
+  <div class="circle mr-5">
+    999<div class="user_score">LIFETIME WACKS</div>
+  </div>
+  <!--very hacky to get the names on 2 lines (not 1 or 3) -->
+  <div class="circle">
+    3<div class="user_score">WACKS LAST<span class="pl-1">WEEK</span></div>
+  </div>
+  <div class="circle ml-5">
+    857<div class="user_score">WACK SCORE</div>
+  </div>
+</div>
+
+<div class = "container">
+  <% if @user.microposts.any? %>
+    <h3>Reviews (<%= @user.microposts.count %>)</h3>
+    <ol class="microposts">
+      <%= render @microposts, setting: "usernameno" %>
+    </ol>
+    <%= will_paginate @microposts %>
+  <% end %>
+</div>
+
+<div class = "container">
+
 </div>

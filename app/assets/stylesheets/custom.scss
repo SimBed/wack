@@ -32,11 +32,7 @@ body {
   font-family: "Quicksand", "Arial";
 }
 
-.container {
-    padding-right: 0;
-    padding-left: 0;
-    max-width: 97%;
-}
+
 
 @media screen and (min-width: 810px) {
 	body {
@@ -168,8 +164,11 @@ aside {
 }
 
 .gravatar {
-  float: left;
-  margin-right: 10px;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+  /*float: left;
+  margin-right: 10px;*/
 }
 
 .gravatar_edit {
@@ -433,7 +432,7 @@ i.fa-heart {
   font-size: 2em;
 }
 
-%wkspacsays {
+%wkspacesays {
   color: $bg-light;
   font-family: "Quicksand", "Arial";
   font-weight: normal;
@@ -443,9 +442,35 @@ i.fa-heart {
   text-align: right;
 }
 
-div.spacesays-i {
-  @extend %wkspacsays;
+div.user-profile {
+  @extend %wkspacesays;
+  text-align: left;
+  }
 
+div.user-date {
+
+  }
+
+div.user-date::before {
+  color: white;
+  font-weight: bold;
+  font-style: normal;
+  content: "Member since : ";
+}
+
+div.user-rank {
+
+  }
+
+div.user-rank::before {
+  color: white;
+  font-weight: bold;
+  font-style: normal;
+  content: "Rank: ";
+}
+
+div.spacesays-i {
+  @extend %wkspacesays;
     }
 
 div.spacesays-i::before {
@@ -456,7 +481,7 @@ div.spacesays-i::before {
 }
 
 div.spacesays-s {
-  @extend %wkspacsays;
+  @extend %wkspacesays;
     }
 
 div.spacesays-s::before {
@@ -624,7 +649,6 @@ span.picture {
   }
 }
 
-
 /* search on workout index*/
 i.fa-search {
    color: $gray-light;
@@ -666,13 +690,32 @@ div.search {
   padding-left: 15px;
 }
 
-a.search, a.admin, div.pagination a {
-  color: $blue-search /*#2ea2af*/;
+a.search, a.admin a {
+  color: $blue-search;
+}
+
+div.pagination {
+  justify-content: flex-end;
 }
 
 div.pagination li {
   padding-right: .2em;
 }
+
+div.pagination li.previous_page a {
+    font-size: 36px;
+  }
+
+div.pagination li.next_page a{
+    font-size: 36px;
+  }
+
+div.pagination a {
+      line-height: 36px;
+      color: $gray-darker;
+      font-size: 24px;
+      font-weight: bold;
+    }
 
 select.search {
   color: $gray-darker;
@@ -687,7 +730,7 @@ select.search:focus {
   outline: 0;
 }
 
-/* stakoverflow solution to prevent the background off the input changing colour on input */
+/* stakoverflow solution to prevent the background of the input changing colour on input */
 /* search Removing input background colour for Chrome autocomplete*/
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -708,3 +751,46 @@ div.p-flex {
   width: 100%;
   margin-bottom: 15px;
       }
+
+.flex-container {
+  display: flex;
+  align-items: stretch ;
+  margin-bottom: 10px;
+}
+
+.flex-container > div {
+  margin: 3px;
+}
+
+div.circle {
+  width:70px;
+  height:70px;
+  border-radius:70px;
+  border: 1px solid;
+  border-color: $bg-light;
+  border-radius:50%;
+  box-shadow: 2px 5px 4px $gray-darker inset;
+  font-size:32px;
+  font-weight: bolder;
+  color: $greenfly;
+  text-align:center;
+  background-color: $bg-light;
+    &::first-line{
+      line-height:70px;
+    }
+  }
+
+div.user_score {
+  font-family: $font-stack;
+  font-size:12px;
+  font-weight: normal;
+  color:$black-light;
+  letter-spacing: 0.08em;
+  display: inline-block;
+  line-height: 10px;
+  /* hack to force line wrap after each word*/
+  word-spacing: 999px;
+  &::first-line{
+    line-height:20px;
+  }
+}

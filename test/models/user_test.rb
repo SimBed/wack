@@ -3,7 +3,7 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
 
   def setup
-    @user = User.new(name: "Example User", email: "user@example.com",
+    @user = User.new(name: "Test User", email: "testuser@tester.com",
                         password: "foobar", password_confirmation: "foobar")
   end
 
@@ -75,6 +75,16 @@ class UserTest < ActiveSupport::TestCase
 
   test "authenticated? should return false for a user with nil digest" do
     assert_not @user.authenticated?(:remember, '')
+  end
+
+  test "should follow and unfollow a workout" do
+    michael = users(:michael)
+    wk  = workouts(:workoutone)
+    assert_not michael.wkfollowing?(wk)
+    michael.wkfollow(wk)
+    assert michael.wkfollowing?(wk)
+    michael.wkunfollow(wk)
+    assert_not michael.wkfollowing?(wk)
   end
 
 end

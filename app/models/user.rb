@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
+  has_many :rel_user_workouts, dependent: :destroy
+  has_many :workouts, through: :rel_user_workouts
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
@@ -72,6 +74,21 @@ class User < ApplicationRecord
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
   end
+
+  # makes workout a favourite
+   def wkfollow(workout)
+     workouts << workout
+   end
+
+   # removes workout from favourites
+   def wkunfollow(workout)
+     workouts.delete(workout)
+   end
+
+   # Returns true if the current user has the workout a favourite
+   def wkfollowing?(workout)
+     workouts.include?(workout)
+   end
 
   private
 
