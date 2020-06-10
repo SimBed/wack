@@ -163,27 +163,14 @@ aside {
   }
 }
 
-.gravatar {
-  display:block;
-  margin-left:auto;
-  margin-right:auto;
-  /*float: left;
-  margin-right: 10px;*/
+.users {
+  .gravatar {
+  margin-right: 10px;
+  }
 }
 
 .gravatar_edit {
   margin-top: 15px;
-}
-
-.user_avatars {
-  overflow: auto;
-  margin-top: 10px;
-  .gravatar {
-    margin: 1px 1px;
-  }
-  a {
-    padding: 0;
-  }
 }
 
 /* forms */
@@ -690,9 +677,9 @@ div.search {
   padding-left: 15px;
 }
 
-a.search, a.admin a {
-  color: $blue-search;
-}
+a {color: $greenfly;}
+a.admin {color: $blue-search;}
+
 
 div.pagination {
   justify-content: flex-end;
