@@ -3,9 +3,9 @@
 default: &default
 
  styles:
-  - Animal Flow
   - Cardio
   - Core
+  - Full Body
   - Mind
   - Mobility
   - Partner

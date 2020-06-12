@@ -19,7 +19,8 @@
 
   <div class="field">
     <%= form.label :length, "Length" %>
-    <%= form.number_field :length, in: 10..120, step: 5 %>
+    <%= form.number_field :length, in: 10..120, step: 2 %>
+    <%#= form.range_field :length, in: 10..120, step: 5 %>
   </div>
 
   <div class="field">

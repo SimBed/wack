@@ -91,10 +91,10 @@ class WorkoutsController < ApplicationController
 
   def handle_search_name
     if session[:search_name]
-      @workouts = Workout.where("name LIKE ?", "%#{session[:search_name].titleize}%").paginate(page: params[:page],per_page: 10)
+      @workouts = Workout.where("name LIKE ?", "%#{session[:search_name].titleize}%").or(Workout.where("brand LIKE ?", "%#{session[:search_name].titleize}%")).paginate(page: params[:page],per_page: 5)
       #@teams = @teams.where(code: @players.pluck(:team))
     else
-      @workouts = Workout.all.paginate(page: params[:page],per_page: 10)
+      @workouts = Workout.all.paginate(page: params[:page],per_page: 5)
     end
   end
 

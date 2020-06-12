@@ -29,7 +29,7 @@ $state-danger-text: #a94442 !default;
 body {
   padding-top: 20px;
   font-size: 1.0em;
-  font-family: "Quicksand", "Arial";
+  font-family: $font-stack;
 }
 
 
@@ -77,6 +77,13 @@ h2 {
   text-align: center;
   color: $gray-darker;
 }
+
+h3 {
+  color: $gray-darker;
+  font-size: 1.5em;
+}
+
+
 
 p {
   font-size: 1.1em;
@@ -655,7 +662,7 @@ hr.search {
   margin-right: -2em;
 }
 input.search[type="text"] {
-	  color: $bg-light;
+	  color: $bg-dark;
 		border:solid;
 		border-color:$bg-light;
     background-color: $bg-light;
@@ -667,7 +674,7 @@ input.search[type="text"] {
 }
 
 input.search[type="text"]:focus {
-  color: $bg-light;
+  color: $bg-dark;
   border-color: $blue-search;
   outline: 0;
 }
@@ -687,21 +694,22 @@ div.pagination {
 }
 
 div.pagination li {
-  padding-right: .2em;
+  padding-right: .4em;
 }
 
 div.pagination li.previous_page a {
-    font-size: 36px;
+    font-size: 24px;
   }
 
 div.pagination li.next_page a{
-    font-size: 36px;
+    font-size: 24px;
   }
 
 div.pagination a {
-      line-height: 36px;
-      color: $gray-darker;
-      font-size: 24px;
+      line-height: 20px;
+      color: $greenfly;
+      /*color: $gray-darker;*/
+      font-size: 20px;
       font-weight: bold;
     }
 
@@ -781,4 +789,8 @@ div.user_score {
   &::first-line{
     line-height:20px;
   }
+}
+
+.mb-6 {
+  margin-bottom: 4rem;
 }

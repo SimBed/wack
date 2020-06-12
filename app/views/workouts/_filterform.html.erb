@@ -1,7 +1,7 @@
 <form action="/workouts" method="GET">
   <!-- search-->
   <div class="container search">
-    <input class="form-control-sm mb-2 search" type="text" name="search_name" placeholder="Search…" value= <%= session[:search_name] %>  >
+    <input class="form-control-sm mb-2 search" type="text" name="search_name" placeholder="Search workouts…" value= <%= session[:search_name] %>  >
           <i class="fa fa-search"></i>
   </div>
   <div class="container">
@@ -29,6 +29,8 @@
       <% end %>
     </select>
   <% end %>
-  <%= link_to "Clear Filters", clear_path, class: "search"%>
+  <%= link_to clear_path, class: "search" do%>
+    <i class="fa fa-trash"></i> Filters
+  <% end %>
   </div>
 </form>
