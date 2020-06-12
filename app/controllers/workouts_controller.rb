@@ -91,7 +91,8 @@ class WorkoutsController < ApplicationController
 
   def handle_search_name
     if session[:search_name]
-      @workouts = Workout.where("name LIKE ?", "%#{session[:search_name].titleize}%").or(Workout.where("brand LIKE ?", "%#{session[:search_name].titleize}%")).paginate(page: params[:page],per_page: 5)
+      #ILIKE is case-insensitive version of LIKE but postgreql only (not sqlite)
+      @workouts = Workout.where("lower(name) LIKE ?", "%#{session[:search_name].downcase}%").or(Workout.where("lower(brand) LIKE ?", "%#{session[:search_name].downcase}%")).paginate(page: params[:page],per_page: 5)
       #@teams = @teams.where(code: @players.pluck(:team))
     else
       @workouts = Workout.all.paginate(page: params[:page],per_page: 5)
@@ -100,10 +101,10 @@ class WorkoutsController < ApplicationController
 
   def handle_filters
     if session[:filter_option] && session[:filter] == "style"
-      @workouts = @workouts.where(style: session[:filter_option]).paginate(page: params[:page],per_page: 10)
+      @workouts = @workouts.where(style: session[:filter_option]).paginate(page: params[:page],per_page: 5)
       #@teams = @teams.where(code: @players.pluck(:team))
     elsif session[:filter_option] && session[:filter] == "intensity"
-      @workouts = @workouts.where(intensity: session[:filter_option]).paginate(page: params[:page],per_page: 10)
+      @workouts = @workouts.where(intensity: session[:filter_option]).paginate(page: params[:page],per_page: 5)
     end
   end
 
