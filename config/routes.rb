@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
+  get 'rel_user_workouts/create'
+  get 'rel_user_workouts/destroy'
   root 'static_pages#home'
   get '/workouts/clear', to: 'workouts#clear', as: 'clear'
+  get '/workouts/favourites', to: 'workouts#favourites', as: 'favourites'
   get 'password_resets/new'
   get 'password_resets/edit'
   get    '/signup',  to: 'users#new'
@@ -14,4 +17,5 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :workouts
   resources :microposts,          only: [:create, :destroy]
+  resources :rel_user_workouts,   only: [:create, :destroy]
 end

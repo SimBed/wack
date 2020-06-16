@@ -1,0 +1,4 @@
+<%= form_for(current_user.rel_user_workouts.build) do |f| %>
+  <div><%= hidden_field_tag :workout_id, workout.id %></div>
+  <%= f.submit "Follow", class: "btn btn-primary" %>
+<% end %>

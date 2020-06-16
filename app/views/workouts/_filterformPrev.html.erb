@@ -1,0 +1,36 @@
+<form action="/workouts" method="GET">
+  <!-- search-->
+  <div class="container search">
+    <input class="form-control-sm mb-2 search" type="text" name="search_name" placeholder="Search workouts…" value= <%= session[:search_name] %>  >
+          <i class="fa fa-search"></i>
+  </div>
+  <div class="container">
+      <hr class = "search"></hr>
+  </div>
+  <!-- search-->
+  <div class="container search">
+    <select class="form-control-sm mb-2 search pr-3" id="filter" name="filter" onchange="this.form.submit()">
+      <option disabled="disabled" selected="selected" value="">Filter Workouts</option>
+      <option value="style" <%= "selected" if session[:filter] == "style" %>>Filter by Style</option>
+      <option value="intensity" <%= "selected" if session[:filter] == "intensity" %>>Filter by Intensity</option>
+    </select>
+    <% if session[:filter] == "style" %>
+    <select class="form-control-sm mb-2 search pr-3" name="filter_option" onchange="this.form.submit()">
+      <option disabled="disabled" selected="selected" value="">Pick a Style</option>
+      <% Rails.application.config_for(:workoutinfo)["styles"].each do |style| %>
+        <option value="<%= style %>" <%="selected" if session[:filter_option] == style%>><%= style %></option>
+      <% end %>
+    </select>
+  <% elsif session[:filter] == "intensity" %>
+    <select class="form-control-sm mb-2 search pr-3" name="filter_option" onchange="this.form.submit()">
+      <option disabled="disabled" selected="selected" value="">Pick an Intensity</option>
+      <% Rails.application.config_for(:workoutinfo)["intensities"].each do |intensity| %>
+        <option value="<%= intensity %>"<%="selected" if session[:filter_option] == intensity%>><%= intensity %></option>
+      <% end %>
+    </select>
+  <% end %>
+  <%= link_to clear_path, class: "search" do%>
+    <i class="fa fa-trash"></i> Filters
+  <% end %>
+  </div>
+</form>

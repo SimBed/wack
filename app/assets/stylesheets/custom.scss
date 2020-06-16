@@ -375,6 +375,7 @@ background-image: image-url('down_arrow.gif');
   top:0;
   left:0;
   padding-left: 1.0em;
+  padding-left: 0.2em;
 }
 
 div.brand-i {
@@ -415,6 +416,7 @@ div.wkstyle-s {
   color: $gray-darkest;
 }
 
+/*not used*/
 div.social-s {
   position:absolute;
   right: 0;
@@ -424,7 +426,13 @@ div.social-s {
 i.fa-heart {
   color: $greenfly;
   opacity: 0.75;
-  font-size: 2em;
+  font-size: 1.2em;
+}
+
+i.fa-heart-broken {
+  color: $greenfly;
+  opacity: 0.75;
+  font-size: 1.2em;
 }
 
 %wkspacesays {
@@ -655,6 +663,10 @@ i.fa-search {
    top: 40%;
    }
 
+.greyout {
+     display: none;
+}
+
 hr.search {
   margin-top: 0;
   margin-bottom: 0;
@@ -793,4 +805,16 @@ div.user_score {
 
 .mb-6 {
   margin-bottom: 4rem;
+}
+
+/*favourites*/
+.btn-heart {
+     /*color: #fff;
+     background-color: #0069d9;
+     border-color: #0062cc; */
+}
+
+.btn-heart:hover {
+     background-color: $gray-light;
+     border-color: $gray-light;
 }

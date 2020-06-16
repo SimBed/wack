@@ -7,7 +7,6 @@ class WorkoutsController < ApplicationController
   def index
     #@workouts = Workout.paginate(page: params[:page])
     #@workouts = Workout.all.order(sort_column + " " + sort_direction, :name).paginate(page: params[:page],per_page: 10)
-    handle_favourites
     handle_search_name
     handle_filters
   end
@@ -56,13 +55,7 @@ class WorkoutsController < ApplicationController
   end
 
   def clear
-    clear_session(:search_name, :filter_option, :favesonly)
-    redirect_to workouts_path
-  end
-
-  def favourites
-    session[:favesonly] = false if session[:favesonly].nil?
-    session[:favesonly] = !session[:favesonly]
+    clear_session(:search_name, :filter, :filter_option )
     redirect_to workouts_path
   end
 
@@ -88,34 +81,29 @@ class WorkoutsController < ApplicationController
   end
 
   def initialize_search
-#    session[:filter_faves] = params[:filter_faves]
     session[:search_name] = params[:search_name]
-#    session[:filter] = params[:filter]
-#    params[:filter_option] = nil if params[:filter_option] == ""
+    session[:filter] = params[:filter]
+    params[:filter_option] = nil if params[:filter_option] == ""
     session[:filter_option] = params[:filter_option]
-
-  end
-
-  def handle_favourites
-    if session[:favesonly] == true
-      @workouts = current_user.workouts
-    else
-      @workouts = Workout.all
-    end
   end
 
   def handle_search_name
     if session[:search_name]
       #ILIKE is case-insensitive version of LIKE but postgreql only (not sqlite)
-      @workouts = @workouts.where("lower(name) LIKE ?", "%#{session[:search_name].downcase}%").or(@workouts.where("lower(brand) LIKE ?", "%#{session[:search_name].downcase}%"))
+      @workouts = Workout.where("lower(name) LIKE ?", "%#{session[:search_name].downcase}%").or(Workout.where("lower(brand) LIKE ?", "%#{session[:search_name].downcase}%")).paginate(page: params[:page],per_page: 5)
+      #@teams = @teams.where(code: @players.pluck(:team))
+    else
+      @workouts = Workout.all.paginate(page: params[:page],per_page: 5)
     end
   end
 
   def handle_filters
-    if session[:filter_option]
-      @workouts = @workouts.where(style: session[:filter_option])
+    if session[:filter_option] && session[:filter] == "style"
+      @workouts = @workouts.where(style: session[:filter_option]).paginate(page: params[:page],per_page: 5)
+      #@teams = @teams.where(code: @players.pluck(:team))
+    elsif session[:filter_option] && session[:filter] == "intensity"
+      @workouts = @workouts.where(intensity: session[:filter_option]).paginate(page: params[:page],per_page: 5)
     end
-    @workouts = @workouts.paginate(page: params[:page],per_page: 5)
   end
 
 end

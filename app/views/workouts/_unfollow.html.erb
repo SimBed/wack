@@ -1,0 +1,4 @@
+<%= form_for(current_user.rel_user_workouts.find_by(workout_id: @workout.id),
+             html: { method: :delete }) do |f| %>
+  <%= f.submit "Unfollow", class: "btn" %>
+<% end %>

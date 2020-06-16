@@ -33,7 +33,31 @@
           </div>
 
           <div class ="col-4">
-            <div class="social-s"><i class="fa fa-heart icon-large"></i></div>
+            <div id="favourite_form">
+              <% if current_user.wkfollowing?(workoutshow) %>
+                <%= form_for(current_user.rel_user_workouts.find_by(workout_id: workoutshow.id),
+                             html: { method: :delete }) do |f| %>
+                     <%= button_tag type: 'submit', class: "btn btn-heart" do %>
+                         <i class="fa fa-heart" aria-hidden="true"></i>
+                     <% end %>
+                  <%#= f.submit "Unfollow", class: "btn" %>
+                <% end %>
+              <% else %>
+
+                <%= form_for(current_user.rel_user_workouts.build) do |f| %>
+                  <div><%= hidden_field_tag :workout_id, workoutshow.id %></div>
+                  <%= button_tag type: 'submit', class: "btn btn-heart" do %>
+                      <i class="fa fa-heart-broken" aria-hidden="true"></i>
+                  <% end %>
+
+                  <%#= f.submit "Follow", class: "btn btn-primary" %>
+                <% end %>
+
+
+
+              <% end %>
+            </div>
+
           </div>
         </div>
 
