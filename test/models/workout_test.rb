@@ -68,5 +68,22 @@ class WorkoutTest < ActiveSupport::TestCase
     @workout.save
     assert_equal mixed_case_url.downcase, @workout.reload.url
 =end
+  test "associated microposts should be destroyed" do
+    michael = users(:michael)
+    @workout.save
+    @workout.microposts.create!(content: "Lorem ipsum", user_id: michael.id)
+    assert_difference 'Micropost.count', -1 do
+      @workout.destroy
+    end
+  end
+
+  test "associated attempts should be destroyed" do
+    michael = users(:michael)
+    @workout.save
+    @workout.attempts.create!(DoA:"10/06/2020", summary: "Lorem ipsum", user_id: michael.id)
+    assert_difference 'Attempt.count', -1 do
+      @workout.destroy
+    end
+  end
 
 end

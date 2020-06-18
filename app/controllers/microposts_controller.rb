@@ -33,6 +33,7 @@ class MicropostsController < ApplicationController
         @microposts = @workout.microposts.paginate(page: params[:page])
         #more simple but less helpful to user is to set microposts to blank following an error
         #@microposts=[]
+        @attempt = current_user.attempts.build()
         render 'workouts/show'
       end
     end

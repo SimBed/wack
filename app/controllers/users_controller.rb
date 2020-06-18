@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
+    @attempts = @user.attempts.paginate(page: params[:page])
     redirect_to root_url and return unless @user.activated
   end
 
@@ -72,6 +73,6 @@ class UsersController < ApplicationController
     def correct_user_or_admin
       @user = User.find(params[:id])
       redirect_to(root_url) unless (current_user?(@user) or (current_user && current_user.admin?))
-    end    
+    end
 
 end

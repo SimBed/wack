@@ -17,6 +17,7 @@ class WorkoutsController < ApplicationController
     session[:workout_id]=@workout.id
     @microposts = @workout.microposts.paginate(page: params[:page])
     @micropost = current_user.microposts.build()
+    @attempt = current_user.attempts.build()
   end
 
   def new

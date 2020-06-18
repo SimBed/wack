@@ -1,4 +1,5 @@
 class Workout < ApplicationRecord
+  has_many :attempts, dependent: :destroy
   has_many :microposts, dependent: :destroy
   has_many :rel_user_workouts, dependent: :destroy
   has_many :users, through: :rel_user_workouts

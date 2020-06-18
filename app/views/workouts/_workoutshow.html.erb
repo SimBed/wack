@@ -43,7 +43,6 @@
                   <%#= f.submit "Unfollow", class: "btn" %>
                 <% end %>
               <% else %>
-
                 <%= form_for(current_user.rel_user_workouts.build) do |f| %>
                   <div><%= hidden_field_tag :workout_id, workoutshow.id %></div>
                   <%= button_tag type: 'submit', class: "btn btn-heart" do %>
@@ -52,9 +51,6 @@
 
                   <%#= f.submit "Follow", class: "btn btn-primary" %>
                 <% end %>
-
-
-
               <% end %>
             </div>
 
@@ -75,6 +71,22 @@
           <div class ="col-12">
              <% if setting == "addcommentyes" %>
              <section class="mt-1"><%= render 'shared/micropost_form' %></section>
+             <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row bg-dark py-1 mx-0">
+        <div class ="col-12">
+           <div class="comment-s"><%= link_to "#{pluralize(workoutshow.attempts.count, "attempt")}", workoutshow%></div>
+        </div>
+      </div>
+
+      <div class="container bg-light px-1 mt-3">
+         <div class="row bg-light py-1 mx-0">
+          <div class ="col-12">
+             <% if setting == "addcommentyes" %>
+             <section class="mt-1"><%= render 'shared/attempts_form' %></section>
              <% end %>
           </div>
         </div>

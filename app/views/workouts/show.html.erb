@@ -6,7 +6,7 @@
   </aside>
   <div class="col-md-8">
       <% if @workout.microposts.any? %>
-        <h3>#PeopleofTheSpace say (<%= @workout.microposts.count %>)</h3>
+        <h3>#PeopleofTheSpace say... (<%= @workout.microposts.count %>)</h3>
         <ol class="microposts">
           <%= render @microposts, setting: "usernameyes" %>
         </ol>

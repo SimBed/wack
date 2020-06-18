@@ -1,0 +1,21 @@
+<li id="attempt-<%= attempt.id %>">
+  <%= link_to gravatar_for(attempt.user, size: 50), attempt.user %>
+  <% if setting == "usernameyes" %>
+  <span class="user"><%= link_to attempt.user.name, attempt.user %></span>
+  <span class="user">on <%= link_to "#{attempt.workout.name}", attempt.workout %></span>
+  <% else %>
+  <span class="user">on <%= link_to "#{attempt.workout.name}", attempt.workout %></span>
+  <% end %>
+
+  <span class="content"><%= attempt.summary %></span>
+  <span class="timestamp">
+    <%= time_ago_in_words(attempt.DoA) %> ago.
+
+    <% if current_user_or_admin?(attempt.user) %>
+        <%= link_to attempt, method: :delete, data: { confirm: "Your attempt details will be deleted. Are you sure?" } do %>
+          <i class="fa fa-trash"></i>
+        <% end %>
+    <% end %>
+
+  </span>
+</li>

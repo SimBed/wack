@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   resources :workouts
   resources :microposts,          only: [:create, :destroy]
   resources :rel_user_workouts,   only: [:create, :destroy]
+  resources :attempts,          only: [:create, :destroy]
 end

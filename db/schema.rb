@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_08_084419) do
+ActiveRecord::Schema.define(version: 2020_06_17_164240) do
+
+  create_table "attempts", force: :cascade do |t|
+    t.datetime "DoA"
+    t.text "summary"
+    t.integer "user_id"
+    t.integer "workout_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_attempts_on_user_id"
+    t.index ["workout_id"], name: "index_attempts_on_workout_id"
+  end
 
   create_table "microposts", force: :cascade do |t|
     t.text "content"

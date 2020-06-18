@@ -818,3 +818,13 @@ div.user_score {
      background-color: $gray-light;
      border-color: $gray-light;
 }
+
+h4.panel-title {
+  background-color:$bg-light;
+  padding-top: .4em;
+  padding-bottom: .4em;
+  padding-left: .4em;
+    a {
+      color:$gray-darker;
+    }
+  }

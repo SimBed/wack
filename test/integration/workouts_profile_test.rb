@@ -48,7 +48,7 @@ class WorkoutsProfileTest < ActionDispatch::IntegrationTest
     assert_select 'iframe[src=?]', "#{@workout.url}"
     assert_select 'a[href=?]', workout_path(@workout)
     assert_select 'a[href=?]', workout_path(@workout), text: 'Delete', count:1
-    assert_select 'h3', text: "#PeopleofTheSpace say (#{@workout.microposts.count.to_s})"
+    assert_select 'h3', text: "#PeopleofTheSpace say... (#{@workout.microposts.count.to_s})"
     #assert_select 'div.pagination'
     @workout.microposts.paginate(page: 1).each do |micropost|
       assert_select 'a', text: micropost.user.name

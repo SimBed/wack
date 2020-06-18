@@ -87,4 +87,22 @@ class UserTest < ActiveSupport::TestCase
     assert_not michael.wkfollowing?(wk)
   end
 
+  test "associated microposts should be destroyed" do
+    @user.save
+    wk  = workouts(:workoutone)
+    @user.microposts.create!(content: "Lorem ipsum", workout_id: wk.id)
+    assert_difference 'Micropost.count', -1 do
+      @user.destroy
+    end
+  end
+
+  test "associated attempts should be destroyed" do
+    @user.save
+    wk  = workouts(:workoutone)
+    @user.attempts.create!(DoA:"10/06/2020", summary: "Lorem ipsum", workout_id: wk.id)
+    assert_difference 'Attempt.count', -1 do
+      @user.destroy
+    end
+  end
+
 end
