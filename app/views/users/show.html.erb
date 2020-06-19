@@ -16,14 +16,16 @@
 
 <div class="d-flex justify-content-center mb-6">
   <div class="circle mr-5">
-    999<div class="user_score">LIFETIME WACKS</div>
+    <%= @attempts.count %>
+    <div class="user_score">LIFETIME WACKS</div>
   </div>
+
   <!--very hacky to get the names on 2 lines (not 1 or 3) -->
   <div class="circle">
-    3<div class="user_score">WACKS LAST<span class="pl-1">WEEK</span></div>
+    <%= @attslw.count %><div class="user_score">WACKS LAST<span class="pl-1">WEEK</span></div>
   </div>
   <div class="circle ml-5">
-    857<div class="user_score">WACK SCORE</div>
+    ??<div class="user_score">WACK SCORE</div>
   </div>
 </div>
 
@@ -51,15 +53,15 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Attempts (<%= @user.attempts.count %>)</a>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Wacks (<%= @user.attempts.count %>)</a>
       </h4>
     </div>
     <div id="collapse2" class="panel-collapse collapse in">
     <div class="panel-body">
-      <div class = "container mt-3">
+      <div class = "container">
         <% if @user.attempts.any? %>
-          <ol class="microposts">
-            <%= render @attempts, setting: "usernameno" %>
+          <ol class="attempts">
+            <%= render @attempts%>
           </ol>
           <%= will_paginate @attempts %>
         <% end %>

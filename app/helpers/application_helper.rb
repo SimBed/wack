@@ -17,9 +17,4 @@ module ApplicationHelper
       link_to coltitle, {:sort => column, :direction => direction}, {title: tooltiptitle,"data-toggle" => "tooltip", class: css_class}
   end
 
-   # Returns a shortened date format for easier reading in list
-  def date_reformat(date)
-    word_date = '%d/%m/%y'
-    date.nil? ?  "-" : date.strftime(word_date)
-  end
 end

@@ -458,7 +458,7 @@ div.user-date::before {
   color: white;
   font-weight: bold;
   font-style: normal;
-  content: "Member since : ";
+  content: "Member since: ";
 }
 
 div.user-rank {
@@ -600,7 +600,7 @@ background-image: image-url('down_arrow.gif');
   margin-bottom: 0;
 }
 
-/* microposts */
+/* microposts and attempts*/
 .btnpost {
   width: 100%;
   background-color: $greenfly;
@@ -621,7 +621,7 @@ span.picture {
   }
 }
 
-.microposts {
+.microposts, .attempts {
   list-style: none;
   padding: 0;
   li {
@@ -632,14 +632,16 @@ span.picture {
     margin-top: 5em;
     padding-top: 0;
   }
+
+   .wkname, .attdate, .summary {
+
+   }
+
   .content {
     display: block;
     margin-left: 60px;
-    img {
-      display: block;
-      padding: 5px 0;
-    }
   }
+
   .timestamp {
     color: $gray-light;
     display: block;
@@ -822,7 +824,6 @@ div.user_score {
 h4.panel-title {
   background-color:$bg-light;
   padding-top: .4em;
-  padding-bottom: .4em;
   padding-left: .4em;
     a {
       color:$gray-darker;
