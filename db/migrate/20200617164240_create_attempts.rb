@@ -1,7 +1,7 @@
 class CreateAttempts < ActiveRecord::Migration[5.2]
   def change
     create_table :attempts do |t|
-      t.datetime :DoA
+      t.datetime :doa
       t.text :summary
       t.references :user, foreign_key: true
       t.references :workout, foreign_key: true

@@ -4,7 +4,7 @@ class AttemptTest < ActiveSupport::TestCase
   def setup
     @user = users(:michael)
     @workout = workouts(:workouttwo)
-    @attempt = @user.attempts.build(DoA: "5/6/2020", summary: "felt tired today", workout_id: @workout.id)
+    @attempt = @user.attempts.build(doa: "5/6/2020", summary: "felt tired today", workout_id: @workout.id)
   end
 
   test "should be valid" do

@@ -1,8 +1,8 @@
 <%= form_for(@attempt) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= f.label :DoA, 'Date of Attempt' %>
-    <%= f.date_field :DoA %>
+    <%= f.label :doa, 'Date of Attempt' %>
+    <%= f.date_field :doa %>
   </div>
   <div class="field">
     <%= f.text_area :summary, placeholder: "Add your summary..." %>

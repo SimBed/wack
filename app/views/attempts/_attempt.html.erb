@@ -1,7 +1,7 @@
 <li id="attempt-<%= attempt.id %>">
   <%#= link_to gravatar_for(attempt.user, size: 50), attempt.user %>
   <div class="wkname"><%= link_to "#{attempt.workout.name}", attempt.workout %></div>
-  <div class="attdate"><%= date_reformat attempt.DoA %></div>
+  <div class="attdate"><%= date_reformat attempt.doa %></div>
   <div class="summary"><%= attempt.summary %></div>
     <% if current_user_or_admin?(attempt.user) %>
         <%= link_to attempt, method: :delete, data: { confirm: "Your attempt details will be deleted. Are you sure?" } do %>

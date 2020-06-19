@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
     @attempts = @user.attempts.paginate(page: params[:page])
-    @attslw = @user.attempts.where("DoA > ?", 1.week.ago)
+    @attslw = @user.attempts.where("doa > ?", 1.week.ago)
     redirect_to root_url and return unless @user.activated
   end
 

@@ -34,7 +34,7 @@ class AttemptsController < ApplicationController
   private
 
     def attempt_params
-      params.require(:attempt).permit(:DoA, :summary, :workout_id)
+      params.require(:attempt).permit(:doa, :summary, :workout_id)
     end
 
     def set_attempt

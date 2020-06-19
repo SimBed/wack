@@ -4,6 +4,6 @@ class Attempt < ApplicationRecord
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
   validates :workout_id, presence: true
-  validates :DoA, presence: true
+  validates :doa, presence: true
   validates :summary, length: { maximum: 140 }
 end

@@ -99,7 +99,7 @@ class UserTest < ActiveSupport::TestCase
   test "associated attempts should be destroyed" do
     @user.save
     wk  = workouts(:workoutone)
-    @user.attempts.create!(DoA:"10/06/2020", summary: "Lorem ipsum", workout_id: wk.id)
+    @user.attempts.create!(doa:"10/06/2020", summary: "Lorem ipsum", workout_id: wk.id)
     assert_difference 'Attempt.count', -1 do
       @user.destroy
     end

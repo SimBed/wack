@@ -1,26 +1,26 @@
 attempt1:
-  DoA: "7/6/2020"
+  doa: "7/6/2020"
   summary: "Cool"
   created_at: <%= 10.minutes.ago %>
   user: lana
   workout: workouttwo
 
 attempt2:
-  DoA: "7/6/2020"
+  doa: "7/6/2020"
   summary: "Cool"
   created_at: <%= 3.years.ago %>
   user: michael
   workout: workouttwo
 
 attempt3:
-  DoA: "7/6/2020"
+  doa: "7/6/2020"
   summary: "Cool"
   created_at: <%= 2.hours.ago %>
   user: michael
   workout: workoutthree
 
 most_recent:
-  DoA: "7/6/2020"
+  doa: "7/6/2020"
   summary: "Still recovering..."
   created_at: <%= Time.zone.now %>
   user: archer
