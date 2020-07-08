@@ -5,11 +5,16 @@ class WorkoutsController < ApplicationController
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
 
   def index
+    #@test = session[:filter_style][1]
+    #@test = params['style[1]']
     #@workouts = Workout.paginate(page: params[:page])
     #@workouts = Workout.all.order(sort_column + " " + sort_direction, :name).paginate(page: params[:page],per_page: 10)
     handle_favourites
     handle_search_name
-    handle_filters
+    handle_advancedsearch
+    @workouts = @workouts.paginate(page: params[:page],per_page: 5)
+    @intensity = Workout.distinct.pluck(:intensity)
+    @style = Workout.distinct.pluck(:style)
   end
 
   def show
@@ -56,10 +61,12 @@ class WorkoutsController < ApplicationController
     redirect_to workouts_path
   end
 
+#clear_session defined in sessions_helper.rb
   def clear
-    clear_session(:search_name, :filter_option, :favesonly)
+    clear_session(:search_name, :favesonly)
     redirect_to workouts_path
   end
+
 
   def favourites
     session[:favesonly] = false if session[:favesonly].nil?
@@ -89,12 +96,15 @@ class WorkoutsController < ApplicationController
   end
 
   def initialize_search
-#    session[:filter_faves] = params[:filter_faves]
+    #clear_session defined in sessions_helper.rb clears out the sessions. Without this an empty checkbox may not necessarily mean an empty session
+    clear_session(:filter_style, :filter_intensity)
     session[:search_name] = params[:search_name]
 #    session[:filter] = params[:filter]
 #    params[:filter_option] = nil if params[:filter_option] == ""
-    session[:filter_option] = params[:filter_option]
-
+    session[:filter_style] = params[:style]
+    session[:filter_intensity] = params[:intensity]
+    filters = [session[:filter_style], session[:filter_intensity]]
+    session[:advsearchshow] = filters.any? { |filter| filter.present? }
   end
 
   def handle_favourites
@@ -112,11 +122,9 @@ class WorkoutsController < ApplicationController
     end
   end
 
-  def handle_filters
-    if session[:filter_option]
-      @workouts = @workouts.where(style: session[:filter_option])
-    end
-    @workouts = @workouts.paginate(page: params[:page],per_page: 5)
+  def handle_advancedsearch
+    @workouts = @workouts.where(style: session[:filter_style]) if session[:filter_style].present?
+    @workouts = @workouts.where(intensity: session[:filter_intensity]) if session[:filter_intensity].present?
   end
 
 end

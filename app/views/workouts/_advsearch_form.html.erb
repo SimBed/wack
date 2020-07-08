@@ -1,0 +1,16 @@
+<%= form_for(@search) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <% @style.each do |style| %>
+    <%= f.check_box :style, {multiple: true}, style, false %>
+    <%= f.label style %>
+    <% end %>
+  </div>
+  <div class="field">
+    <% @intensity.each do |intensity| %>
+    <%= f.check_box :intensity, {multiple: true}, intensity, false %>
+    <%= f.label intensity %>
+    <% end %>
+  </div>
+  <%= f.submit "Search", class: "btn btn-primary btnpost" %>
+<% end %>

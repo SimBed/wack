@@ -547,7 +547,7 @@ font-weight: bold;
         div.p-flex { width: 25%; }
       }	  */
 
-  .Sort {
+.Sort {
   display:block;
   background-color: white;
   list-style: none;
@@ -558,13 +558,13 @@ font-weight: bold;
   text-align:center;
  }
 
- .Sort li{
+.Sort li{
   display: inline-block;
   padding: 0 0.3em 0.3em 0;
   color: #635869;
    }
 
-    .Sort li a{
+.Sort li a{
   color: #635869;
    }
 
@@ -656,14 +656,48 @@ span.picture {
 
 /* search on workout index*/
 i.fa-search {
-   color: $gray-light;
+  color: $greenfly;
+  opacity: 0.75;
+  font-size: 1.2em;
+  /*color: $gray-light;
    margin-top: -9px;
    right:auto;
    left: 1.4em;
    position:absolute;
    vertical-align: bottom;
-   top: 40%;
+   top: 40%;*/
    }
+
+i.fa-filter {
+   color: $greenfly;
+ }
+
+%buttonsearch {
+  border: none;
+  padding-left: 1px;
+  padding-right: 1px;
+  background-color: white;
+}
+button.search{
+  @extend %buttonsearch;
+}
+
+button.advsearch {
+  @extend %buttonsearch;
+  position:absolute;
+  right: 15px;
+}
+
+button.advsearch:focus {
+  outline: 0;
+}
+
+.hide {
+  display: none !important;
+}
+.show {
+  display:block;
+}
 
 .greyout {
      display: none;
@@ -681,10 +715,10 @@ input.search[type="text"] {
 		border-color:$bg-light;
     background-color: $bg-light;
     border-width: 1px;
-		width:100%;
+		width:80%;
 		padding: .3em;
 	  border-radius: 0.5em;
-		padding-left: 32px;
+	/*	padding-left: 32px;*/
 }
 
 input.search[type="text"]:focus {

@@ -1,28 +1,72 @@
-<form action="/workouts" method="GET">
+<div class="container search">
+<%= form_with(url: "/workouts", method: "get", local: true) do %>
 
-  <div class="container search">
-    <input class="form-control-sm mb-2 search" type="text" name="search_name" placeholder="Search workouts…" value= <%= session[:search_name] %>  >
+  <%= text_field_tag :search_name, nil, class: "form-control-sm mb-2 search", placeholder: "Search workouts…", value: session[:search_name] %>
+  <%= button_tag class: "search", type: 'submit' do %>
     <i class="fa fa-search"></i>
-  </div>
+  <% end %>
+
+<% end %>
+</div>
 
   <div class="container">
       <hr class = "search"></hr>
   </div>
 
   <div class="container search">
-    <select class="form-control-sm mb-2 search pr-3" name="filter_option" onchange="this.form.submit()">
-      <option disabled="disabled" selected="selected" value="">Style</option>
-      <% Rails.application.config_for(:workoutinfo)["styles"].each do |style| %>
-        <option value="<%= style %>" <%="selected" if session[:filter_option] == style%>><%= style %></option>
-      <% end %>
-    </select>
 
     <%= link_to favourites_path, class: "search" do%>
     <i class="<%= session[:favesonly] == true ? "fas fa-heart pl-1 pr-2" : "fas fa-heart-broken pl-1 pr-2" %>"></i>
     <% end %>
 
     <%= link_to clear_path, class: "search" do%>
-    <i class="fa fa-trash"></i> Filters
+    <i class="fa fa-trash"> Filters</i>
+    <% end %>
+
+    <button onclick="toggleHidden()" class="advsearch">
+      <i class="fa fa-filter"> Advanced Search</i>
+    </button>
+  </div>
+
+  <div class="container">
+      <hr class = "search"></hr>
+  </div>
+
+  <div id="advsearch" class="container search <%= session[:advsearchshow] == true ? "show" : "hide" %>">
+  <%= form_with(url: "/workouts", method: "get", local: true) do %>
+  <div class="field">
+    <% @style.each do |style| %>
+    <%= check_box_tag 'style[]', style, session[:filter_style].present? ? session[:filter_style].include?(style) : false %>
+    <%= label_tag 'style[]', style %>
     <% end %>
   </div>
-</form>
+
+  <div class="field">
+    <% @intensity.each do |intensity| %>
+    <%= check_box_tag 'intensity[]', intensity, session[:filter_intensity].present? ? session[:filter_intensity].include?(intensity) : false %>
+    <%= label_tag 'intensity[]', intensity %>
+    <% end %>
+  </div>
+  <%= submit_tag "Search", class: "btn btn-primary btnpost" %>
+<% end %>
+  </div>
+
+<script>
+
+function toggleHidden() {
+    var x = document.getElementById("advsearch");
+    x.classList.toggle('hide');
+}
+
+//abandoned this function as it sometimes mysteriously required
+//a double-click. Some stackoverflow content but nothing that worked.
+//The succince classlist approach above works marvellously
+function hideshow() {
+  var x = document.getElementById("advsearch");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
