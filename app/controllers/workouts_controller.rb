@@ -12,9 +12,13 @@ class WorkoutsController < ApplicationController
     handle_favourites
     handle_search_name
     handle_advancedsearch
-    @workouts = @workouts.paginate(page: params[:page],per_page: 5)
+    @workouts = @workouts.order_by_date_created.paginate(page: params[:page],per_page: 5)
+    #if Rails.env.development?
     @intensity = Workout.distinct.pluck(:intensity)
     @style = Workout.distinct.pluck(:style)
+    #@intensity = Workout.pluck(:intensity).uniq
+    #@style = Workout.pluck(:style).uniq
+
   end
 
   def show

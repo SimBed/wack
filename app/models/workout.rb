@@ -3,7 +3,8 @@ class Workout < ApplicationRecord
   has_many :microposts, dependent: :destroy
   has_many :rel_user_workouts, dependent: :destroy
   has_many :users, through: :rel_user_workouts
-  default_scope -> { order(created_at: :desc) }
+  #default_scope -> { order(created_at: :desc) }
+  scope :order_by_date_created, -> { order(created_at: :desc) }
   validates :name,  presence: true, length: { maximum: 50 },
                     uniqueness: { case_sensitive: false }
   #VALID_URL_REGEX = /
