@@ -13,13 +13,19 @@
   </div>
 
   <div class="field">
+    <%= form.label :bodyfocus, "Body Focus" %>
+    <!--see config/workoutinfo.yml-->
+    <%= form.select :bodyfocus, Rails.application.config_for(:workoutinfo)["bodyfocus"]%>
+  </div>
+
+  <div class="field">
     <%= form.label :url, "URL" %>
     <%= form.text_field :url %>
   </div>
 
   <div class="field">
     <%= form.label :length, "Length" %>
-    <%= form.number_field :length, in: 10..120, step: 2 %>
+    <%= form.number_field :length, in: 10..90, step: 1 %>
     <%#= form.range_field :length, in: 10..120, step: 5 %>
   </div>
 

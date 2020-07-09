@@ -16,6 +16,7 @@ class WorkoutsController < ApplicationController
     #if Rails.env.development?
     @intensity = Workout.distinct.pluck(:intensity)
     @style = Workout.distinct.pluck(:style)
+    @bodyfocus = Workout.distinct.pluck(:bodyfocus)
     #@intensity = Workout.pluck(:intensity).uniq
     #@style = Workout.pluck(:style).uniq
 
@@ -81,7 +82,7 @@ class WorkoutsController < ApplicationController
   private
   # Never trust parameters from the scary internet, only allow the white list through.
   def workout_params
-    params.require(:workout).permit(:name, :style, :url, :length, :intensity, :spacesays, :brand, :equipment, :eqpitems)
+    params.require(:workout).permit(:name, :style, :url, :length, :intensity, :spacesays, :brand, :equipment, :eqpitems, :bodyfocus)
   end
 
   def set_workout
@@ -101,13 +102,14 @@ class WorkoutsController < ApplicationController
 
   def initialize_search
     #clear_session defined in sessions_helper.rb clears out the sessions. Without this an empty checkbox may not necessarily mean an empty session
-    clear_session(:filter_style, :filter_intensity)
+    clear_session(:filter_style, :filter_intensity, :filter_bodyfocus)
     session[:search_name] = params[:search_name]
 #    session[:filter] = params[:filter]
 #    params[:filter_option] = nil if params[:filter_option] == ""
     session[:filter_style] = params[:style]
     session[:filter_intensity] = params[:intensity]
-    filters = [session[:filter_style], session[:filter_intensity]]
+    session[:filter_bodyfocus] = params[:bodyfocus]
+    filters = [session[:filter_style], session[:filter_intensity], session[:filter_bodyfocus] ]
     session[:advsearchshow] = filters.any? { |filter| filter.present? }
   end
 
@@ -122,13 +124,17 @@ class WorkoutsController < ApplicationController
   def handle_search_name
     if session[:search_name]
       #ILIKE is case-insensitive version of LIKE but postgreql only (not sqlite)
-      @workouts = @workouts.where("lower(name) LIKE ?", "%#{session[:search_name].downcase}%").or(@workouts.where("lower(brand) LIKE ?", "%#{session[:search_name].downcase}%"))
+      @workouts = @workouts.where("lower(name) LIKE ?", "%#{session[:search_name].downcase}%")
+              .or(@workouts.where("lower(brand) LIKE ?", "%#{session[:search_name].downcase}%"))
+              .or(@workouts.where("lower(style) LIKE ?", "%#{session[:search_name].downcase}%"))
+              .or(@workouts.where("lower(bodyfocus) LIKE ?", "%#{session[:search_name].downcase}%"))
     end
   end
 
   def handle_advancedsearch
     @workouts = @workouts.where(style: session[:filter_style]) if session[:filter_style].present?
     @workouts = @workouts.where(intensity: session[:filter_intensity]) if session[:filter_intensity].present?
+    @workouts = @workouts.where(bodyfocus: session[:filter_bodyfocus]) if session[:filter_bodyfocus].present?
   end
 
 end

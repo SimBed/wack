@@ -7,6 +7,14 @@ User.create!(name:  "Dan SimBed",
              activated: true,
              activated_at: Time.zone.now)
 
+User.create!(name:  "Amala Paw",
+            email: "amala@wack.com",
+            password:              "foobar",
+            password_confirmation: "foobar",
+            admin:     false,
+            activated: true,
+            activated_at: Time.zone.now)
+
 User.create!(name:  "Gigi B",
              email: "Gigi@wack.org",
              password:              "foobar",
@@ -47,6 +55,7 @@ Workout.create!(name: "Rakis Beetroot Bootcamp",
              addedby: "SimBed",
              brand: "TEST - MUSIC ONLY",
              eqpitems: "beetroot carrot saag",
+             bodyfocus: "Full Body",
              created_at: Date.new(2020,5,25))
 
 Workout.create!(name: "DanZ GainZ",
@@ -59,6 +68,7 @@ Workout.create!(name: "DanZ GainZ",
              addedby: "SimBed",
              brand: "TEST - MUSIC ONLY",
              eqpitems: "socks, water",
+             bodyfocus: "Full Body",
              created_at: Date.new(2020,5,26))
 
 Workout.create!(name: "Gigis Big Bum Row",
@@ -71,6 +81,7 @@ Workout.create!(name: "Gigis Big Bum Row",
              addedby: "SimBed",
              brand: "TEST - MUSIC ONLY",
              eqpitems: "kitten only",
+             bodyfocus: "Full Body",
              created_at: Date.new(2020,5,27))
 
 Workout.create!(name: "Strength & Conditioning",
@@ -82,7 +93,7 @@ Workout.create!(name: "Strength & Conditioning",
             equipment: false,
             addedby: "Wacky Raki",
             brand: "SELF",
-            eqpitems: "yoga mat",
+            bodyfocus: "Lower",
             created_at: Date.new(2020,5,28))
 
 Workout.create!(name: "HIIT Cardio",
@@ -94,7 +105,7 @@ Workout.create!(name: "HIIT Cardio",
              equipment: false,
              addedby: "Wacky Raki",
              brand: "SELF",
-             eqpitems: "yoga mat",
+             bodyfocus: "Lower",
              created_at: Date.new(2020,5,28))
 
  Workout.create!(name: "Full Body Workout",
@@ -106,11 +117,11 @@ Workout.create!(name: "HIIT Cardio",
               equipment: false,
               addedby: "Wacky Raki",
               brand: "Mady Morrison",
-              eqpitems: "",
+              bodyfocus: "Full Body",
               created_at: Date.new(2020,6,1))
 
 Workout.create!(name: "HIIT Abs Focus Workout",
-             style: "Core",
+             style: "HIIT",
              url: "https://www.youtube.com/embed/oFlLNY4Fzm0",
              length: 35,
              intensity: "Medium",
@@ -118,7 +129,7 @@ Workout.create!(name: "HIIT Abs Focus Workout",
              equipment: false,
              addedby: "Wacky Raki",
              brand: "SELF",
-             eqpitems: "",
+             bodyfocus: "Core",
              created_at: Date.new(2020,6,4))
 =begin
 10.times do |n|

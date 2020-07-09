@@ -47,6 +47,14 @@
     <%= label_tag 'intensity[]', intensity %>
     <% end %>
   </div>
+
+  <div class="field">
+    <% @bodyfocus.each do |bodyfocus| %>
+    <%= check_box_tag 'bodyfocus[]', bodyfocus, session[:filter_bodyfocus].present? ? session[:filter_bodyfocus].include?(bodyfocus) : false %>
+    <%= label_tag 'bodyfocus[]', bodyfocus %>
+    <% end %>
+  </div>
+
   <%= submit_tag "Search", class: "btn btn-primary btnpost" %>
 <% end %>
   </div>

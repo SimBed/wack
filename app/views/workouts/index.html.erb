@@ -1,7 +1,5 @@
 <% provide(:title, 'All Workouts') %>
 
- <h2> <%="All Workouts #{@test}" %></h2> 
-
 <%= render 'workouts/filterform' %>
 <% if current_user && current_user.admin? %>
   <div class="container search mb-2">

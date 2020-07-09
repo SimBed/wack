@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_17_164240) do
+ActiveRecord::Schema.define(version: 2020_07_08_203757) do
 
   create_table "attempts", force: :cascade do |t|
     t.datetime "doa"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 2020_06_17_164240) do
     t.string "addedby"
     t.string "brand"
     t.string "eqpitems"
+    t.string "bodyfocus"
   end
 
 end

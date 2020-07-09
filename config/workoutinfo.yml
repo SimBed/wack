@@ -4,10 +4,7 @@ default: &default
 
  styles:
   - Cardio
-  - Core
-  - Full Body
   - HIIT
-  - Mind
   - Mobility
   - Partner
   - Strength
@@ -19,6 +16,15 @@ default: &default
   - Low
   - Medium
   - High
+
+ bodyfocus:
+  - Lower
+  - Hamstring
+  - Hip
+  - Core
+  - Upper
+  - Full Body
+  - Mind
 
 development:
   <<: *default
