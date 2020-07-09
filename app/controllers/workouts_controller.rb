@@ -51,7 +51,8 @@ class WorkoutsController < ApplicationController
 
   def update
     #set_workout occurs via callback
-    if @workout.update(workout_params)
+    #at one point this was just "update" not "update_attributes". SQLite was OK but posgres didnt like it. No idea how it got like that??
+    if @workout.update_attributes(workout_params)
       flash[:success] = "#{@workout.name} updated"
       redirect_to workouts_path
     else
