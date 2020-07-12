@@ -1,9 +1,49 @@
-<div class="center jumbotron">
-  <h2>WeeklyWack</h2>
-  <p>..for Wacking on your own or in small groups</p>
+<div class="center jumbotron mb-0" style="position:relative;margin-left:-15px;margin-right:-15px;">
+  <ul class= "wacktext1" style="list-style-type:none;padding-inline-start:0;">
+    <li>Follow-Along Workouts</li>
+    <li>Best of the Web</li>
+    <li>Home or Gym</li>
+    <li>Selected & Reviewed by our Pros<super>*</super></li>
+
+    <li class="wacktext2"><super>*</super>at <a href="https://ww.thespacejuhu.in">The Space</a>, Mumbai Fitness Centre</li>
+
+     <br>
+     <li class="wacktext2">bodyweight barbell row, bike, dumbell, yoga, mobility, HIIT, strength, cardio, upper body, lower body, abs, hip, hamstring, mind, kettlebell, skip, stretch</li>
+     <br>
+    <li class="wacktext2">Choose your style, Choose your Instructor, Beginner to Beast, Easy Search, Log your Progress, Free for all</li>
+    </ul>
+
+    <p class="wacktext3">Work it, Track it, Wack it</p>
+
 </div>
 
+
   <div class="p-flex">
+
+    <% unless logged_in? %>
+    <div class = "container mt-2 text-center">
+      <%= link_to "Sign up Now for Free for the Full Wack!", signup_path, class: "btn btn-lg btn-primary btnpost" %>
+    </div>
+    <% end %>
+
+    <div class = "container mt-2 text-center mb-3">
+      <%= link_to "Just Take me to The Workouts!", workouts_path, class: "btn btn-lg btn-primary btnpost" %>
+    </div>
+
+    <div class="container mb-3">
+        <hr class = "search"></hr>
+    </div>
+
+    <div class = "container">
+      <div class="row bg-dark px-1 pt-2 pb-1 text-center">
+        <div class ="col-12">
+          <h4 class="WorkoutName-s">
+            This Week's Workout
+          </h4>
+        </div>
+      </div>
+    </div>
+<br>
     <div class = "container">
       <div class="row bg-dark px-1 pt-2 pb-1 text-center">
         <div class ="col-12">
@@ -30,15 +70,12 @@
 
     <div class="container">
        <div class="row bg-light">
-        <div class ="col-8">
+        <div class ="col-12">
             <div class="wkstyle-s">Style: <%= @workouts.first.style %></div>
+            <div class="wkstyle-s">Focus: <%= @workouts.first.bodyfocus %></div>
             <div class="wkstyle-s">Equipment: <%= @workouts.first.equipment ? @workouts.first.eqpitems : "None"%></div>
             <div class="wkstyle-s">Level: <%= @workouts.first.intensity%></div>
             <div class="wkstyle-s">Duration: <%= "#{@workouts.first.length} minutes"%></div>
-        </div>
-
-        <div class ="col-4">
-          <div class="social-s"><i class="fa fa-heart icon-large"></i></div>
         </div>
       </div>
 
@@ -51,8 +88,6 @@
       </div>
     </div>
 
-<% unless logged_in? %>
-<div class = "container mt-2 text-center">
-  <%= link_to "Sign up Now to Keep on Wacking!", signup_path, class: "btn btn-lg btn-primary btnpost" %>
+
+
 </div>
-<% end %>

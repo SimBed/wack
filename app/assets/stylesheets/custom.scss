@@ -863,3 +863,28 @@ h4.panel-title {
       color:$gray-darker;
     }
   }
+
+
+/*Homepage*/
+%wacktext {
+color: $gray-darker;
+font-family: $font-stack;
+letter-spacing: 0.08em;
+font-size: 0.9em;
+font-weight: bold;
+    }
+
+.wacktext1 {
+  @extend %wacktext;
+}
+
+.wacktext2 {
+  @extend %wacktext;
+  font-size: 0.7em;
+  font-weight: normal;
+}
+
+.wacktext3 {
+  @extend %wacktext;
+  font-size: 1.3em;
+}
