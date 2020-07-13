@@ -10,7 +10,8 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
   test "layout links" do
     get root_path
     assert_template 'static_pages/home'
-    assert_select "a[href=?]", root_path, count: 0
+    assert_select "a[href=?]", root_path
+    assert_select "a[href=?]", workouts_path
     assert_select "a[href=?]", login_path
     assert_select "a[href=?]", logout_path, count: 0
     assert_select "a[href=?]", signup_path
@@ -24,7 +25,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     log_in_as(@nonadmin)
     get root_path
     assert_template 'static_pages/home'
-    assert_select "a[href=?]", root_path, count: 0
+    assert_select "a[href=?]", root_path
     assert_select "a[href=?]", login_path, count: 0
     assert_select "a[href=?]", signup_path, count: 0
     assert_select "a[href=?]", workouts_path
@@ -36,7 +37,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     log_in_as(@admin)
     get root_path
     assert_template 'static_pages/home'
-    assert_select "a[href=?]", root_path, count: 0
+    assert_select "a[href=?]", root_path
     assert_select "a[href=?]", login_path, count: 0
     assert_select "a[href=?]", signup_path, count: 0
     assert_select "a[href=?]", users_path

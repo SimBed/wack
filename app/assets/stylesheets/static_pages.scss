@@ -1,3 +1,147 @@
-// Place all the styles related to the StaticPages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+:root {
+  font-size: 16px;
+  font-family: 'Open Sans';
+  --text-primary: #b6b6b6;
+  --text-secondary: #ececec;
+  --bg-primary: #23232e;
+  --bg-secondary: #141418;
+  --transition-speed: 600ms;
+}
+
+$gray-light:  #d8d8d8;
+$greenfly: #126774;
+
+body {
+  color: black;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  margin-left: 0;
+  padding: 0;
+  margin-top: 5rem;
+}
+
+.navbar1 {
+  position: fixed;
+  background-color: var(--bg-primary);
+  transition: width var(--transition-speed) ease;
+  z-index: 1000;
+  top: 0;
+  height: 4rem;
+  width: 100vw;
+  /*overflow: scroll;*/
+}
+
+.navbar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-item {
+  width: 100%;
+}
+
+.nav-item:last-child {
+/*  margin-top: auto;*/
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  height: 4rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  filter: grayscale(100%) opacity(0.7);
+  transition: var(--transition-speed);
+}
+
+.nav-link:hover {
+  filter: grayscale(0%) opacity(1);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+    i.fa {
+      color: $greenfly;
+  }
+}
+
+.link-text {
+  display: none;
+  margin-left: 1rem;
+}
+
+.nav-link i {
+  /*width: 2rem;*/
+  min-width: 2rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.navbar1:hover {
+
+}
+
+.navbar1:hover .link-text {
+
+}
+
+.nav-item.i.fa {
+  color: $gray-light;
+  transition: var(--transition-speed);
+}
+
+.logo {
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  font-size: 1.5rem;
+  letter-spacing: 0.3ch;
+  width: 100%;
+}
+
+.logo i {
+  transform: rotate(0deg);
+  transition: var(--transition-speed);
+}
+
+.navbar1:hover .logo i {
+  transform: rotate(-360deg);
+}
+
+/* Large screens */
+@media only screen and (min-width: 600px) {
+  .navbar1 {
+    top: 0;
+    width: 4rem;
+    height: 100vh;
+    position: fixed;
+  }
+
+  .navbar1:hover {
+    width: 12rem;
+  }
+
+  .navbar1:hover .link-text {
+    display: block;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+  }
+
+  main {
+    margin-left: 4rem;
+    padding: 1rem;
+    margin-top:0;
+  }
+
+}

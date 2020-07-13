@@ -1,33 +1,56 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <%#= link_to image_tag("SpaceLogo.png", alt: "The Space logo", width: "60%"),
-            'http://www.thespacejuhu.in/' %>
-    <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <% if current_user && current_user.admin? %>
-          <li><%= link_to "All Users", users_path %></li>
-        <% end %>
+<nav class="navbar1 mb-2">
+  <ul class="navbar-nav">
 
-          <li><%= link_to "Workouts", workouts_path %></li>
-          <% if logged_in? %>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Account <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu" style="position:absolute;">
-              <li><%= link_to "Profile", current_user %></li>
-             <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-              <li class="divider"></li>
-              <li>
-                <%= link_to "Log out", logout_path, method: :delete %>
-              </li>
-            </ul>
-          </li>
-        <% else %>
-          <li><%= link_to "Member Login", login_path %></li>
-        <% end %>
-      </ul>
-    </nav>
+    <li class="logo">
+      <%= link_to root_path, class: "nav-link" do %>
+        <i class="fa fa-chess"></i>
+        <span class="link-text logo-text">Wack</span>
+      <% end %>
+    </li>
 
-  </div>
-</header>
+    <% if current_user && current_user.admin? %>
+      <li class="nav-item">
+        <%= link_to users_path, class: "nav-link" do %>
+          <i class="fa fa-users"></i>
+          <span class="link-text">All Users</span>
+        <% end %>
+      </li>
+    <% end %>
+
+    <li class="nav-item">
+      <%= link_to workouts_path, class: "nav-link" do %>
+        <i class="fa fa-dumbbell"></i>
+        <span class="link-text">Workouts</span>
+      <% end %>
+    </li>
+
+    <% if logged_in? %>
+      <li class="nav-item">
+        <%= link_to current_user, class: "nav-link" do %>
+          <i class="fa fa-id-card"></i>
+          <span class="link-text">Profile</span>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to edit_user_path(current_user), class: "nav-link" do %>
+          <i class="fa fa-cog"></i>
+          <span class="link-text">Settings</span>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to logout_path, method: :delete, class: "nav-link" do %>
+          <i class="fa fa-user-alt-slash"></i>
+          <span class="link-text">Logout</span>
+        <% end %>
+      </li>
+    <% else %>
+    <li class="nav-item">
+      <%= link_to login_path, class: "nav-link" do %>
+        <i class="fa fa-user"></i>
+        <span class="link-text">Login</span>
+      <% end %>
+    </li>
+    <% end %>
+
+  </ul>
+</nav>
