@@ -14,7 +14,8 @@ class WorkoutsCreateTest < ActionDispatch::IntegrationTest
                                          url: "wwwinvalid",
                                          style: "Yoga",
                                          length: "75",
-                                         intensity: "High" } }
+                                         intensity: "High",
+                                         brand: "myBrand" } }
     end
     assert_template 'workouts/new'
     assert_select 'div#error_explanation'
@@ -28,7 +29,8 @@ class WorkoutsCreateTest < ActionDispatch::IntegrationTest
                                          url: "www.testvalid.com",
                                          style: "Yoga",
                                          length: "75",
-                                         intensity: "High" }  }
+                                         intensity: "High",
+                                         brand: "myBrand" }  }
     end
     follow_redirect!
     assert_template 'workouts/index'
@@ -42,7 +44,8 @@ class WorkoutsCreateTest < ActionDispatch::IntegrationTest
                                          url: "www.testvalid.com",
                                          style: "Yoga",
                                          length: "75",
-                                         intensity: "High" }  }
+                                         intensity: "High",
+                                         brand: "myBrand" }  }
     end
     assert_redirected_to root_url
     assert flash.empty?

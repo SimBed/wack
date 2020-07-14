@@ -26,8 +26,8 @@ end
    assert @attempt.valid?
  end
 
- test "summary should be at most 140 characters" do
-   @attempt.summary = "a" * 141
+ test "summary should be at most 500 characters" do
+   @attempt.summary = "a" * 501
    assert_not @attempt.valid?
  end
 

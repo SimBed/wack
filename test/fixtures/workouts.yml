@@ -4,6 +4,7 @@ workoutone:
   url: www.zzworkout1.com
   length: 30
   intensity: Low
+  brand: myBrand
 
 workouttwo:
   name: ZZworkout2
@@ -11,6 +12,7 @@ workouttwo:
   url: www.zzworkout2.in
   length: 60
   intensity: Medium
+  brand: myBrand
 
 workoutthree:
   name: ZZworkout3
@@ -18,6 +20,7 @@ workoutthree:
   url: www.zzworkout3.in
   length: 75
   intensity: High
+  brand: myBrand
 
 <% 30.times do |n| %>
 workout_<%= n %>:
@@ -26,4 +29,5 @@ workout_<%= n %>:
   url: <%= "www.workout#{n}.com" %>
   length: 75
   intensity: High
+  brand: myBrand
 <% end %>

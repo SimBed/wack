@@ -18,7 +18,8 @@ class WorkoutsEditTest < ActionDispatch::IntegrationTest
                                              url: "www.testvalid.com",
                                              style: "Yoga",
                                              length: "75",
-                                             intensity: "High" }  }
+                                             intensity: "High",
+                                             brand: "myBrand2" }  }
           assert_response :redirect
     end
 
@@ -30,7 +31,8 @@ class WorkoutsEditTest < ActionDispatch::IntegrationTest
                                          url: "wwwinvalid",
                                          style: "Yoga",
                                          length: "75",
-                                         intensity: "High" } }
+                                         intensity: "High",
+                                         brand: "myBrand2" } }
 
       assert_template 'workouts/edit'
       assert_select 'div.alert.alert-danger'
@@ -41,6 +43,7 @@ class WorkoutsEditTest < ActionDispatch::IntegrationTest
         name  = "testworkout"
         url  = "www.testvalid.com"
         intensity = @workout.intensity
+        brand = @workout.brand
         patch workout_path(@workout), params: { workout: { name:  name,
                                            url: url }  }
         assert_not flash.empty?
@@ -49,5 +52,6 @@ class WorkoutsEditTest < ActionDispatch::IntegrationTest
         assert_equal name,  @workout.name
         assert_equal url, @workout.url
         assert_equal intensity, @workout.intensity
+        assert_equal brand, @workout.brand
       end
 end

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class WorkoutTest < ActiveSupport::TestCase
   def setup
-    @workout = Workout.new(name: "Example Workout", style: "Cardio",url: "www.example.com", length: 30, intensity: "High")
+    @workout = Workout.new(name: "Example Workout", style: "Cardio",url: "www.example.com", length: 30, intensity: "High", brand: "myBrand")
   end
 
   test "should be valid" do

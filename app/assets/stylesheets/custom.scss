@@ -380,7 +380,14 @@ background-image: image-url('down_arrow.gif');
 
 div.brand-i {
   @extend %WkAttribute;
+  line-height:100%;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  &:hover {
+    overflow: visible;
     }
+  }
 
 div.brand-s {
   color: $greenfly;
@@ -476,12 +483,12 @@ div.spacesays-i {
   @extend %wkspacesays;
     }
 
-div.spacesays-i::before {
+/* div.spacesays-i::before {
   color: white;
   font-weight: bold;
   font-style: normal;
-  content: "The Space says: ";
-}
+ content: "The Space says: ";
+}*/
 
 div.spacesays-s {
   @extend %wkspacesays;

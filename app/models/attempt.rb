@@ -5,5 +5,5 @@ class Attempt < ApplicationRecord
   validates :user_id, presence: true
   validates :workout_id, presence: true
   validates :doa, presence: true
-  validates :summary, length: { maximum: 140 }
+  validates :summary, length: { maximum: 500 }
 end

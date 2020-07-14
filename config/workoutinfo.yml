@@ -3,7 +3,10 @@
 default: &default
 
  styles:
+  - Acroyoga
   - Cardio
+  - Dancefitness
+  - Handstand
   - HIIT
   - Mobility
   - Partner
@@ -18,13 +21,14 @@ default: &default
   - High
 
  bodyfocus:
-  - Lower
+  - Lower Body
   - Hamstring
   - Hip
   - Core
-  - Upper
+  - Upper Body
   - Full Body
   - Mind
+  - Skill
 
 development:
   <<: *default

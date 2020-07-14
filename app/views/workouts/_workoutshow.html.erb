@@ -79,7 +79,7 @@
 
       <div class="row bg-dark py-1 mx-0">
         <div class ="col-12">
-           <div class="comment-s"><%= link_to "#{pluralize(workoutshow.attempts.count, "attempt")}", workoutshow%></div>
+           <div class="comment-s"><%= link_to "#{pluralize(workoutshow.attempts.count, "attempt")}", current_user%></div>
         </div>
       </div>
 
