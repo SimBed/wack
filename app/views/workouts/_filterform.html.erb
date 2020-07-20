@@ -29,38 +29,49 @@
   <%= text_field_tag :search_name, nil, class: "form-control-sm mb-2 search", placeholder: "Keywords…", value: session[:search_name] %>
   </div>
 
-  <fieldset>
-   <legend>STYLE:</legend>
+  <div class="container mb-1">
+  <div class="row">
+
+  <div class="col-4">
+  <fieldset class="d-flex">
+    <legend>STYLE</legend>
     <% @style.each do |style| %>
-    <%= check_box_tag 'style[]', style, session[:filter_style].present? ? session[:filter_style].include?(style) : false %>
-    <%= label_tag 'style[]', style %>
+      <div>
+        <%= check_box_tag 'style[]', style, session[:filter_style].present? ? session[:filter_style].include?(style) : false %>
+        <%= label_tag 'style[]', style %>
+      </div>
     <% end %>
   </fieldset>
+  </div>
 
-  <fieldset>
-   <legend>INTENSITY:</legend>
+  <div class="col-4">
+  <fieldset class="d-flex">
+    <legend>INTENSITY</legend>
     <% @intensity.each do |intensity| %>
-    <%= check_box_tag 'intensity[]', intensity, session[:filter_intensity].present? ? session[:filter_intensity].include?(intensity) : false %>
-    <%= label_tag 'intensity[]', intensity %>
+      <div>
+        <%= check_box_tag 'intensity[]', intensity, session[:filter_intensity].present? ? session[:filter_intensity].include?(intensity) : false %>
+        <%= label_tag 'intensity[]', intensity %>
+      </div>
     <% end %>
   </fieldset>
+  </div>
 
-  <fieldset>
-   <legend>FOCUS:</legend>
+  <div class="col-4">
+  <fieldset class="d-flex">
+    <legend>FOCUS</legend>
     <% @bodyfocus.each do |bodyfocus| %>
-    <%= check_box_tag 'bodyfocus[]', bodyfocus, session[:filter_bodyfocus].present? ? session[:filter_bodyfocus].include?(bodyfocus) : false %>
-    <%= label_tag 'bodyfocus[]', bodyfocus %>
+      <div>
+        <%= check_box_tag 'bodyfocus[]', bodyfocus, session[:filter_bodyfocus].present? ? session[:filter_bodyfocus].include?(bodyfocus) : false %>
+        <%= label_tag 'bodyfocus[]', bodyfocus %>
+      </div>
     <% end %>
   </fieldset>
+  </div>
+
+  </div>
+  </div>
 
   <%= hidden_field_tag 'advsearchshow', 'show'  %>
-
-<% if false %>
-  <div class="field">
-  <%= submit_tag "Search", class: "btn btn-primary btnpost" do %>
-  <i class="fa fa-search"></i>
-  <% end %>
-<% end %>
 
   <div class="container d-flex">
       <%= button_tag class: "search", type: 'submit' do %>
@@ -73,8 +84,7 @@
   </div>
 
 <% end %>
-      <hr class = "search"></hr>
-
+<hr class = "search"></hr>
 
   </div>
 
@@ -98,24 +108,4 @@ function toggleHidden() {
       }
     }
 
-//change text of hide/display button
-    //var z = document.getElementById("showsearch");
-     //if (z.innerHTML === "Show Search Options") {
-       //z.innerHTML = "Hide Search Options";
-     //} else {
-       //z.innerHTML = "Show Search Options";
-     //}
-
-
-//abandoned this function as it sometimes mysteriously required
-//a double-click. Some stackoverflow content but nothing that worked.
-//The succince classlist approach above works marvellously
-function hideshow() {
-  var x = document.getElementById("advsearch");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
 </script>
