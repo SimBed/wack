@@ -423,23 +423,10 @@ div.wkstyle-s {
   color: $gray-darkest;
 }
 
-/*not used*/
-div.social-s {
-  position:absolute;
-  right: 0;
-  padding-right: 3em;
-    }
-
-i.fa-heart {
+div i.fa, i.fas {
   color: $greenfly;
-  opacity: 0.75;
-  font-size: 1.2em;
-}
-
-i.fa-heart-broken {
-  color: $greenfly;
-  opacity: 0.75;
-  font-size: 1.2em;
+  font-size: 1.0em;
+  /*opacity: 0.75;*/
 }
 
 %wkspacesays {
@@ -661,23 +648,24 @@ span.picture {
   }
 }
 
-/* search on workout index*/
+.wk_option {
+  justify-content: flex-end;
+}
+
+/* search on workout index
+
 i.fa-search {
   color: $greenfly;
   opacity: 0.75;
   font-size: 1.2em;
-  /*color: $gray-light;
+  color: $gray-light;
    margin-top: -9px;
    right:auto;
    left: 1.4em;
    position:absolute;
    vertical-align: bottom;
-   top: 40%;*/
-   }
-
-i.fa-filter {
-   color: $greenfly;
- }
+   top: 40%;
+   }*/
 
 %buttonsearch {
   border: none;
@@ -691,23 +679,24 @@ button.search{
 
 button.advsearch {
   @extend %buttonsearch;
-  position:absolute;
-  right: 15px;
+/*  position:absolute;
+  right: 15px;*/
 }
 
 button.advsearch:focus {
   outline: 0;
 }
 
-.hide {
+.advsearch_hide {
   display: none !important;
 }
-.show {
+.advsearch_show {
   display:block;
 }
 
-.greyout {
-     display: none;
+button i.advsearch_toggler_hide{
+  color: $gray-darker;
+  opacity: 0.75;
 }
 
 hr.search {
@@ -715,6 +704,13 @@ hr.search {
   margin-bottom: 0;
   margin-left: -2em;
   margin-right: -2em;
+
+/*not used*/
+div.social-s {
+  position:absolute;
+  right: 0;
+  padding-right: 3em;
+    }
 }
 input.search[type="text"] {
 	  color: $bg-dark;
@@ -739,6 +735,35 @@ div.search {
   padding-right: 15px;
   padding-left: 15px;
 }
+
+.searchdelete {
+  margin-left:auto;
+}
+
+/*checkbox & checkbox label for search*/
+form fieldset {
+  background-color: $bg-light;
+  color: $gray-darkest;
+  font-family: $font-stack;
+  font-size: 0.9em;
+  font-weight: normal;
+  label {
+    margin-right: 0.5rem;
+    margin-bottom: 0.1rem;
+  }
+  input {
+    margin-bottom: 0.1rem;
+  }
+    }
+
+  legend {
+    float:left;
+    width:auto;
+    font-size: 0.9rem;
+    font-weight: normal;
+    padding-right: 0.75rem;
+  }
+
 
 a {color: $greenfly;}
 a.admin {color: $blue-search;}
@@ -813,14 +838,12 @@ div.p-flex {
   margin: 3px;
 }
 
-div.circle {
+%circle {
   width:70px;
   height:70px;
-  border-radius:70px;
   border: 1px solid;
   border-color: $bg-light;
   border-radius:50%;
-  box-shadow: 2px 5px 4px $gray-darker inset;
   font-size:32px;
   font-weight: bolder;
   color: $greenfly;
@@ -830,6 +853,25 @@ div.circle {
       line-height:70px;
     }
   }
+
+div.bigcircle {
+  @extend %circle;
+  box-shadow: 1px 3px 2px $gray-darker inset;
+}
+
+div.smallcircle {
+  @extend %circle;
+  width:40px;  font-weight: bolder;
+  color: $greenfly;
+  text-align:center;
+  height:40px;
+  font-size:16px;
+  box-shadow: 1px 3px 2px $gray-darker;
+    &::first-line{
+      line-height:40px;
+    }
+}
+
 
 div.user_score {
   font-family: $font-stack;
@@ -851,12 +893,6 @@ div.user_score {
 }
 
 /*favourites*/
-.btn-heart {
-     /*color: #fff;
-     background-color: #0069d9;
-     border-color: #0062cc; */
-}
-
 .btn-heart:hover {
      background-color: $gray-light;
      border-color: $gray-light;

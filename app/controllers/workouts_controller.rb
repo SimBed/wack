@@ -5,21 +5,19 @@ class WorkoutsController < ApplicationController
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    #@test = session[:filter_style][1]
-    #@test = params['style[1]']
-    #@workouts = Workout.paginate(page: params[:page])
-    #@workouts = Workout.all.order(sort_column + " " + sort_direction, :name).paginate(page: params[:page],per_page: 10)
     handle_favourites
     handle_search_name
     handle_advancedsearch
     @workouts = @workouts.order_by_date_created.paginate(page: params[:page],per_page: 5)
-    #if Rails.env.development?
     @intensity = Workout.distinct.pluck(:intensity)
     @style = Workout.distinct.pluck(:style)
     @bodyfocus = Workout.distinct.pluck(:bodyfocus)
     #@intensity = Workout.pluck(:intensity).uniq
     #@style = Workout.pluck(:style).uniq
-
+    #@test = session[:filter_style][1]
+    #@test = params['style[1]']
+    #@workouts = Workout.paginate(page: params[:page])
+    #@workouts = Workout.all.order(sort_column + " " + sort_direction, :name).paginate(page: params[:page],per_page: 10)
   end
 
   def show
@@ -45,7 +43,7 @@ class WorkoutsController < ApplicationController
     end
   end
 
-  def edit
+  def editfavourites
     #set_workout occurs via callback
   end
 
@@ -69,16 +67,30 @@ class WorkoutsController < ApplicationController
 
 #clear_session defined in sessions_helper.rb
   def clear
-    clear_session(:search_name, :favesonly)
+    clear_session(:filter_style, :filter_intensity, :filter_bodyfocus, :search_name, :search_name)
     redirect_to workouts_path
   end
-
 
   def favourites
     session[:favesonly] = false if session[:favesonly].nil?
     session[:favesonly] = !session[:favesonly]
     redirect_to workouts_path
   end
+
+  def search
+    clear_session(:filter_style, :filter_intensity, :filter_bodyfocus, :search_name)
+    #Without the ors (||) the sessions would get set to nil when redirecting to workouts other than through the
+    #search form (e.g. by clciking workouts on the navbar) (as the params itmes are nil in these cases)
+    session[:search_name] = params[:search_name] || session[:search_name]
+    session[:filter_style] = params[:style] || session[:filter_style]
+    session[:filter_intensity] = params[:intensity] || session[:filter_intensity]
+    session[:filter_bodyfocus] = params[:bodyfocus] || session[:filter_bodyfocus]
+    session[:advsearchshow] = params[:advsearchshow] || session[:advsearchshow]
+    filters = [session[:filter_style], session[:filter_intensity], session[:filter_bodyfocus] ]
+    redirect_to workouts_path
+  end
+
+
 
   private
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -102,16 +114,10 @@ class WorkoutsController < ApplicationController
   end
 
   def initialize_search
-    #clear_session defined in sessions_helper.rb clears out the sessions. Without this an empty checkbox may not necessarily mean an empty session
-    clear_session(:filter_style, :filter_intensity, :filter_bodyfocus)
-    session[:search_name] = params[:search_name]
-#    session[:filter] = params[:filter]
-#    params[:filter_option] = nil if params[:filter_option] == ""
-    session[:filter_style] = params[:style]
-    session[:filter_intensity] = params[:intensity]
-    session[:filter_bodyfocus] = params[:bodyfocus]
-    filters = [session[:filter_style], session[:filter_intensity], session[:filter_bodyfocus] ]
-    session[:advsearchshow] = filters.any? { |filter| filter.present? }
+    #logic moved to search method
+
+    #session[:advsearchshow] = filters.any? { |filter| filter.present? }
+    #session[:favesonly] is set through the favourties method
   end
 
   def handle_favourites

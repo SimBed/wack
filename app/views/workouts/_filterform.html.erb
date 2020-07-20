@@ -1,70 +1,111 @@
-<div class="container search">
-<%= form_with(url: "/workouts", method: "get", local: true) do %>
 
-  <%= text_field_tag :search_name, nil, class: "form-control-sm mb-2 search", placeholder: "Search workouts…", value: session[:search_name] %>
-  <%= button_tag class: "search", type: 'submit' do %>
-    <i class="fa fa-search"></i>
-  <% end %>
+<div class="d-flex mb-2 wk_option">
+  <div class="smallcircle mr-2">
+    <%#= link_to favourites_path, {class: "search", title: "Favourites", data: { toggle: 'tooltip'}} do%>
+    <%= link_to favourites_path, {class: "search"} do%>
+    <% if session[:favesonly] == true then %>
+          <i class ="far fa-heart"></i>
+       <% else %>
+          <i class ="fas fa-heart"></i>
+      <% end %>
+    <% end %>
+  </div>
 
-<% end %>
+  <div class="smallcircle mr-2">
+    <button onclick="toggleHidden()" class="advsearch">
+      <i id="advsearch_toggler" class="fa fa-filter <%= "advsearch_toggler_hide" if session[:advsearchshow] == "show" %>"></i>
+    </button>
+    <!--div id="showsearch" class="wk_options_label"><%#= session[:advsearchshow] == true ? "Hide Search Options" : "Show Search Options" %></div-->
+  </div>
+
 </div>
 
-  <div class="container">
+  <div id="advsearch_options" class="container search <%= session[:advsearchshow] == "show" ? "advsearch_show" : "advsearch_hide" %>">
       <hr class = "search"></hr>
-  </div>
 
-  <div class="container search">
+  <%= form_with(url: "/workouts/search", method: "get", local: true) do %>
 
-    <%= link_to favourites_path, class: "search" do%>
-    <i class="<%= session[:favesonly] == true ? "fas fa-heart pl-1 pr-2" : "fas fa-heart-broken pl-1 pr-2" %>"></i>
-    <% end %>
-
-    <%= link_to clear_path, class: "search" do%>
-    <i class="fa fa-trash"> Filters</i>
-    <% end %>
-
-    <button onclick="toggleHidden()" class="advsearch">
-      <i class="fa fa-filter"> Advanced Search</i>
-    </button>
-  </div>
-
-  <div class="container">
-      <hr class = "search"></hr>
-  </div>
-
-  <div id="advsearch" class="container search <%= session[:advsearchshow] == true ? "show" : "hide" %>">
-  <%= form_with(url: "/workouts", method: "get", local: true) do %>
   <div class="field">
+  <%= text_field_tag :search_name, nil, class: "form-control-sm mb-2 search", placeholder: "Keywords…", value: session[:search_name] %>
+  </div>
+
+  <fieldset>
+   <legend>STYLE:</legend>
     <% @style.each do |style| %>
     <%= check_box_tag 'style[]', style, session[:filter_style].present? ? session[:filter_style].include?(style) : false %>
     <%= label_tag 'style[]', style %>
     <% end %>
-  </div>
+  </fieldset>
 
-  <div class="field">
+  <fieldset>
+   <legend>INTENSITY:</legend>
     <% @intensity.each do |intensity| %>
     <%= check_box_tag 'intensity[]', intensity, session[:filter_intensity].present? ? session[:filter_intensity].include?(intensity) : false %>
     <%= label_tag 'intensity[]', intensity %>
     <% end %>
-  </div>
+  </fieldset>
 
-  <div class="field">
+  <fieldset>
+   <legend>FOCUS:</legend>
     <% @bodyfocus.each do |bodyfocus| %>
     <%= check_box_tag 'bodyfocus[]', bodyfocus, session[:filter_bodyfocus].present? ? session[:filter_bodyfocus].include?(bodyfocus) : false %>
     <%= label_tag 'bodyfocus[]', bodyfocus %>
     <% end %>
+  </fieldset>
+
+  <%= hidden_field_tag 'advsearchshow', 'show'  %>
+
+<% if false %>
+  <div class="field">
+  <%= submit_tag "Search", class: "btn btn-primary btnpost" do %>
+  <i class="fa fa-search"></i>
+  <% end %>
+<% end %>
+
+  <div class="container d-flex">
+      <%= button_tag class: "search", type: 'submit' do %>
+      <i class="fa fa-search"> Search</i>
+      <% end %>
+
+      <%= link_to clear_path, class: "search searchdelete" do%>
+      <i class="fa fa-trash"> Filters</i>
+      <% end %>
   </div>
 
-  <%= submit_tag "Search", class: "btn btn-primary btnpost" %>
 <% end %>
+      <hr class = "search"></hr>
+
+
   </div>
 
 <script>
 
 function toggleHidden() {
-    var x = document.getElementById("advsearch");
-    x.classList.toggle('hide');
-}
+//hide/display search
+      var x = document.getElementById("advsearch_options");
+      x.classList.toggle('advsearch_hide');
+
+      var y = document.getElementById("advsearch_toggler");
+      y.classList.toggle('advsearch_toggler_hide');
+
+      //let Rails know whether display is show or hide. Set the hidden field in the form to true/false.
+      //element with id = advsearchshow is the form hidden field
+      var z = document.getElementById("advsearchshow");
+      if (x.classList.contains("advsearch_hide")) {
+        z.value = "hide";
+      } else {
+        z.value = "show";
+      }
+    }
+
+//change text of hide/display button
+    //var z = document.getElementById("showsearch");
+     //if (z.innerHTML === "Show Search Options") {
+       //z.innerHTML = "Hide Search Options";
+     //} else {
+       //z.innerHTML = "Show Search Options";
+     //}
+
 
 //abandoned this function as it sometimes mysteriously required
 //a double-click. Some stackoverflow content but nothing that worked.

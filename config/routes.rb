@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get '/workouts/clear', to: 'workouts#clear', as: 'clear'
   get '/workouts/favourites', to: 'workouts#favourites', as: 'favourites'
+  get '/workouts/search', to: 'workouts#search'
   get 'password_resets/new'
   get 'password_resets/edit'
   get    '/signup',  to: 'users#new'

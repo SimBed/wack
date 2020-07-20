@@ -1,5 +1,4 @@
 <% provide(:title, 'All Workouts') %>
-
 <%= render 'workouts/filterform' %>
 <% if current_user && current_user.admin? %>
   <div class="container search mb-2">
@@ -9,11 +8,10 @@
 
 <div class="container mb-0">
 <%= will_paginate %>
-</div>
 
 <%= render @workouts, setting: "addcommentno" %>
 
-<div class="container mb-0">
+
 <%= will_paginate %>
 </div>
 
