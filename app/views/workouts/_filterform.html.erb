@@ -35,7 +35,7 @@
   <fieldset>
     <legend>STYLE</legend>
     <% @style.each do |style| %>
-      <div>
+      <div class ="d-flex">
         <%= check_box_tag 'style[]', style, session[:filter_style].present? ? session[:filter_style].include?(style) : false %>
         <%= label_tag 'style[]', style %>
       </div>
@@ -47,7 +47,7 @@
   <fieldset>
     <legend>INTENSITY</legend>
     <% @intensity.each do |intensity| %>
-      <div>
+      <div class ="d-flex">
         <%= check_box_tag 'intensity[]', intensity, session[:filter_intensity].present? ? session[:filter_intensity].include?(intensity) : false %>
         <%= label_tag 'intensity[]', intensity %>
       </div>
@@ -59,7 +59,7 @@
   <fieldset>
     <legend>FOCUS</legend>
     <% @bodyfocus.each do |bodyfocus| %>
-      <div>
+      <div class ="d-flex">
         <%= check_box_tag 'bodyfocus[]', bodyfocus, session[:filter_bodyfocus].present? ? session[:filter_bodyfocus].include?(bodyfocus) : false %>
         <%= label_tag 'bodyfocus[]', bodyfocus %>
       </div>

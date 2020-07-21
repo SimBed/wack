@@ -730,6 +730,11 @@ input.search[type="text"]:focus {
   outline: 0;
 }
 
+/*couldn't get to the bottom of why this is needed but checkbox and checkbox label misaligned without */
+input[type="checkbox"] {
+margin: 3px 3px 3px 4px;
+}
+
 div.search {
 	position:relative;
   padding-right: 15px;
@@ -752,7 +757,7 @@ form fieldset {
     margin-bottom: 0.1rem;
   }
   input {
-    margin-bottom: 0.1rem;
+    /*margin-bottom: 0.1rem;*/
   }
     }
 
