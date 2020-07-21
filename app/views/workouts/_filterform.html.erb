@@ -29,11 +29,10 @@
   <%= text_field_tag :search_name, nil, class: "form-control-sm mb-2 search", placeholder: "Keywords…", value: session[:search_name] %>
   </div>
 
-  <div class="container mb-1">
+  <div class="container mb-1 px=0">
   <div class="row">
-
-  <div class="col-4">
-  <fieldset class="d-flex">
+  <div class="col-4 px-0">
+  <fieldset>
     <legend>STYLE</legend>
     <% @style.each do |style| %>
       <div>
@@ -44,8 +43,8 @@
   </fieldset>
   </div>
 
-  <div class="col-4">
-  <fieldset class="d-flex">
+  <div class="col-4 px-0">
+  <fieldset>
     <legend>INTENSITY</legend>
     <% @intensity.each do |intensity| %>
       <div>
@@ -56,8 +55,8 @@
   </fieldset>
   </div>
 
-  <div class="col-4">
-  <fieldset class="d-flex">
+  <div class="col-4 px-0">
+  <fieldset>
     <legend>FOCUS</legend>
     <% @bodyfocus.each do |bodyfocus| %>
       <div>
