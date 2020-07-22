@@ -79,7 +79,7 @@ class WorkoutsController < ApplicationController
     else
       handle_not_loggedin
     end
-    redirect_to workouts_path
+      redirect_to workouts_path
   end
 
   def search
@@ -94,8 +94,6 @@ class WorkoutsController < ApplicationController
     filters = [session[:filter_style], session[:filter_intensity], session[:filter_bodyfocus] ]
     redirect_to workouts_path
   end
-
-
 
   private
   # Never trust parameters from the scary internet, only allow the white list through.

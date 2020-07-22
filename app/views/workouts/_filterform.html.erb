@@ -44,7 +44,7 @@
   <div id="advsearch_options" class="container search <%= session[:advsearchshow] == "show" ? "advsearch_show" : "advsearch_hide" %>">
       <hr class = "search"></hr>
 
-  <%= form_with(url: "/workouts/search", method: "get", local: true) do %>
+  <%= form_with(url: "/workouts/search", method: "get", local: true, class: "form-class") do %>
 
   <div class="field">
   <%= text_field_tag :search_name, nil, class: "form-control-sm mb-2 search", placeholder: "Keyword…", value: session[:search_name] %>
@@ -57,7 +57,7 @@
     <legend>STYLE</legend>
     <% @style.each do |style| %>
       <div class ="d-flex">
-        <%= check_box_tag 'style[]', style, session[:filter_style].present? ? session[:filter_style].include?(style) : false %>
+        <%= check_box_tag 'style[]', style, session[:filter_style].present? ? session[:filter_style].include?(style) : false, class: "checkbox-class" %>
         <%= label_tag 'style[]', style %>
       </div>
     <% end %>
@@ -69,7 +69,7 @@
     <legend>INTENSITY</legend>
     <% @intensity.each do |intensity| %>
       <div class ="d-flex">
-        <%= check_box_tag 'intensity[]', intensity, session[:filter_intensity].present? ? session[:filter_intensity].include?(intensity) : false %>
+        <%= check_box_tag 'intensity[]', intensity, session[:filter_intensity].present? ? session[:filter_intensity].include?(intensity) : false, class: "checkbox-class" %>
         <%= label_tag 'intensity[]', intensity %>
       </div>
     <% end %>
@@ -81,7 +81,7 @@
     <legend>FOCUS</legend>
     <% @bodyfocus.each do |bodyfocus| %>
       <div class ="d-flex">
-        <%= check_box_tag 'bodyfocus[]', bodyfocus, session[:filter_bodyfocus].present? ? session[:filter_bodyfocus].include?(bodyfocus) : false %>
+        <%= check_box_tag 'bodyfocus[]', bodyfocus, session[:filter_bodyfocus].present? ? session[:filter_bodyfocus].include?(bodyfocus) : false, class: "checkbox-class" %>
         <%= label_tag 'bodyfocus[]', bodyfocus %>
       </div>
     <% end %>
@@ -127,5 +127,9 @@ function toggleHidden() {
         z.value = "show";
       }
     }
+
+    $(".checkbox-class").on("click", function (){
+    $(".form-class").submit();
+  });
 
 </script>
