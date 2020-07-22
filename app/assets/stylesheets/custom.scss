@@ -784,18 +784,18 @@ div.pagination li {
 }
 
 div.pagination li.previous_page a {
-    font-size: 24px;
+    font-size: 16px;
   }
 
 div.pagination li.next_page a{
-    font-size: 24px;
+    font-size: 16px;
   }
 
 div.pagination a {
       line-height: 20px;
-      color: $greenfly;
+      color: $gray-darker;
       /*color: $gray-darker;*/
-      font-size: 20px;
+      font-size: 16px;
       font-weight: bold;
     }
 

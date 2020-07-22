@@ -8,7 +8,7 @@ class WorkoutsController < ApplicationController
     handle_favourites
     handle_search_name
     handle_advancedsearch
-    @workouts = @workouts.send("order_by_#{session[:sort_option]}").paginate(page: params[:page],per_page: 5)
+    @workouts = @workouts.send("order_by_#{session[:sort_option]}").paginate(page: params[:page],per_page: 10)
     @intensity = Workout.distinct.pluck(:intensity)
     @style = Workout.distinct.pluck(:style)
     @bodyfocus = Workout.distinct.pluck(:bodyfocus)
@@ -43,7 +43,7 @@ class WorkoutsController < ApplicationController
     end
   end
 
-  def editfavourites
+  def edit
     #set_workout occurs via callback
   end
 
@@ -72,8 +72,13 @@ class WorkoutsController < ApplicationController
   end
 
   def favourites
-    session[:favesonly] = false if session[:favesonly].nil?
-    session[:favesonly] = !session[:favesonly]
+    #if not logged in then current_user.workouts will fail, so only available to loggedin users
+    if current_user
+      session[:favesonly] = false if session[:favesonly].nil?
+      session[:favesonly] = !session[:favesonly]
+    else
+      handle_not_loggedin
+    end
     redirect_to workouts_path
   end
 
@@ -144,4 +149,8 @@ class WorkoutsController < ApplicationController
     @workouts = @workouts.where(bodyfocus: session[:filter_bodyfocus]) if session[:filter_bodyfocus].present?
   end
 
+  def handle_not_loggedin
+      message = "Please sign up for this feature."
+      flash[:warning] = message
+  end
 end
