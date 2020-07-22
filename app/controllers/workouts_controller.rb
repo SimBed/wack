@@ -1,5 +1,5 @@
 class WorkoutsController < ApplicationController
-  before_action :initialize_search, only: :index
+  before_action :initialize_sort, only: :index
   before_action :logged_in_user, only: [:show]
   before_action :set_workout, only: [:edit, :update, :destroy]
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
@@ -8,7 +8,7 @@ class WorkoutsController < ApplicationController
     handle_favourites
     handle_search_name
     handle_advancedsearch
-    @workouts = @workouts.order_by_date_created.paginate(page: params[:page],per_page: 5)
+    @workouts = @workouts.send("order_by_#{session[:sort_option]}").paginate(page: params[:page],per_page: 5)
     @intensity = Workout.distinct.pluck(:intensity)
     @style = Workout.distinct.pluck(:style)
     @bodyfocus = Workout.distinct.pluck(:bodyfocus)
@@ -113,8 +113,8 @@ class WorkoutsController < ApplicationController
     %w[asc desc].include?(params[:direction]) ? params[:direction]  : "asc"
   end
 
-  def initialize_search
-    #logic moved to search method
+  def initialize_sort
+    session[:sort_option] = params[:sort_option] || session[:sort_option] || "date_created_desc"
 
     #session[:advsearchshow] = filters.any? { |filter| filter.present? }
     #session[:favesonly] is set through the favourties method

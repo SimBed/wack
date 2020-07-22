@@ -32,8 +32,6 @@ body {
   font-family: $font-stack;
 }
 
-
-
 @media screen and (min-width: 810px) {
 	body {
     font-size: 1.5em;
@@ -429,6 +427,10 @@ div i.fa, i.fas {
   /*opacity: 0.75;*/
 }
 
+div i.fa-sort-alpha-down{
+  color: $gray-darker;
+}
+
 %wkspacesays {
   color: $bg-light;
   font-family: "Quicksand", "Arial";
@@ -649,7 +651,7 @@ span.picture {
 }
 
 .wk_option {
-  justify-content: flex-end;
+/*  justify-content: flex-end;*/
 }
 
 /* search on workout index

@@ -1,6 +1,27 @@
 
 <div class="d-flex mb-2 wk_option">
-  <div class="smallcircle mr-2">
+
+  <form action="/workouts" method="GET">
+    <div class="container search">
+      <i class="fas fa-sort-alpha-down"></i>
+      <select class="form-control-sm mb-2 search pr-3" name="sort_option" onchange="this.form.submit()">
+        <option disabled="disabled" selected="selected" value="">Sort by</option>
+        <option value="date_created_desc" <%="selected" if session[:sort_option] == "date_created_desc"%>>newest first</option>
+        <option value="date_created_asc" <%="selected" if session[:sort_option] == "date_created_asc"%>>oldest first</option>
+        <option value="style" <%="selected" if session[:sort_option] == "style"%>>style</option>
+        <option value="focus" <%="selected" if session[:sort_option] == "focus"%>>focus</option>
+        <option value="intensity" <%="selected" if session[:sort_option] == "intensity"%>>intensity</option>
+        <option value="length_desc" <%="selected" if session[:sort_option] == "length_desc"%>>longest first</option>
+        <option value="length_asc" <%="selected" if session[:sort_option] == "length_asc"%>>shortest first</option>
+        <option value="brand" <%="selected" if session[:sort_option] == "brand"%>>brand</option>
+        <!--removed the selected class so random can be reselected-->
+        <option value="random" >random</option>
+      </select>
+    </div>
+  </form>
+
+
+  <div class="smallcircle mr-2" style="margin-left:auto">
     <%#= link_to favourites_path, {class: "search", title: "Favourites", data: { toggle: 'tooltip'}} do%>
     <%= link_to favourites_path, {class: "search"} do%>
     <% if session[:favesonly] == true then %>
@@ -26,7 +47,7 @@
   <%= form_with(url: "/workouts/search", method: "get", local: true) do %>
 
   <div class="field">
-  <%= text_field_tag :search_name, nil, class: "form-control-sm mb-2 search", placeholder: "Keywords…", value: session[:search_name] %>
+  <%= text_field_tag :search_name, nil, class: "form-control-sm mb-2 search", placeholder: "Keyword…", value: session[:search_name] %>
   </div>
 
   <div class="container mb-1 px=0">
