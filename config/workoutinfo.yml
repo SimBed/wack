@@ -16,8 +16,8 @@ default: &default
   - Other
 
  intensities:
-  - chill
-  - full on
+  - Chilled Wack
+  - Power Wack
 
  bodyfocus:
   - LowerBody
