@@ -16,19 +16,19 @@ default: &default
   - Other
 
  intensities:
-  - Low
-  - Medium
-  - High
+  - chill
+  - full on
 
  bodyfocus:
-  - Lower Body
+  - LowerBody
   - Hamstring
   - Hip
   - Core
-  - Upper Body
-  - Full Body
+  - UpperBody
+  - FullBody
   - Mind
   - Skill
+  - Sleep
 
 development:
   <<: *default

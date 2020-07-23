@@ -83,6 +83,7 @@ module SessionsHelper
     forget(current_user)
     session.delete(:user_id)
     @current_user = nil
+    clear_session(:filter_style, :filter_intensity, :filter_bodyfocus, :search_name, :favesonly, :sort_option)
   end
 
   # Redirects to stored location (or to the default).

@@ -67,7 +67,7 @@ class WorkoutsController < ApplicationController
 
 #clear_session defined in sessions_helper.rb
   def clear
-    clear_session(:filter_style, :filter_intensity, :filter_bodyfocus, :search_name, :search_name)
+    clear_session(:filter_style, :filter_intensity, :filter_bodyfocus, :search_name)
     redirect_to workouts_path
   end
 
