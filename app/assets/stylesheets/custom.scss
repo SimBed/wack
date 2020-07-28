@@ -421,6 +421,24 @@ div.wkstyle-s {
   color: $gray-darkest;
 }
 
+%wklabel {
+  color: black;
+  font-style: italic;
+  font-size: 0.7em;
+  color: $gray-darkest;
+}
+
+div.wkstyle-s-s::after {
+  @extend %wklabel;
+  content: " (Style)";
+}
+
+div.wkstyle-f-s::after {
+  @extend %wklabel;
+  content: " (Focus)";
+}
+
+
 div i.fa, i.fas {
   color: $greenfly;
   font-size: 1.0em;
@@ -487,7 +505,7 @@ div.spacesays-s::before {
   color: white;
   font-weight: bold;
   font-style: normal;
-  content: "The Space says: ";
+  /*content: "The Space says: ";*/
 }
 
 %wkcomment {
@@ -706,6 +724,7 @@ hr.search {
   margin-bottom: 0;
   margin-left: -2em;
   margin-right: -2em;
+}
 
 /*not used*/
 div.social-s {
@@ -713,7 +732,7 @@ div.social-s {
   right: 0;
   padding-right: 3em;
     }
-}
+
 input.search[type="text"] {
 	  color: $bg-dark;
 		border:solid;
@@ -918,8 +937,8 @@ h4.panel-title {
 %wacktext {
 color: $gray-darker;
 font-family: $font-stack;
-letter-spacing: 0.08em;
-font-size: 0.9em;
+/*letter-spacing: 0.08em;*/
+font-size: 1,0em;
 font-weight: bold;
     }
 
@@ -935,5 +954,28 @@ font-weight: bold;
 
 .wacktext3 {
   @extend %wacktext;
-  font-size: 1.3em;
+  font-size: 1.6em;
+  margin-bottom:0;
+}
+
+svg {
+  /*#5b0e0e*/
+  stroke: $gray-darkest;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.login-form {
+  box-shadow: 5px 10px 8px 5px #888888;
+  /*background: #fff;*/
+  input.form-control {
+    width: 90%;
+    margin-left: auto;
+    margin-right:auto;
+  }
+  label {
+    margin-left:1rem;
+  }
 }

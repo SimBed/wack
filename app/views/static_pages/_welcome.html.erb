@@ -1,29 +1,49 @@
+<div class="container center">
+  <svg width="150" height="120">
+<defs>
+  <g id="svg_wack_icon">
+  <rect x="19" y="0" width="12" height="8" />
+  <rect x="5" y="8" width="40" height="20" />
+  <rect x="19" y="28" width="12" height="60" />
+   </g>
+  <g id="svg_wack_text">
+  <text stroke="#474444" x="36" y="220" transform="scale(2,0.5)" font-family="serif" font-size="24"  stroke-width="2" text-anchor="middle" >WACK</text>
+ </g>
+</defs>
+
+<use href="#svg_wack_icon" transform="rotate(50,19,90) translate(-10, -20)" x="0" y="0"></use>
+<use href="#svg_wack_text" x="3" y="-13"></use>
+
+</svg>
+</div>
+
+
 <div class="center jumbotron mb-0" style="position:relative;margin-left:-15px;margin-right:-15px;">
   <ul class= "wacktext1" style="list-style-type:none;padding-inline-start:0;">
     <li>Follow-Along Workouts</li>
-    <li>Best of the Web</li>
-    <li>Home or Gym</li>
+    <!--li>Best of the Web</li>
+    <li>Home or Gym</li-->
     <li>Selected & Reviewed by our Pros<super>*</super></li>
 
-    <li class="wacktext2"><super>*</super>at <a href="https://ww.thespacejuhu.in">The Space</a>, Mumbai Fitness Centre</li>
+    <li class="wacktext2"><super>*</super>at <a href="https://www.thespacejuhu.in" target="_blank">The Space</a>, Mumbai</li>
 
-     <br>
+     <!--br>
      <li class="wacktext2">bodyweight barbell row, bike, dumbell, yoga, mobility, HIIT, strength, cardio, upper body, lower body, abs, hip, hamstring, mind, kettlebell, skip, stretch</li>
      <br>
-    <li class="wacktext2">Choose your style, Choose your Instructor, Beginner to Beast, Easy Search, Log your Progress, Free for all</li>
+    <li class="wacktext2">Choose your style, Choose your Instructor, Beginner to Beast, Easy Search, Log your Progress, Free for all</li-->
     </ul>
 
     <p class="wacktext3">Work it, Track it, Wack it</p>
 
 </div>
 
+<div class="p-flex">
 
-  <div class="p-flex">
-
+<% if false %>
     <% unless logged_in? %>
     <div class = "container mt-2 text-center">
       <%= link_to "Sign up Now for Free for the Full Wack!", signup_path, class: "btn btn-lg btn-primary btnpost" %>
-    </div>
+    </div>upcase
     <% end %>
 
     <div class = "container mt-2 text-center mb-3">
@@ -31,24 +51,18 @@
     </div>
 
     <div class="container mb-3">
-        <hr class = "search"></hr>
+        <hr class = "thickbreak"></hr>
     </div>
+<% end %>
 
     <div class = "container">
       <div class="row bg-dark px-1 pt-2 pb-1 text-center">
         <div class ="col-12">
-          <h4 class="WorkoutName-s">
-            This Week's Workout
+          <h4>
+            Today's Workout
           </h4>
-        </div>
-      </div>
-    </div>
-<br>
-    <div class = "container">
-      <div class="row bg-dark px-1 pt-2 pb-1 text-center">
-        <div class ="col-12">
           <h4 class="WorkoutName-s">
-            <%= @workouts.first.name %>
+            <%= @workouts.first.name.upcase %>
           </h4>
         </div>
       </div>
@@ -68,26 +82,43 @@
       </div>
     </div>
 
-    <div class="container">
        <div class="row bg-light">
         <div class ="col-12">
-            <div class="wkstyle-s">Style: <%= @workouts.first.style %></div>
-            <div class="wkstyle-s">Focus: <%= @workouts.first.bodyfocus %></div>
-            <div class="wkstyle-s">Equipment: <%= @workouts.first.equipment ? @workouts.first.eqpitems : "None"%></div>
-            <div class="wkstyle-s">Level: <%= @workouts.first.intensity%></div>
-            <div class="wkstyle-s">Duration: <%= "#{@workouts.first.length} minutes"%></div>
+          <div class ="col-8 wkstyle-s">
+              <div class="wkstyle-s-s"><%= @workouts.first.style %></div>
+              <div class="wkstyle-f-s"><%= @workouts.first.bodyfocus %></div>
+              <div><%= @workouts.first.equipment ? "Equipment: #{@workouts.first.eqpitems}" : "No equipment"%></div>
+              <div><%= @workouts.first.intensity%></div>
+              <div><%= "#{@workouts.first.length} minutes"%></div>
+          </div>
+
         </div>
       </div>
 
+      <div class="row bg-dark py-1 mx-0">
+        <div class ="col-12">
+           <div class="spacesays-s"><%= "\"#{@workouts.first.spacesays}\""%></div>
+           <div class="comment-s"><%= "#{pluralize(@workouts.first.microposts.count, "comment")}"%></div>
+        </div>
+      </div>      
+
     </div>
 
-    <div class="row bg-dark py-1 mx-0">
-      <div class ="col-12">
-         <div class="spacesays-s"><%= "\"#{@workouts.first.spacesays}\""%></div>
-         <div class="comment-s"><%= "#{pluralize(@workouts.first.microposts.count, "comment")}"%></div>
-      </div>
-    </div>
 
 
 
+<% unless logged_in? %>
+<div class="container mb-4 mt-4">
+    <%= render 'sessions/loginform' %>
 </div>
+
+<div class="container">
+  <div class="login-form"
+    <h5>New wacker?</h5>
+    <p>
+      <%= link_to "Sign up for Free for the Full Wack!", signup_path %><br>
+      <%= link_to "Or just head to The Workouts!", workouts_path %>
+    </p>
+</div></div>
+
+<% end %>
