@@ -15,7 +15,8 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", login_path
     assert_select "a[href=?]", logout_path, count: 0
     assert_select "a[href=?]", signup_path
-    workoutlisted = Workout.all.order("created_at desc").first
+    workoutlisted = Workout.all[dailypickfortesting]
+    #workoutlisted = Workout.all.order("created_at desc").first
     assert_select 'iframe[src=?]', "#{workoutlisted.url}"
 
     get signup_path
