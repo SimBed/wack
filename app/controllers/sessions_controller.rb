@@ -19,8 +19,14 @@ class SessionsController < ApplicationController
       end
     else
      flash.now[:danger] = 'Invalid email/password combination'
+     if params[:pagecaller] == "welcome"
+       @workouts = Workout.all.order("created_at desc")
+       render 'static_pages/_welcome'
+     else
       render 'new'
+     end
     end
+
   end
 
   def destroy

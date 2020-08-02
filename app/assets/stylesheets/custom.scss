@@ -617,8 +617,25 @@ background-image: image-url('down_arrow.gif');
 /* microposts and attempts*/
 .btnpost {
   width: 100%;
+  color: #fff;
   background-color: $greenfly;
+  border-color: $greenfly;
+  box-shadow: 1px 3px 2px #808080;
+    }
+
+.btnpost:hover {
+  opacity: 0.8;
+  color: #fff;
 }
+
+.btnpositionmanager {
+  width:96%;
+  margin: auto auto;
+}
+
+a:hover {
+    color: #0056b3;
+  }
 
 aside {
   textarea {
@@ -790,7 +807,13 @@ form fieldset {
   }
 
 
-a {color: $greenfly;}
+a {
+  color: $greenfly;
+    &:hover {
+      color: $greenfly;
+      opacity:0.8;
+    }
+  }
 a.admin {color: $blue-search;}
 
 
@@ -924,7 +947,7 @@ div.user_score {
 }
 
 h4.panel-title {
-  background-color:$bg-light;
+  background-color:$bg-light;color: $greenfly;
   padding-top: .4em;
   padding-left: .4em;
     a {
@@ -969,13 +992,14 @@ svg {
 
 .login-form {
   box-shadow: 5px 10px 8px 5px #888888;
-  /*background: #fff;*/
+  background: $gray-light;
   input.form-control {
-    width: 90%;
+    width: 94%;
     margin-left: auto;
     margin-right:auto;
   }
   label {
     margin-left:1rem;
+    margin-bottom:0.2rem;
   }
 }

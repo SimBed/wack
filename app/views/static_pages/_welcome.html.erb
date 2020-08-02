@@ -62,21 +62,21 @@
             Today's Workout
           </h4>
           <h4 class="WorkoutName-s">
-            <%= @workouts.first.name.upcase %>
+            <%= @workout.name.upcase %>
           </h4>
         </div>
       </div>
     </div>
 
     <div class = "container bg-light p-1 text-center">
-        <div class="brand-s">BY <%= @workouts.first.brand ? @workouts.first.brand.upcase : "BRAND" %></div>
+        <div class="brand-s">BY <%= @workout.brand ? @workout.brand.upcase : "BRAND" %></div>
     </div>
 
     <div class="container px-1 mb-2">
        <div class="row bg-light py-1 mx-0">
         <div class ="col-12">
           <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src=<%= @workouts.first.url %> allowfullscreen></iframe>
+            <iframe class="embed-responsive-item" src=<%= @workout.url %> allowfullscreen></iframe>
           </div>
         </div>
       </div>
@@ -85,11 +85,11 @@
        <div class="row bg-light">
         <div class ="col-12">
           <div class ="col-8 wkstyle-s">
-              <div class="wkstyle-s-s"><%= @workouts.first.style %></div>
-              <div class="wkstyle-f-s"><%= @workouts.first.bodyfocus %></div>
-              <div><%= @workouts.first.equipment ? "Equipment: #{@workouts.first.eqpitems}" : "No equipment"%></div>
-              <div><%= @workouts.first.intensity%></div>
-              <div><%= "#{@workouts.first.length} minutes"%></div>
+              <div class="wkstyle-s-s"><%= @workout.style %></div>
+              <div class="wkstyle-f-s"><%= @workout.bodyfocus %></div>
+              <div><%= @workout.equipment ? "Equipment: #{@workout.eqpitems}" : "No equipment"%></div>
+              <div><%= @workout.intensity%></div>
+              <div><%= "#{@workout.length} minutes"%></div>
           </div>
 
         </div>
@@ -97,28 +97,26 @@
 
       <div class="row bg-dark py-1 mx-0">
         <div class ="col-12">
-           <div class="spacesays-s"><%= "\"#{@workouts.first.spacesays}\""%></div>
-           <div class="comment-s"><%= "#{pluralize(@workouts.first.microposts.count, "comment")}"%></div>
+           <div class="spacesays-s"><%= "\"#{@workout.spacesays}\""%></div>
+           <div class="comment-s"><%= "#{pluralize(@workout.microposts.count, "comment")}"%></div>
         </div>
-      </div>      
+      </div>
 
     </div>
 
 
-
-
 <% unless logged_in? %>
 <div class="container mb-4 mt-4">
-    <%= render 'sessions/loginform' %>
+    <%= render partial: 'sessions/loginform', locals: {pagecaller: "welcome"}  %>
 </div>
 
-<div class="container">
+<!--div class="container">
   <div class="login-form"
     <h5>New wacker?</h5>
     <p>
       <%= link_to "Sign up for Free for the Full Wack!", signup_path %><br>
       <%= link_to "Or just head to The Workouts!", workouts_path %>
     </p>
-</div></div>
+</div></div-->
 
 <% end %>

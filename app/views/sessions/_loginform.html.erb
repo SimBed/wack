@@ -1,5 +1,9 @@
-<%= form_for(:session, url: login_path, html: {class: "login-form"}) do |f| %>
-  <%= f.submit "Log in", class: "btn btn-primary btnpost" %>
+
+  <%= form_for(:session, url: login_path, html: {class: "login-form"}) do |f| %>
+
+  <%= hidden_field_tag 'pagecaller', pagecaller  %>
+
+  <div class="container center py-1"><span>Login or <%= link_to "Sign up for Free", signup_path %> for the Full Wack!</span></div>
 
   <%= f.label :email %>
   <%= f.email_field :email, class: 'form-control' %>
@@ -12,5 +16,10 @@
     <%= f.check_box :remember_me %>
     <span>Remember me on this computer</span>
   <% end %>
+
+
+    <div class="btnpositionmanager">
+      <%= f.submit "Log in", class: "btn btnpost" %>
+    </div>
 
 <% end %>

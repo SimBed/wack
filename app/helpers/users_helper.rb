@@ -11,7 +11,7 @@ module UsersHelper
  # Returns a shortened date format for easier reading in list
  def date_reformat(date)
     word_date = '%b %d, %Y'
-   date.nil? ?  "-" : date.strftime(word_date)
+    date.nil? ?  "-" : date.strftime(word_date)
  end
 
 end
