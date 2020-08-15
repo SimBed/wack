@@ -25,7 +25,7 @@
 
       <div class="container">
          <div class="row bg-light">
-          <div class ="col-8 wkstyle-s">
+          <div class ="col-10 wkstyle-s pr-0">
               <div class="wkstyle-s-s"><%= workoutshow.style %></div>
               <div class="wkstyle-f-s"><%= workoutshow.bodyfocus %></div>
               <div><%= workoutshow.equipment ? "Equipment: #{workoutshow.eqpitems}" : "No equipment"%></div>
@@ -33,7 +33,7 @@
               <div><%= "#{workoutshow.length} minutes"%></div>
           </div>
 
-          <div class ="col-4">
+          <div class ="col-2 px-0">
             <div id="favourite_form">
               <% if current_user.wkfollowing?(workoutshow) %>
                 <%= form_for(current_user.rel_user_workouts.find_by(workout_id: workoutshow.id),

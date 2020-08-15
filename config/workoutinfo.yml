@@ -6,11 +6,13 @@ default: &default
   - Acroyoga
   - Cardio
   - Dancefitness
+  - Flexibility
   - Handstand
   - HIIT
   - Mobility
   - Partner
   - Strength
+  - Therapeutic
   - Warmup
   - Yoga
   - Other
@@ -29,6 +31,7 @@ default: &default
   - Mind
   - Skill
   - Sleep
+  - Wrist
 
 development:
   <<: *default
