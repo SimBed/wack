@@ -30,6 +30,7 @@ class WorkoutsController < ApplicationController
 
   def new
     @workout = Workout.new
+    @brand = Workout.distinct.pluck(:brand)
   end
 
   def create

@@ -4,16 +4,15 @@ default: &default
 
  styles:
   - Acroyoga
+  - Callisthenics
   - Cardio
   - Dancefitness
   - Flexibility
-  - Handstand
   - HIIT
   - Mobility
   - Partner
   - Strength
   - Therapeutic
-  - Warmup
   - Yoga
   - Other
 

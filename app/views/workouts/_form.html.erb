@@ -2,6 +2,11 @@
   <%= render 'shared/error_messages', object: form.object %>
 
   <div class="field">
+    <%= form.label :url, "URL" %>
+    <%= form.text_field :url %>
+  </div>
+
+  <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
@@ -19,13 +24,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :url, "URL" %>
-    <%= form.text_field :url %>
-  </div>
-
-  <div class="field">
     <%= form.label :length, "Length" %>
-    <%= form.number_field :length, in: 10..90, step: 1 %>
+    <%= form.number_field :length, in: 5..90, step: 1 %>
     <%#= form.range_field :length, in: 10..120, step: 5 %>
   </div>
 
@@ -37,14 +37,20 @@
 
   <div class="field">
     <%= form.label :brand, "Brand" %>
-    <%= form.text_field :brand %>
+    <%= form.text_field :brand, list: "brands" %>
+    <!--The <datalist> element specifies a list of pre-defined options for an <input> element. https://www.w3schools.com/html/html_form_elements.asp-->
+      <datalist id="brands">
+      <% @brand.each do |brand| %>
+    <!--https://apidock.com/rails/ActionView/Helpers/FormOptionsHelper/options_for_select-->
+        <%=options_for_select [brand, brand] %>
+      <% end %>
+    </datalist>
   </div>
 
   <div class="field">
     <%= form.label :equipment, "Equipment Needed" %>
-    <%= form.select :equipment, [true, false]%>
+    <%= form.select :equipment, [false, true]%>
   </div>
-
 
   <div class="field">
     <%= form.label :eqpitems, "Equipment Items" %>
@@ -52,8 +58,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :spacesays, "The Space Says" %>
-    <%= form.text_area :spacesays %>
+    <%= form.label :spacesays, "The Space Says"%>
+    <%= form.text_area :spacesays, value: "pending review.."  %>
   </div>
 
   <div class="actions">
