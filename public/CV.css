@@ -1,0 +1,155 @@
+body {
+  color: #4f4f4f; /*gray*/
+}
+
+h1,h2,h3,h4,h5,h6 {
+  color: #292929; /*gray*/
+  font-weight: bold;
+}
+
+a.theme-link {
+  color: #292929;
+  text-decoration: underline;
+  -webkit-text-decoration-color: rgba(41,41,41,0.3);
+  text-decoration-color: rgba(41,41,41,0.3);  /*gray*/
+}
+
+a.theme-link:hover {
+  color: #54B689;
+  -webkit-text-decoration-color: rgba(84,182,137,0.8);
+  text-decoration-color: rgba(84,182,137,0.8);
+}
+
+.cv-wrapper {
+  border: 1px solid rgba(0,0,0,0.025);
+}
+
+.cv-section-heading {
+  position: relative;
+  padding-left: 1rem;
+  font-size: 1.125rem;
+  letter-spacing: 0.15rem;
+  color: #54B689; /*mint*/
+}
+
+.cv-section-heading:before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 100%;
+  background: #54B689;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.cv-name {
+  font-size: 2.75rem;
+  font-weight: 900;
+  letter-spacing: 0.4rem;
+  color: #54B689;
+}
+
+.cv-tagline {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+.cv-contact {
+  border-left: 1px solid rgba(0,0,0,0.08);
+  font-size: 0.75rem;
+}
+
+a.cv-link {
+  color: #4f4f4f;
+}
+
+a.cv-link:hover {
+  color: #54B689;
+}
+
+.cv-intro {
+  font-size: 0.875rem;
+}
+
+.cv-main .item-title {
+  font-size: 1rem;
+}
+
+.cv-main .item-meta {
+  font-size: 0.75rem;
+}
+
+.cv-main .item-content {
+  font-size: 0.875rem;
+}
+
+.cv-aside {
+  border-left: 1px solid rgba(0,0,0,0.08);
+}
+
+.cv-aside .item {
+  font-size: 0.875rem;
+}
+
+.cv-aside .item-title {
+  font-size: 1rem;
+}
+
+.cv-education-list {
+  font-size: 0.875rem;
+}
+
+.cv-degree-time-org,.cv-degree-time {
+  font-size: 0.75rem;
+}
+
+.cv-interests-list {
+  font-size: 0.875rem;
+}
+
+.cv-social-list {
+  font-size: 0.75rem;
+}
+
+.fa-heart {
+  color: #fb866a;
+}
+
+@media (max-width: 991.98px) {
+  .cv-aside {
+    border-left: 0;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .cv-contact {
+    border-left: 0;
+  }
+}
+
+.top-border {
+	height: 50px;
+	background:  #54B689;
+}
+
+.shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075) !important;
+}
+
+.shadow {
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15) !important;
+}
+
+.shadow-lg {
+  box-shadow: 0 1rem 3rem rgba(0,0,0,0.175) !important;
+}
+
+.shadow-none {
+  box-shadow: none !important;
+}
+
+.divider {
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+}
