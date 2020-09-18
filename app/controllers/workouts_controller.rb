@@ -134,7 +134,11 @@ class WorkoutsController < ApplicationController
 
   def handle_search_name
     if session[:search_name]
-      #ILIKE is case-insensitive version of LIKE but postgreql only (not sqlite)
+      #turn "HIIT core" into ["%hiit%", "%core%"]
+      #search_name_array = session[:search_name].downcase.split.map {|val| "%#{val}%" }
+      #@workouts = @workouts.where("lower(name) LIKE ANY ( array[?] )", search_name_array)
+      #ILIKE is case-insensitive version of LIKE but postgreql only (not sqlite) hence need for lower instead
+      #original approach does not recognise multi-word searches, so would fail to even find "HIIT" if "HIIT core" searched for
       @workouts = @workouts.where("lower(name) LIKE ?", "%#{session[:search_name].downcase}%")
               .or(@workouts.where("lower(brand) LIKE ?", "%#{session[:search_name].downcase}%"))
               .or(@workouts.where("lower(style) LIKE ?", "%#{session[:search_name].downcase}%"))
