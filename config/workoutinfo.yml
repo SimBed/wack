@@ -26,11 +26,12 @@ default: &default
   - Hip
   - Core
   - UpperBody
+  - Wrist
   - FullBody
   - Mind
   - Skill
   - Sleep
-  - Wrist
+
 
 development:
   <<: *default

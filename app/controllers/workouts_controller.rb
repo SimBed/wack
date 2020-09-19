@@ -9,9 +9,11 @@ class WorkoutsController < ApplicationController
     handle_search_name
     handle_advancedsearch
     @workouts = @workouts.send("order_by_#{session[:sort_option]}").paginate(page: params[:page],per_page: 10)
-    @intensity = Workout.distinct.pluck(:intensity)
-    @style = Workout.distinct.pluck(:style)
-    @bodyfocus = Workout.distinct.pluck(:bodyfocus)
+    @intensity = Workout.distinct.pluck(:intensity).sort!
+    @style = Workout.distinct.pluck(:style).sort!
+    #sort bodyfocus not alphabetically but in anatomical order set in config/workoutinfo.yml
+    #The || 100 is a default big number to avoid nils which cause the sort to break. In thoery there shouldn't be any nils.
+    @bodyfocus = Workout.distinct.pluck(:bodyfocus).sort_by{|x| Rails.application.config_for(:workoutinfo)["bodyfocus"].find_index(x) || 100 }
     #@intensity = Workout.pluck(:intensity).uniq
     #@style = Workout.pluck(:style).uniq
     #@test = session[:filter_style][1]
@@ -40,12 +42,16 @@ class WorkoutsController < ApplicationController
       redirect_to workouts_path
       flash[:success] = "New workout, #{@workout.name} added!"
     else
+      #required instance variables are lost on re-render - see notes in create of MicropostsController
+      @brand = Workout.distinct.pluck(:brand)
       render :new
     end
   end
 
   def edit
     #set_workout occurs via callback
+    #if @brand doesn't exist the form can't be built, as it relies on @brand for populating a dropdown
+    @brand = Workout.distinct.pluck(:brand)
   end
 
   def update
@@ -55,6 +61,7 @@ class WorkoutsController < ApplicationController
       flash[:success] = "#{@workout.name} updated"
       redirect_to workouts_path
     else
+      @brand = Workout.distinct.pluck(:brand)
       render :edit
     end
   end

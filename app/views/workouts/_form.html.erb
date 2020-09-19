@@ -59,7 +59,10 @@
 
   <div class="field">
     <%= form.label :spacesays, "The Space Says"%>
-    <%= form.text_area :spacesays, value: "pending review.."  %>
+    <!--either version of code (3 lines below) works. -->
+    <%#= form.text_area :spacesays, value: "pending review.." if @workout.new_record?  %>
+    <%#= form.text_area :spacesays if @workout.persisted?  %>
+    <%= form.text_area :spacesays, value: @workout.new_record? ? "pending review.." : @workout.spacesays %>
   </div>
 
   <div class="actions">
