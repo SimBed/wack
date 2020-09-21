@@ -17,9 +17,11 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
+#Retire SQLite and use PostgreSQL as the database for test, development & production
+gem 'pg'
 
 group :development, :test do
-  gem 'sqlite3'
+  #gem 'sqlite3'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
@@ -30,9 +32,9 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-group :production do
-  gem 'pg'
-end
+# group :production do
+#   gem 'pg'
+# end
 
 group :test do
   gem 'rails-controller-testing'

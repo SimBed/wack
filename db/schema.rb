@@ -12,11 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2020_07_08_203757) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "attempts", force: :cascade do |t|
     t.datetime "doa"
     t.text "summary"
-    t.integer "user_id"
-    t.integer "workout_id"
+    t.bigint "user_id"
+    t.bigint "workout_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "created_at"], name: "index_attempts_on_user_id_and_created_at"
@@ -27,8 +30,8 @@ ActiveRecord::Schema.define(version: 2020_07_08_203757) do
 
   create_table "microposts", force: :cascade do |t|
     t.text "content"
-    t.integer "user_id"
-    t.integer "workout_id"
+    t.bigint "user_id"
+    t.bigint "workout_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
@@ -79,4 +82,8 @@ ActiveRecord::Schema.define(version: 2020_07_08_203757) do
     t.string "bodyfocus"
   end
 
+  add_foreign_key "attempts", "users"
+  add_foreign_key "attempts", "workouts"
+  add_foreign_key "microposts", "users"
+  add_foreign_key "microposts", "workouts"
 end

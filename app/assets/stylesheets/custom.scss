@@ -421,6 +421,17 @@ div.wkstyle-s {
   color: $gray-darkest;
 }
 
+@media (max-width: 360px) {
+  div.wkstyle-i {
+    line-height:130%;
+    font-size: 0.8em;
+  }
+  div.brand-i {
+    font-size: 0.8em;
+  }
+}
+
+
 %wklabel {
   color: black;
   font-style: italic;
