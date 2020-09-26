@@ -19,6 +19,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 #Retire SQLite and use PostgreSQL as the database for test, development & production
 gem 'pg'
+#for copying to clipboard
+gem 'clipboard-rails'
 
 group :development, :test do
   #gem 'sqlite3'

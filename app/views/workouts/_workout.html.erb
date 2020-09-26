@@ -1,7 +1,5 @@
-    <div class="p-flex"><!--div class="p-flex-in"-->
+    <div class="p-flex" id="<%= workout.name.split.join.downcase %>" ><!--div class="p-flex-in"-->
       <div class = "container bg-light p-1 mb-1">
-        <!--ml-2 mr-2-->
-        <!--text-center-->
         <h4 class="WorkoutName-i">
             <%= link_to workout.name.upcase, workout%>
         </h4>
@@ -34,6 +32,11 @@
         </div>
       </div>
 
+      <!-- Trigger -->
+      <%= button_tag "Copy", class: "btnX", type: "button", data: {clipboard_text: "http://www.wackit.in/workouts/##{workout.name.split.join.downcase}"} do %>
+      <i class="fas fa-clipboard"></i>
+      <% end %>
+
       <div class="container">
          <div class="row bg-light py-1 mx-0">
           <div class ="col-12">
@@ -50,6 +53,5 @@
         <div class="p-edit pl-0"><%= link_to 'Delete', workout, method: :delete, data: { confirm: "Are you sure? All workout data for #{workout.name} will be lost." }, class: "admin" %></div>
         <% end %>
       </div>
-
 
       <!--/div--></div>

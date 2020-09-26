@@ -449,6 +449,13 @@ div.wkstyle-f-s::after {
   content: " (Focus)";
 }
 
+button i.fa-clipboard {
+  color: $bg-dark;
+}
+
+.btnX {
+    border-width:0;
+}
 
 div i.fa, i.fas {
   color: $greenfly;

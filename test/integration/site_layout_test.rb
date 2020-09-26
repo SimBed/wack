@@ -21,7 +21,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
 
     get signup_path
     assert_template 'users/new'
-    assert_select "title", "Sign up | WeeklyWack"
+    assert_select "title", "Sign up | Wack"
 
     log_in_as(@nonadmin)
     get root_path

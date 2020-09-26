@@ -93,7 +93,7 @@ class WorkoutsController < ApplicationController
   def search
     clear_session(:filter_style, :filter_intensity, :filter_bodyfocus, :search_name)
     #Without the ors (||) the sessions would get set to nil when redirecting to workouts other than through the
-    #search form (e.g. by clciking workouts on the navbar) (as the params itmes are nil in these cases)
+    #search form (e.g. by clicking workouts on the navbar) (as the params itmes are nil in these cases)
     session[:search_name] = params[:search_name] || session[:search_name]
     session[:filter_style] = params[:style] || session[:filter_style]
     session[:filter_intensity] = params[:intensity] || session[:filter_intensity]
@@ -140,7 +140,7 @@ class WorkoutsController < ApplicationController
   end
 
   def handle_search_name
-    if session[:search_name]
+    unless session[:search_name].blank?
       #turn "HIIT core" into ["%hiit%", "%core%"]
       search_name_array = session[:search_name].split.map {|val| "%#{val}%" }
       @workouts = @workouts.where("name ILIKE ANY ( array[?] )", search_name_array)
