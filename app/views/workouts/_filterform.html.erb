@@ -57,7 +57,7 @@
     <legend>STYLE</legend>
     <% @style.each do |style| %>
       <div class ="d-flex">
-        <%= check_box_tag 'style[]', style, session[:filter_style].present? ? session[:filter_style].include?(style) : false, class: "checkbox-class" %>
+        <%= check_box_tag 'style[]', style, session[:filter_style].present? ? session[:filter_style].include?(style) : false, class: "checkbox-class", id: "chbox#{style}" %>
         <%= label_tag 'style[]', style %>
       </div>
     <% end %>
