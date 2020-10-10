@@ -10,7 +10,7 @@ require 'cgi'
     handle_favourites
     handle_search_name
     handle_advancedsearch
-    @workouts = @workouts.send("order_by_#{session[:sort_option]}").paginate(page: params[:page],per_page: 5)
+    @workouts = @workouts.send("order_by_#{session[:sort_option]}").paginate(page: params[:page],per_page: 10)
     @intensity = Workout.distinct.pluck(:intensity).sort!
     @style = Workout.distinct.pluck(:style).sort!
     #sort bodyfocus not alphabetically but in anatomical order set in config/workoutinfo.yml
