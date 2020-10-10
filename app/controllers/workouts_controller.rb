@@ -3,12 +3,14 @@ class WorkoutsController < ApplicationController
   before_action :logged_in_user, only: [:show]
   before_action :set_workout, only: [:edit, :update, :destroy]
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
-
+require 'cgi'
   def index
+    #if a particular workout is added as a query parameter
+    session[:search_name] = CGI.unescape params[:search_name] if params[:search_name]
     handle_favourites
     handle_search_name
     handle_advancedsearch
-    @workouts = @workouts.send("order_by_#{session[:sort_option]}").paginate(page: params[:page],per_page: 10)
+    @workouts = @workouts.send("order_by_#{session[:sort_option]}").paginate(page: params[:page],per_page: 5)
     @intensity = Workout.distinct.pluck(:intensity).sort!
     @style = Workout.distinct.pluck(:style).sort!
     #sort bodyfocus not alphabetically but in anatomical order set in config/workoutinfo.yml
