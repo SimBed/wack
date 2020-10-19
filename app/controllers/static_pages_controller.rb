@@ -6,4 +6,10 @@ class StaticPagesController < ApplicationController
     #Pre dailypick I just showed the most recently added workout
     #@workouts = Workout.all.order("created_at desc")
   end
+
+  def new
+    # see StaticPagesHelper
+    @letter = KitchenUtensil.useletter
+  end
+
 end

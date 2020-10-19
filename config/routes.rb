@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get '/kitchen_utensils',  to: 'static_pages#new'
   get 'rel_user_workouts/create'
   get 'rel_user_workouts/destroy'
   root 'static_pages#home'

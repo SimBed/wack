@@ -8,6 +8,7 @@
   --transition-speed: 600ms;
 }
 
+$gray-darker:  #808080;
 $gray-light:  #d8d8d8;
 $greenfly: #126774;
 
@@ -84,14 +85,6 @@ main {
   margin-right: 0.5rem;
 }
 
-.navbar1:hover {
-
-}
-
-.navbar1:hover .link-text {
-
-}
-
 .nav-item.i.fa {
   color: $gray-light;
   transition: var(--transition-speed);
@@ -125,6 +118,28 @@ main {
    display: block;
    height: 4rem; //Height of header
    margin-top: -4rem;
+}
+
+// kitchen utensils
+
+h4.letter {
+	letter-spacing: 0.08em;
+	font-size: 1.3em;
+  color: $gray-darker;
+
+}
+
+p.letter {
+	font-size: 3.3em;
+  line-height: 1.0;
+  color: $gray-darker;
+  a {
+    font-size: 0.5em;
+
+  }
+  i {
+        color: $gray-darker;
+  }
 }
 
 /* Large screens */

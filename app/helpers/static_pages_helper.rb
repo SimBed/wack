@@ -9,4 +9,11 @@ module StaticPagesHelper
       srand Date.today.to_time.to_i
       return rand(Workout.count)
     end
+
+    class KitchenUtensil
+        def self.useletter
+          ("A".."Z").to_a.shuffle.first
+        end
+    end
+
 end

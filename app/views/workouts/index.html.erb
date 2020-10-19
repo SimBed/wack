@@ -6,7 +6,7 @@
   </div>
 <% end %>
 
-  <!-- 3. Instantiate clipboard by passing a string selector -->
+  <!-- Instantiate clipboard by passing a string selector -->
   <script>
   var clipboard = new Clipboard('.btnX');
 
@@ -18,18 +18,6 @@
       console.log(e);
   });
   </script>
-
-<!--script type="text/javascript">
-  var clipboard = new Clipboard(btn);
-  // Success
-  clipboard.on('success', function(e) {
-   console.log(e);
-  });
-  // Error
-  clipboard.on('error', function(e) {
-   console.log(e);
-  });
-</script-->
 
 <div class="container mb-0">
 <%= will_paginate %>

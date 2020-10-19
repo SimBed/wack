@@ -17,4 +17,10 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     assert_select "title", "#{@base_title}"
   end
 
+  # for kitchen utensils
+  test "should get new" do
+    get kitchen_utensils_path
+    assert_response :success
+  end
+
 end
