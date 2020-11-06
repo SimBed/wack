@@ -1,0 +1,2 @@
+class RelWorkoutScheduling < ApplicationRecord
+end

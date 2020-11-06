@@ -1,0 +1,8 @@
+<%= week_calendar number_of_weeks: 2, events: @schedulings do |date, schedulings| %>
+  <%= date.strftime("%d/%m")  %>
+  <% schedulings.each do |scheduling| %>
+    <div>
+      <%= scheduling.name %>
+    </div>
+  <% end %>
+<% end %>

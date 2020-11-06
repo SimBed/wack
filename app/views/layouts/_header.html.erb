@@ -26,6 +26,12 @@
 
     <% if logged_in? %>
       <li class="nav-item">
+        <%= link_to schedulings_path, class: "nav-link" do %>
+          <i class="fa fa-calendar-alt"></i>
+          <span class="link-text">Schedule</span>
+        <% end %>
+      </li>
+      <li class="nav-item">
         <%= link_to current_user, class: "nav-link" do %>
           <i class="fa fa-id-card"></i>
           <span class="link-text">Profile</span>

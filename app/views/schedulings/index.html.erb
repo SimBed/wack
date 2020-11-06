@@ -1,0 +1,23 @@
+<h2>Scheduled Workouts</h2>
+
+<div class="container bg-light px-1 mt-3">
+   <div class="row bg-light py-1 mx-0">
+    <div class ="col-12">
+       <section class="mt-1">
+         <%= render partial: 'schedulings/form', locals: {setting: "new"} %>
+       </section>
+    </div>
+  </div>
+</div>
+
+<%= month_calendar events: @schedulings do |date, schedulings| %>
+  <%= date %>
+
+  <% schedulings.each do |scheduling| %>
+    <div>
+      <%= scheduling.name %>
+    </div>
+  <% end %>
+<% end %>
+
+<%= render partial: 'workouts/schedule_table' %>

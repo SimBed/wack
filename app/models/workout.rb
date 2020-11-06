@@ -3,6 +3,7 @@ class Workout < ApplicationRecord
   has_many :microposts, dependent: :destroy
   has_many :rel_user_workouts, dependent: :destroy
   has_many :users, through: :rel_user_workouts
+  has_many :schedulings, dependent: :destroy
   #default scope clashed with postgres when using Workout.distinct..  defaultscope warned against generally in stackoverflow. Scopes work nicely.
   #default_scope -> { order(created_at: :desc) }
   scope :order_by_date_created_desc, -> { order(created_at: :desc) }

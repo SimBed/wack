@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :meetings
   get '/kitchen_utensils',  to: 'static_pages#new'
   get 'rel_user_workouts/create'
   get 'rel_user_workouts/destroy'
@@ -21,4 +22,5 @@ Rails.application.routes.draw do
   resources :microposts,          only: [:create, :destroy]
   resources :rel_user_workouts,   only: [:create, :destroy]
   resources :attempts,          only: [:create, :destroy]
+  resources :schedulings
 end

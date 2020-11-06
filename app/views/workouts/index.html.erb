@@ -1,4 +1,5 @@
 <% provide(:title, 'All Workouts') %>
+<!-- the explicit 'partial:' key after 'render' is not required-->
 <%= render 'workouts/filterform' %>
 <% if current_user && current_user.admin? %>
   <div class="container search mb-2">
@@ -6,35 +7,21 @@
   </div>
 <% end %>
 
-  <!-- Instantiate clipboard by passing a string selector -->
-  <script>
-  var clipboard = new Clipboard('.btnX');
+<!-- Instantiate clipboard by passing a string selector -->
+<script>
+var clipboard = new Clipboard('.btnX');
 
-  clipboard.on('success', function(e) {
-      console.log(e);
-  });
+clipboard.on('success', function(e) {
+    console.log(e);
+});
 
-  clipboard.on('error', function(e) {
-      console.log(e);
-  });
-  </script>
+clipboard.on('error', function(e) {
+    console.log(e);
+});
+</script>
 
 <div class="container mb-0">
-<%= will_paginate %>
-
-<%= render @workouts, setting: "addcommentno" %>
-
-<%= will_paginate %>
+  <%= will_paginate %>
+    <%= render @workouts, setting: "addcommentno" %>
+  <%= will_paginate %>
 </div>
-
-<% if false %>
-<div class="container p-goal mt-1 mb-0">
-  <ul class="Sort mb-0 ">
-    <li> Sort by:</li>
-    <li class="Witharrow"> <%= sortable "name", "Name", "Name"%></li>
-    <li class="Witharrow"><%= sortable "style", "Style", "Style"%></li>
-    <li class="Witharrow"><%= sortable "length", "Length", "Length"%></li>
-    <li class="Witharrow"><%= sortable "intensity", "Intensity", "Intensity"%></li>
-    </ul>
-</div>
-<% end %>
