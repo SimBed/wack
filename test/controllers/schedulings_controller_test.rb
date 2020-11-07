@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class SchedulingsControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+  test "should get index" do
+    get schedulings_url
+    assert_response :success
+  end
 end

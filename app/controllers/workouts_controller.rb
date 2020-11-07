@@ -32,8 +32,8 @@ require 'cgi'
     @microposts = @workout.microposts.paginate(page: params[:page])
     @micropost = current_user.microposts.build()
     @attempt = current_user.attempts.build()
-    @scheduling = current_user.schedulings.build()
-    @schedulings = current_user.schedulings
+    #@scheduling = current_user.schedulings.build()
+    #@schedulings = current_user.schedulings
   end
 
   def new

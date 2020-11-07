@@ -2,7 +2,7 @@ class SchedulingsController < ApplicationController
   before_action :set_scheduling, only: [:show, :edit, :update, :destroy]
 
   def index
-    @schedulings = Scheduling.all
+    @schedulings = Scheduling.all.order_by_start_time
     @scheduling = current_user.schedulings.build()
   end
 
@@ -15,10 +15,11 @@ class SchedulingsController < ApplicationController
 
   def create
     @scheduling = current_user.schedulings.build(scheduling_params)
-    # the name of the scheduling is the same as the workout name and not a form item
-    # workout_id is a hidden field
-    # Schedule name is the name of the workout if set from Workouts Index
-    # or given name in form if set from the Scheduling Index
+    # a scheduling can be created from 2 places:
+    # 1. from the Workouts index page, in which case the name of the scheduling
+    # is set as the same name as the corresponding workout (the name can not be edited on the form and
+    # workout_id is a hidden field in the form)
+    # 2. from the Schedulings index, in which case the user can give the scheduling any name and workout_id is nil
     @scheduling.name ||= Workout.find(params[:workout_id]).name
     #||= instead of = so tests dont fail
     @scheduling.workout_id ||= params[:workout_id]
