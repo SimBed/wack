@@ -10,10 +10,10 @@
     <% @schedulings.each do |scheduling| %>
       <tr>
         <td><%= scheduling.name %></td>
-        <td><%= scheduling.start_time %></td>
-        <td><%= link_to 'Show', scheduling %></td>
-        <td><%= link_to 'Edit', edit_scheduling_path(scheduling) %></td>
-        <td><%= link_to 'Delete', scheduling, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= scheduling.start_time.strftime('%Y-%m-%d, %H:%M') %></td>
+        <td class="pl-3"><%= link_to ' Show', scheduling %></td>
+        <td class="pl-1"><%= link_to ' Edit', edit_scheduling_path(scheduling) %></td>
+        <td class="pl-1"><%= link_to ' Delete', scheduling, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

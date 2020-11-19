@@ -6,39 +6,33 @@ class SchedulingTest < ActiveSupport::TestCase
     @user = users(:michael)
     @workout = workouts(:workouttwo)
     # mimics creating the scheduling from the Workouts Index
-    @scheduling1 = @user.schedulings.build(name: @workout.name, start_time: Time.now() + 60 * 60, workout_id: @workout.id)
+    @scheduling1 = @user.schedulings.build(name: @workout.name, start_time: Time.now().advance(hours: 1), workout_id: @workout.id)
     # mimics creating the scheduling from the Schedulings Index
-    @scheduling2 = @user.schedulings.build(name: "run", start_time: Time.now())
-    @schedulings = Scheduling.all.order_by_start_time
+    @scheduling2 = @user.schedulings.build(name: "run", start_time: Time.now().advance(days: 1))
+    # @schedulings = Scheduling.all.order_by_start_time
   end
 
   test "should be valid" do
-    puts @scheduling1.inspect
-    puts @scheduling2.inspect
-
-    #puts @scheduling1.inspect
-    #puts @scheduling2.inspect
-
-    # assert @scheduling1.valid?
-    # assert @scheduling2.valid?
+    assert @scheduling1.valid?
+    assert @scheduling2.valid?
   end
-  #
-  # test "workout name should be present" do
-  #  @scheduling1.name = nil
-  #  assert_not @scheduling1.valid?
-  # end
-  #
-  # test "start time should be present" do
-  #  @scheduling1.start_time = nil
-  #  assert_not @scheduling1.valid?
-  # end
-  #
-  # test "must have an associated user" do
-  #  @scheduling1.user_id = nil
-  #  assert_not @scheduling1.valid?
-  # end
-  #
-  # test "order should be earliest start first" do
-  #  assert_equal @scheduling2, @schedulings.first
-  # end
+
+  test "name should be present" do
+   @scheduling1.name = nil
+   assert_not @scheduling1.valid?
+  end
+
+  test "start time should be present" do
+   @scheduling1.start_time = nil
+   assert_not @scheduling1.valid?
+  end
+
+  test "must have an associated user" do
+   @scheduling1.user_id = nil
+   assert_not @scheduling1.valid?
+  end
+
+  test "order should be earliest first when order_by_start_time scope applied" do
+   assert_equal schedulings(:next_up), Scheduling.order_by_start_time.first
+  end
 end

@@ -1,9 +1,22 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+skip:
+  start_time: <%= Time.now.advance(days: 1)  %>
+    # eg 2020-11-05 11:30:00
+  user: lana
 
-one:
-  start_time: 2020-11-04 11:34:21
-  user: one
+run:
+  start_time: <%= Time.now.advance(minutes: 30) %>
+    # eg 2020-11-05 11:30:00
+  user: archer
 
-two:
-  start_time: 2020-11-04 11:34:21
-  user: two
+walk:
+  start_time: <%= Time.now.advance(days: 2)  %>
+    # eg 2020-11-05 11:30:00
+  user: archer
+
+last:
+  start_time: <%= Time.now.advance(days: 5)  %>
+  user: lana
+
+next_up:
+  start_time: <%= Time.now %>
+  user: lana
