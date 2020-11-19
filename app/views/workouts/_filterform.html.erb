@@ -41,7 +41,9 @@
 
 </div>
 
-  <div id="advsearch_options" class="container search <%= session[:advsearchshow] == "show" ? "advsearch_show" : "advsearch_hide" %>">
+  <div id="advsearch_options" class="container search <%= session[:advsearchshow] == "hide" ? "advsearch_hide" : "advsearch_show" %>">
+  <!-- alternative for default advanced search form is hidden -->
+  <!--div id="advsearch_options" class="container search <%#= session[:advsearchshow] == "show" ? "advsearch_show" : "advsearch_hide" %>"-->
       <hr class = "search"></hr>
 
   <%= form_with(url: "/workouts/search", method: "get", local: true, class: "form-class") do %>
@@ -111,7 +113,7 @@
 <script>
 
 function toggleHidden() {
-//hide/display search
+// hide/display search
       var x = document.getElementById("advsearch_options");
       x.classList.toggle('advsearch_hide');
 
