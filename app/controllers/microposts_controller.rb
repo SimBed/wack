@@ -8,7 +8,8 @@ class MicropostsController < ApplicationController
     #@micropost = current_user.microposts.build(micropost_params)
     @micropost = current_user.microposts.build(micropost_params)
     #||= instead of = so tests dont fail
-    @micropost.workout_id ||= session[:workout_id]
+    #@micropost.workout_id ||= session[:workout_id]
+    @micropost.workout_id ||= params[:workout_id]
     if @micropost.save
       flash[:success] = "Comment added!"
       redirect_to workout_path(@micropost.workout_id)

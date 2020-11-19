@@ -21,6 +21,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'pg'
 #for copying to clipboard
 gem 'clipboard-rails'
+gem "simple_calendar", "~> 2.0"
 
 group :development, :test do
   #gem 'sqlite3'

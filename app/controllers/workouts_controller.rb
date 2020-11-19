@@ -22,14 +22,20 @@ require 'cgi'
     #@test = params['style[1]']
     #@workouts = Workout.paginate(page: params[:page])
     #@workouts = Workout.all.order(sort_column + " " + sort_direction, :name).paginate(page: params[:page],per_page: 10)
+    if current_user
+      @scheduling = current_user.schedulings.build()
+      @schedulings = current_user.schedulings
+    end
   end
 
   def show
     @workout = Workout.find(params[:id])
-    session[:workout_id]=@workout.id
+    #session[:workout_id]=@workout.id
     @microposts = @workout.microposts.paginate(page: params[:page])
     @micropost = current_user.microposts.build()
     @attempt = current_user.attempts.build()
+    #@scheduling = current_user.schedulings.build()
+    #@schedulings = current_user.schedulings
   end
 
   def new
@@ -41,8 +47,8 @@ require 'cgi'
     @workout = Workout.new(workout_params)
     @workout.addedby = current_user
     if @workout.save
-      redirect_to workouts_path
       flash[:success] = "New workout, #{@workout.name} added!"
+      redirect_to workouts_path
     else
       #required instance variables are lost on re-render - see notes in create of MicropostsController
       @brand = Workout.distinct.pluck(:brand)

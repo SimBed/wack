@@ -1,0 +1,32 @@
+<%= form_for(@scheduling) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <% if setting == "edit" %>
+    <%= f.submit "Update", class: "btn btn-primary btnpost" %>
+    <div><%= hidden_field_tag :workout_id, @scheduling.workout_id %></div>
+    <div class="field">
+      <% if @scheduling.workout_id.nil? %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      <% else %>
+        <%= f.label :name, "#{Workout.find(@scheduling.workout_id).name}" %>
+        <%#= f.text_field :name %>
+      <% end %>
+
+    </div>
+  <% elsif setting == "new" %>
+    <%= f.submit "Schedule", class: "btn btn-primary btnpost" %>
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <% else %>
+    <%= f.submit "Schedule #{workout.name}", class: "btn btn-primary btnpost" %>
+    <div><%= hidden_field_tag :workout_id, workout.id %></div>
+  <% end %>
+
+  <div class="field">
+    <%#= f.label :start_time %>
+    <%= f.datetime_select :start_time %>
+  </div>
+<% end %>

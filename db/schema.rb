@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_08_203757) do
+ActiveRecord::Schema.define(version: 2020_11_04_113421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,13 @@ ActiveRecord::Schema.define(version: 2020_07_08_203757) do
     t.index ["user_id"], name: "index_attempts_on_user_id"
     t.index ["workout_id", "created_at"], name: "index_attempts_on_workout_id_and_created_at"
     t.index ["workout_id"], name: "index_attempts_on_workout_id"
+  end
+
+  create_table "meetings", force: :cascade do |t|
+    t.string "name"
+    t.datetime "start_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "microposts", force: :cascade do |t|
@@ -48,6 +55,16 @@ ActiveRecord::Schema.define(version: 2020_07_08_203757) do
     t.index ["user_id", "workout_id"], name: "index_rel_user_workouts_on_user_id_and_workout_id", unique: true
     t.index ["user_id"], name: "index_rel_user_workouts_on_user_id"
     t.index ["workout_id"], name: "index_rel_user_workouts_on_workout_id"
+  end
+
+  create_table "schedulings", force: :cascade do |t|
+    t.string "name"
+    t.datetime "start_time"
+    t.integer "workout_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_schedulings_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -86,4 +103,5 @@ ActiveRecord::Schema.define(version: 2020_07_08_203757) do
   add_foreign_key "attempts", "workouts"
   add_foreign_key "microposts", "users"
   add_foreign_key "microposts", "workouts"
+  add_foreign_key "schedulings", "users"
 end

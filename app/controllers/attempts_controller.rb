@@ -37,18 +37,16 @@ class AttemptsController < ApplicationController
       params.require(:attempt).permit(:doa, :summary, :workout_id)
     end
 
+    # Before filters
+
     def set_attempt
       @attempt = Attempt.find(params[:id])
     end
 
-    # Before filters
-
-    # Confirms the correct user.
     def correct_user
         redirect_to(root_url) unless current_user?(@attempt.user)
     end
 
-    # Confirms the correct user or admin.
     def correct_user_or_admin
       redirect_to(root_url) unless (current_user?(@attempt.user) or (current_user && current_user.admin?))
     end

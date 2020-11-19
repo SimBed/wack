@@ -32,10 +32,23 @@
         </div>
       </div>
 
-      <!-- Trigger -->
-      <%= button_tag "Copy", class: "btnX", type: "button", data: {clipboard_text: "http://www.wackit.in/workouts/?search_name=#{workout.name}##{workout.name.split.join.downcase}"} do %>
-      <i class="fas fa-clipboard"></i>
-      <% end %>
+      <% if current_user %>
+      <!-- this is equivalent to -->
+      <%#= render partial: 'workouts/clipboard', locals: {workout: workout} %>
+      <%= render partial: 'workouts/clipboard', object: workout, as: 'workout' %>
+      <!-- the calendar itself does not need to know which workout but the scheduling form does -->
+
+      <div class="container bg-light px-1 mt-3">
+         <div class="row bg-light py-1 mx-0">
+          <div class ="col-12">
+             <section class="mt-1">
+               <%= render partial: 'schedulings/form', locals: {setting: "index"}, object: workout, as: 'workout' %>
+             </section>
+          </div>
+        </div>
+      </div>
+      <%= render partial: 'workouts/calendar', object: workout, as: 'workout' %>
+      <%#= render partial: 'workouts/schedule_table', object: workout, as: 'workout' %>
 
       <div class="container">
          <div class="row bg-light py-1 mx-0">
@@ -46,6 +59,7 @@
           </div>
         </div>
       </div>
+      <% end %>
 
       <div class = "container bg-light p-1 mb-1">
         <% if current_user && current_user.admin? %>

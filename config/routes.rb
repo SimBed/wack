@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :meetings
   get '/kitchen_utensils',  to: 'static_pages#new'
   get 'rel_user_workouts/create'
   get 'rel_user_workouts/destroy'
@@ -7,8 +8,6 @@ Rails.application.routes.draw do
   get '/workouts/clear', to: 'workouts#clear', as: 'clear'
   get '/workouts/favourites', to: 'workouts#favourites', as: 'favourites'
   get '/workouts/search', to: 'workouts#search'
-  #get 'password_resets/new'
-  #get 'password_resets/edit'
   get    '/signup',  to: 'users#new'
   post '/signup',  to: 'users#create'
   get    '/login',   to: 'sessions#new'
@@ -21,4 +20,5 @@ Rails.application.routes.draw do
   resources :microposts,          only: [:create, :destroy]
   resources :rel_user_workouts,   only: [:create, :destroy]
   resources :attempts,          only: [:create, :destroy]
+  resources :schedulings
 end
