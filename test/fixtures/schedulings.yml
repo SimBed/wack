@@ -1,22 +1,27 @@
 skip:
+  name: skip
   start_time: <%= Time.now.advance(days: 1)  %>
     # eg 2020-11-05 11:30:00
   user: lana
 
 run:
+  name: run
   start_time: <%= Time.now.advance(minutes: 30) %>
     # eg 2020-11-05 11:30:00
   user: archer
 
 walk:
+  name: walk
   start_time: <%= Time.now.advance(days: 2)  %>
     # eg 2020-11-05 11:30:00
   user: archer
 
 last:
+  name: last
   start_time: <%= Time.now.advance(days: 5)  %>
   user: lana
 
 next_up:
+  name: next_up
   start_time: <%= Time.now %>
   user: lana

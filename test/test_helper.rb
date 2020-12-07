@@ -12,6 +12,7 @@ class ActiveSupport::TestCase
   end
 
   # Log in as a particular user.
+  # Our method for logging a user in depends on the type of test. Inside controller tests, we can manipulate the session method directly.
   def log_in_as(user)
     session[:user_id] = user.id
   end
@@ -26,6 +27,7 @@ end
 class ActionDispatch::IntegrationTest
 
   # Log in as a particular user.
+  # Inside integration tests, we can’t manipulate session directly, but we can post to the sessions path
   def log_in_as(user, password: 'password', remember_me: '1')
     post login_path, params: { session: { email: user.email,
                                           password: password,

@@ -53,23 +53,18 @@ class SchedulingsInterfaceTest < ActionDispatch::IntegrationTest
       assert_select "div", workout_name
     end
 
-# Want to test for
-# <tr>
-# <td> name </td> <td> date </td>
-# </tr>
-# this isn't testing for the right thing.
-# as it will also pass
-# <tr>
-# <td> name </td>
-# </tr>
-# <tr>
-# <td> date </td>
-# </tr>
-
-    assert_select "tr" do
-      assert_select "td", workout_name
-      assert_select "td", t.strftime('%Y-%m-%d, %H:%M')
-    end
+    # see my stackoverflow question - experimented with how to match
+    # <tr> <td> name </td> <td> date </td> </tr>
+    # ended up finding a regexs was the simplest approach
+    # ~ is the css general sibling combinator. eg css_select "td~td" matches tds that are siblings of and subsequent to any td (so it wouldn't include the first td). Didn't end up using this.
+    t1 = t.strftime('%Y-%m-%d, %H:%M')
+    # pars has class Nokogiri::XML::NodeSet
+    pars = css_select "tr"
+    # pars.each_with_index{ |val,index| puts "index: #{index} for #{val}" }
+    regexs = /<td>#{workout_name}<\/td>.*<td>#{t1}<\/td>.*Show.*Edit.*Delete/m
+    match = false
+    pars.each { |i| if i.to_s =~ regexs then match = true end }
+    assert match
 
     # Edit the scheduling
     @latest_scheduling = Scheduling.order(created_at: :desc).first
@@ -132,4 +127,5 @@ class SchedulingsInterfaceTest < ActionDispatch::IntegrationTest
     end
 
   end
+
 end
