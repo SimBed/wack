@@ -1,11 +1,11 @@
-<%= form_for(@attempt) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
+<%= form_with model: @attempt, local: true do |form| %>
+  <%= render 'shared/error_messages', object: form.object %>
   <div class="field">
-    <%= f.label :doa, 'Date of Attempt' %>
-    <%= f.date_field :doa %>
+    <%= form.label :doa, 'Date of Attempt' %>
+    <%= form.date_field :doa %>
   </div>
   <div class="field">
-    <%= f.text_area :summary, placeholder: "Add your summary..." %>
+    <%= form.text_area :summary, placeholder: "Add your summary..." %>
   </div>
-  <%= f.submit "Wack It", class: "btn btn-primary btnpost" %>
+  <%= form.submit "Wack It", class: "btn btn-primary btnpost" %>
 <% end %>

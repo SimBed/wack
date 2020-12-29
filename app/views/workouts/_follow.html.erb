@@ -1,4 +1,6 @@
-<%= form_for(current_user.rel_user_workouts.build) do |f| %>
-  <div><%= hidden_field_tag :workout_id, workout.id %></div>
-  <%= f.submit "Follow", class: "btn btn-primary" %>
+<%= form_with model: current_user.rel_user_workouts.build, local: true do |form| %>
+  <div><%= hidden_field_tag :workout_id, workoutshow.id %></div>
+  <%= form.button type: 'submit', class: "btn btn-heart" do %>
+      <i class="fa fa-heart-broken" aria-hidden="true"></i>
+  <% end %>
 <% end %>

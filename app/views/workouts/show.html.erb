@@ -2,7 +2,6 @@
 <div class="row">
   <aside class="col-md-4">
     <%= render partial: 'workouts/workoutshow', locals: {setting: "addcommentyes"}, object: @workout  %>
-      <%#= render @workout, setting: "addcommentyes" %>
   </aside>
   <div class="col-md-8">
       <% if @workout.microposts.any? %>

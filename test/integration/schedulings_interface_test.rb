@@ -41,7 +41,9 @@ class SchedulingsInterfaceTest < ActionDispatch::IntegrationTest
     # <td>" 20/11 "<div>wack</div> </td>
     # My workaround was to search  by REGEXS instead)
 
-    assert_select "td", {text: /#{t.day}\/#{t.month}/}, true do
+    # on 29 December, the test failed. 3 days advanced is 1 Jan, where t.day returns 1 not 01 required, hence the change in code.
+    # assert_select "td", {text: /#{t.day}\/#{t.month}/}, true do
+    assert_select "td", {text: /#{t.strftime("%d/%m")}/}, true do
       assert_select "div", {text: workout_name}, true
     end
 
@@ -49,7 +51,8 @@ class SchedulingsInterfaceTest < ActionDispatch::IntegrationTest
 
     # the hash is only needed for multiple equality tests. I retained this syntax (above) only for that
     # assert_select but not thereafter. Likewise the true (above) is not necessary as it is the  default.
-    assert_select "td", /#{t.day}\/#{t.month}/ do
+    # assert_select "td", /#{t.day}\/#{t.month}/ do
+    assert_select "td", /#{t.strftime("%d/%m")}/ do
       assert_select "div", workout_name
     end
 
@@ -86,7 +89,9 @@ class SchedulingsInterfaceTest < ActionDispatch::IntegrationTest
     assert_equal t.advance(days: 1).to_s,  @latest_scheduling.start_time.to_s
     # t.day + 1 directly into the curly brackets in the REGEXS failed
     # t1_day = t.day + 1
-    assert_select "td", /#{t1.day}\/#{t1.month}/ do
+
+    # assert_select "td", /#{t1.day}\/#{t1.month}/ do
+    assert_select "td", /#{t1.strftime("%d/%m")}/ do
       assert_select "div", workout_name
     end
 

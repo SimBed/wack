@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :meetings
+  get '/formtest', to: 'static_pages#formtest'
   get '/kitchen_utensils',  to: 'static_pages#new'
-  get 'rel_user_workouts/create'
-  get 'rel_user_workouts/destroy'
+  #get 'rel_user_workouts/create'
+  #get 'rel_user_workouts/destroy'
   root 'static_pages#home'
   get '/workouts/clear', to: 'workouts#clear', as: 'clear'
   get '/workouts/favourites', to: 'workouts#favourites', as: 'favourites'

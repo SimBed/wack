@@ -36,25 +36,11 @@
           <div class ="col-2 px-0">
             <div id="favourite_form">
               <% if current_user.wkfollowing?(workoutshow) %>
-                <%= form_for(current_user.rel_user_workouts.find_by(workout_id: workoutshow.id),
-                             html: { method: :delete }) do |f| %>
-                     <%= button_tag type: 'submit', class: "btn btn-heart" do %>
-                         <i class="fa fa-heart" aria-hidden="true"></i>
-                     <% end %>
-                  <%#= f.submit "Unfollow", class: "btn" %>
-                <% end %>
+                <%= render partial: 'workouts/unfollow', object: workoutshow, as: 'workoutshow' %>
               <% else %>
-                <%= form_for(current_user.rel_user_workouts.build) do |f| %>
-                  <div><%= hidden_field_tag :workout_id, workoutshow.id %></div>
-                  <%= button_tag type: 'submit', class: "btn btn-heart" do %>
-                      <i class="fa fa-heart-broken" aria-hidden="true"></i>
-                  <% end %>
-
-                  <%#= f.submit "Follow", class: "btn btn-primary" %>
-                <% end %>
+                <%= render partial: 'workouts/follow', object: workoutshow, as: 'workoutshow' %>
               <% end %>
             </div>
-
           </div>
         </div>
 

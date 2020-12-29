@@ -33,7 +33,7 @@
       </div>
 
       <% if current_user %>
-      <!-- this is equivalent to -->
+      <!-- this is equivalent to [see explanation lower down] -->
       <%#= render partial: 'workouts/clipboard', locals: {workout: workout} %>
       <%= render partial: 'workouts/clipboard', object: workout, as: 'workout' %>
       <!-- the calendar itself does not need to know which workout but the scheduling form does -->
@@ -42,13 +42,21 @@
          <div class="row bg-light py-1 mx-0">
           <div class ="col-12">
              <section class="mt-1">
+<!-- Every partial also has a local variable with the same name as the partial (minus the
+leading underscore). You can pass an object in to this local variable via the :object option
+https://guides.rubyonrails.org/layouts_and_rendering.html#passing-local-variables -->
+
+<!-- To use a custom local variable name within the partial [rather than the default partial
+name minus the leading underscore], specify the :as option in the call to the partial
+https://guides.rubyonrails.org/layouts_and_rendering.html#local-variables -->
                <%= render partial: 'schedulings/form', locals: {setting: "index"}, object: workout, as: 'workout' %>
+<!-- the above is therefore broadly equivalent to
+render partial: 'schedulings/form', locals: {setting: "index", workout: workout} -->
              </section>
           </div>
         </div>
       </div>
-      <%= render partial: 'workouts/calendar', object: workout, as: 'workout' %>
-      <%#= render partial: 'workouts/schedule_table', object: workout, as: 'workout' %>
+      <%= render partial: 'workouts/calendar' %>
 
       <div class="container">
          <div class="row bg-light py-1 mx-0">

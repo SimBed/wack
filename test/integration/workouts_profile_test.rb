@@ -20,7 +20,8 @@ class WorkoutsProfileTest < ActionDispatch::IntegrationTest
     assert_template 'workouts/show'
     assert_select 'title', full_title(@workout.name)
     assert_select 'h4', text: @workout.name.upcase
-    assert_select 'form.new_micropost'
+    # assert_select 'form.new_micropost'
+    assert_select 'form'
     assert_select 'iframe[src=?]', "#{@workout.url}"
     assert_select 'a[href=?]', workout_path(@workout)
     assert_select 'a[href=?]', workout_path(@workout), text: 'Delete', count:0

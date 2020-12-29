@@ -1,4 +1,6 @@
-<%= form_for(current_user.rel_user_workouts.find_by(workout_id: @workout.id),
-             html: { method: :delete }) do |f| %>
-  <%= f.submit "Unfollow", class: "btn" %>
+<%= form_with model: current_user.rel_user_workouts.find_by(workout_id: workoutshow.id),
+             local: true, html: { method: :delete } do |form| %>
+     <%= form.button type: 'submit', class: "btn btn-heart" do %>
+         <i class="fa fa-heart" aria-hidden="true"></i>
+     <% end %>
 <% end %>

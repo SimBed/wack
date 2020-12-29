@@ -12,4 +12,9 @@ class StaticPagesController < ApplicationController
     @letter = KitchenUtensil.useletter
   end
 
+  def formtest
+    @workoutnew = Workout.new
+    @workout1 = Workout.find(1)
+  end
+
 end
