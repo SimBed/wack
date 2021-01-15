@@ -1,0 +1,9 @@
+var schedules = document.getElementsByClassName("sched_wk");
+n = schedules.length;
+for (var i = 0; i <n; i++) {
+  schedules[i].innerHTML = "<%= escape_javascript(render('workouts/calendar')) %>";
+}
+
+<% flash.each do |type, message| %>
+  $('#flash_messages').html("<div class='alert alert-<%= type %>' ><%= message.html_safe %></div>")
+<% end %>

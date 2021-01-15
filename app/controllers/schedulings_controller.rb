@@ -22,11 +22,17 @@ class SchedulingsController < ApplicationController
     # ||= instead of = so tests dont fail
     @scheduling.workout_id ||= params[:workout_id]
     if @scheduling.save
+      # @workout = Workout.find(params[:workout_id])
+      @schedulings = current_user.schedulings.order_by_start_time
+      respond_to do |format|
+         format.html { flash[:success] = "#{@scheduling.name} scheduled!"
+                       redirect_to request.referrer }
+         format.js { flash.now[:success] = "#{@scheduling.name} scheduled!" }
+       end
 
-      # redirect_to workouts_path or schedulings_path depending which URL the post was from
-      redirect_to request.referrer
-      # || root_url
-      flash[:success] = "#{@scheduling.name} scheduled!"
+      # redirect_to workouts_path or schedulings_path depending which URL the post was from pre-AJAX
+      # redirect_to request.referrer
+      # flash[:success] = "#{@scheduling.name} scheduled!"
     else
       if @scheduling.workout_id.nil?
           redirect_to root_url

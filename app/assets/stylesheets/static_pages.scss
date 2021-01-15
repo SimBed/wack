@@ -90,23 +90,23 @@ main {
   transition: var(--transition-speed);
 }
 
-.logo {
-  font-weight: bold;
-  text-transform: uppercase;
+.home {
+  /*font-weight: bold;
+  text-transform: uppercase;*/
   text-align: center;
   color: var(--text-secondary);
   background: var(--bg-secondary);
-  font-size: 1.5rem;
+  /*font-size: 1.5rem;
   letter-spacing: 0.3ch;
-  width: 100%;
+  width: 100%;*/
 }
 
-.logo i {
+.home i {
   transform: rotate(0deg);
   transition: var(--transition-speed);
 }
 
-.navbar1:hover .logo i {
+.navbar1:hover .home i {
   transform: rotate(-360deg);
 }
 

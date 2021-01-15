@@ -78,7 +78,7 @@ class SchedulingsInterfaceTest < ActionDispatch::IntegrationTest
     assert_redirected_to schedulings_path
     follow_redirect!
     assert_not flash.empty?
-    assert_select "td", /#{t.day}\/#{t.month}/ do
+    assert_select "td", {text: /#{t.strftime("%d/%m")}/}, true do
       assert_select "div", false
     end
     @latest_scheduling.reload
@@ -102,7 +102,7 @@ class SchedulingsInterfaceTest < ActionDispatch::IntegrationTest
     assert_redirected_to schedulings_path
     follow_redirect!
     assert_not flash.empty?
-    assert_select "td", /#{t1.day}\/#{t1.month}/ do
+    assert_select "td", {text: /#{t1.strftime("%d/%m")}/}, true do
       assert_select "div", false
     end
 
@@ -122,7 +122,7 @@ class SchedulingsInterfaceTest < ActionDispatch::IntegrationTest
     assert_template 'schedulings/index'
     assert_not flash.empty?
 
-    assert_select "td", /#{t.day}\/#{t.month}/ do
+    assert_select "td", {text: /#{t.strftime("%d/%m")}/}, true do
       assert_select "div", "skipjump"
     end
 
