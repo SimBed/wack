@@ -4,20 +4,15 @@
    <div class="row bg-light py-1 mx-0">
     <div class ="col-12">
        <section class="mt-1">
-         <%= render partial: 'form', locals: {setting: "new"} %>
+         <%= render partial: 'form', locals: {setting: "sch_index"} %>
        </section>
     </div>
   </div>
 </div>
 
-<%= month_calendar events: @schedulings do |date, schedulings| %>
-  <%= date.strftime("%d/%m")  %>
-
-  <% schedulings.each do |scheduling| %>
-    <div>
-      <%= scheduling.name %>
-    </div>
-  <% end %>
-<% end %>
-
-<%= render partial: 'workouts/schedule_table' %>
+<div class= <%= "sched_cal" %> >
+<%= render partial: 'shared/calendar', locals: {calendar_type: "m"} %>
+</div>
+<div class= <%= "sched_table" %> >
+<%= render partial: 'schedule_table' %>
+</div>

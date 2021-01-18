@@ -1,8 +1,16 @@
-var schedules = document.getElementsByClassName("sched_wk");
-n = schedules.length;
+var sched_cal = document.getElementsByClassName("sched_cal");
+n = sched_cal.length;
 for (var i = 0; i <n; i++) {
-  schedules[i].innerHTML = "<%= escape_javascript(render('workouts/calendar')) %>";
+  sched_cal[i].innerHTML = "<%= escape_javascript(render partial: 'shared/calendar', locals: {calendar_type: @setting}) %>";
 }
+
+<% if @setting == "m" %>
+  var sched_table = document.getElementsByClassName("sched_table");
+  n = sched_table.length;
+  for (var i = 0; i <n; i++) {
+    sched_table[i].innerHTML = "<%= escape_javascript(render partial: 'schedule_table') %>";
+  }
+<% end %>
 
 <% flash.each do |type, message| %>
   $('#flash_messages').html("<div class='alert alert-<%= type %>' ><%= message.html_safe %></div>")

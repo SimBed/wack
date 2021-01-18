@@ -22,7 +22,8 @@ class SchedulingsController < ApplicationController
     # ||= instead of = so tests dont fail
     @scheduling.workout_id ||= params[:workout_id]
     if @scheduling.save
-      # @workout = Workout.find(params[:workout_id])
+      # the js.erb needs to know whether the form submission came from the scheduling or workout index as the calendars are shown differently in each place (bi-weekly/monthly)
+      @setting = params[:setting] == "sch_index" ? "m" : 2
       @schedulings = current_user.schedulings.order_by_start_time
       respond_to do |format|
          format.html { flash[:success] = "#{@scheduling.name} scheduled!"
@@ -61,9 +62,12 @@ class SchedulingsController < ApplicationController
 
   def destroy
      @scheduling.destroy
-     flash[:success] = "Scheduling deleted"
-     redirect_to schedulings_path
-     # request.referrer || root_url
+     @schedulings = current_user.schedulings.order_by_start_time
+     respond_to do |format|
+        format.html { flash[:success] = "Scheduling deleted"
+                      redirect_to schedulings_path }
+        format.js { flash.now[:success] = "#{@scheduling.name} deleted" }
+      end
    end
 
   private

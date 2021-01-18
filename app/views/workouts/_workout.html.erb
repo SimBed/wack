@@ -49,16 +49,16 @@ https://guides.rubyonrails.org/layouts_and_rendering.html#passing-local-variable
 <!-- To use a custom local variable name within the partial [rather than the default partial
 name minus the leading underscore], specify the :as option in the call to the partial
 https://guides.rubyonrails.org/layouts_and_rendering.html#local-variables -->
-               <%= render partial: 'schedulings/form', locals: {setting: "index"}, object: workout, as: 'workout' %>
+               <%= render partial: 'schedulings/form', locals: {setting: "wk_index"}, object: workout, as: 'workout' %>
 <!-- the above is therefore broadly equivalent to
-render partial: 'schedulings/form', locals: {setting: "index", workout: workout} -->
+render partial: 'schedulings/form', locals: {setting: "sch_index", workout: workout} -->
              </section>
           </div>
         </div>
       </div>
 
-      <div class= <%="sched_wk" %> >
-      <%= render partial: 'workouts/calendar' %>
+      <div class= <%= "sched_cal" %> >
+      <%= render partial: 'shared/calendar', locals: {calendar_type: 2} %>
       </div>
 
       <div class="container">

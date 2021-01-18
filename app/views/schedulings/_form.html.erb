@@ -21,7 +21,7 @@ d) if a scheduling is associated with an existing workout, the workout cannot be
       <% end %>
     </div>
 
-  <% elsif setting == "new" %>
+  <% elsif setting == "sch_index" %>
 <!-- new scheduling, not associated with an existing workout -->
     <%= form.submit "Schedule", class: "btn btn-primary btnpost" %>
     <div class="field">
@@ -33,7 +33,7 @@ d) if a scheduling is associated with an existing workout, the workout cannot be
     <%= form.submit "Schedule #{workout.name}", class: "btn btn-primary btnpost" %>
     <div><%= hidden_field_tag :workout_id, workout.id %></div>
   <% end %>
-
+  <div><%= hidden_field_tag :setting, setting %></div>
   <div class="field">
     <%= form.datetime_select :start_time %>
   </div>
