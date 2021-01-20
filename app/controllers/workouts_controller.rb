@@ -14,7 +14,7 @@ require 'cgi'
     @intensity = Workout.distinct.pluck(:intensity).sort!
     @style = Workout.distinct.pluck(:style).sort!
     #sort bodyfocus not alphabetically but in anatomical order set in config/workoutinfo.yml
-    #The || 100 is a default big number to avoid nils which cause the sort to break. In thoery there shouldn't be any nils.
+    #The || 100 is a default big number to avoid nils which cause the sort to break. In theory there shouldn't be any nils.
     @bodyfocus = Workout.distinct.pluck(:bodyfocus).sort_by{|x| Rails.application.config_for(:workoutinfo)["bodyfocus"].find_index(x) || 100 }
     #@intensity = Workout.pluck(:intensity).uniq
     #@style = Workout.pluck(:style).uniq

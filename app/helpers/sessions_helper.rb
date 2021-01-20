@@ -31,6 +31,7 @@ module SessionsHelper
   # Returns the user corresponding to the remember token cookie.
   def current_user
     if (user_id = session[:user_id])
+      # helpful to think of a ||= b as a || a = b (because || returns the first true thing it comes to)
       @current_user ||= User.find_by(id: user_id)
     elsif (user_id = cookies.signed[:user_id])
       user = User.find_by(id: user_id)
@@ -38,6 +39,9 @@ module SessionsHelper
         log_in user
         @current_user = user
       end
+    else
+      # when noone is logged in, have demo user logged in
+      @current_user = User.find_by(id: 22)
     end
   end
 
@@ -67,8 +71,15 @@ module SessionsHelper
 
 
   # Returns true if the user is logged in, false otherwise.
+  # the demo user is now logged in when none ele is, so this should now always be true
   def logged_in?
     !current_user.nil?
+  end
+
+  # Returns true for all users except the demo user (who has id 22)
+  # loggedin? should always be true but guards against a 'method on nil' error in case of unforeseen changes
+  def not_demo?
+    logged_in? && current_user.id != 22
   end
 
  # Forgets a persistent session.

@@ -38,6 +38,7 @@
           <span class="link-text">Profile</span>
         <% end %>
       </li>
+      <% if not_demo? %>
       <li class="nav-item">
         <%= link_to edit_user_path(current_user), class: "nav-link" do %>
           <i class="fa fa-cog"></i>
@@ -51,6 +52,14 @@
           <span class="link-text">Logout</span>
         <% end %>
       </li>
+      <% else %>
+      <li class="nav-item">
+        <%= link_to login_path, class: "nav-link" do %>
+          <i class="fa fa-sign-in-alt"></i>
+          <span class="link-text">Login</span>
+        <% end %>
+      </li>
+      <% end %>
     <% else %>
     <li class="nav-item">
       <%= link_to login_path, class: "nav-link" do %>

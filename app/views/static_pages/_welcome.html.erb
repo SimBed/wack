@@ -1,40 +1,38 @@
-<div class="container center">
-  <svg width="150" height="120">
-<defs>
-  <g id="svg_wack_icon">
-  <rect x="19" y="0" width="12" height="8" />
-  <rect x="5" y="8" width="40" height="20" />
-  <rect x="19" y="28" width="12" height="60" />
-   </g>
-  <g id="svg_wack_text">
-  <text stroke="#474444" x="36" y="220" transform="scale(2,0.5)" font-family="serif" font-size="24"  stroke-width="2" text-anchor="middle" >WACK</text>
- </g>
-</defs>
-
-<use href="#svg_wack_icon" transform="rotate(50,19,90) translate(-10, -20)" x="0" y="0"></use>
-<use href="#svg_wack_text" x="3" y="-13"></use>
-
-</svg>
+<div class="container center mb-3">
+  <%= image_tag("Wack_Logo.png", class: "wackLogo") %>
 </div>
 
+<div class="container center mb-3">
+  <h3 class="home_header">New Wacker!</h3>
+</div>
 
-<div class="center jumbotron mb-0" style="position:relative;margin-left:-15px;margin-right:-15px;">
-  <ul class= "wacktext1" style="list-style-type:none;padding-inline-start:0;">
-    <li>Follow-Along Workouts</li>
-    <!--li>Best of the Web</li>
-    <li>Home or Gym</li-->
-    <li>Selected & Reviewed by our Pros<super>*</super></li>
+<div class="container home_thisweekswacks">
+    <h4 class="home_header">Your Wacks this week</h4>
+    <div class="home_schedcal">
+      <%= render partial: 'shared/calendar', locals: {calendar_type: 1} %>
+    </div>
+</div>
 
-    <li class="wacktext2"><super>*</super>at <a href="https://www.thespacejuhu.in" target="_blank">The Space</a>, Mumbai</li>
+<div class="container home_scores d-flex justify-content-center pb-5 mb-4">
+  <div class="bigcircle mr-5">
+    <%= 0 %>
+    <div class="user_score">LIFETIME WACKS</div>
+  </div>
 
-     <!--br>
-     <li class="wacktext2">bodyweight barbell row, bike, dumbell, yoga, mobility, HIIT, strength, cardio, upper body, lower body, abs, hip, hamstring, mind, kettlebell, skip, stretch</li>
-     <br>
-    <li class="wacktext2">Choose your style, Choose your Instructor, Beginner to Beast, Easy Search, Log your Progress, Free for all</li-->
-    </ul>
+  <!--very hacky to get the names on 2 lines (not 1 or 3) -->
+  <div class="bigcircle">
+    <%= 0 %><div class="user_score">WACKS LAST<span class="pl-1">WEEK</span></div>
+  </div>
+  <div class="bigcircle ml-5">
+    0.0<div class="user_score">WACK AVERAGE</div>
+  </div>
+</div>
 
-    <p class="wacktext3">Work it, Track it, Wack it</p>
-
+<div class="container center mb-4">
+  <%= image_tag("DailyWack_Logo.png", class: "wackLogo") %>
+  <p class="home_text1 mt-2 px-3 mb-0">Today's Follow-Along Workout</p>
+  <p class="home_text1 px-3 mb-2">Hand-Picked & Reviewed by our Pros</p>
+  <p class="home_text2 px-3">at <a href="https://www.thespacejuhu.in" target="_blank" class="home_spacelink">The Space</a>, Mumbai</p>
 </div>
 
 <div class="p-flex">
@@ -58,9 +56,6 @@
     <div class = "container">
       <div class="row bg-dark px-1 pt-2 pb-1 text-center">
         <div class ="col-12">
-          <h4>
-            Today's Workout
-          </h4>
           <h4 class="WorkoutName-s">
             <%= @workout.name.upcase %>
           </h4>
@@ -120,3 +115,13 @@
 </div></div-->
 
 <% end %>
+
+<div class="container center my-4">
+  <p class="home_text3 mt-2">Work it, Track it, Wack it</p>
+</div>
+
+<!--div class="center jumbotron mb-0" style="position:relative;margin-left:-15px;margin-right:-15px;">
+  <ul class= "wacktext1" style="list-style-type:none;padding-inline-start:0;">
+    </ul>
+    <p class="wacktext3">Work it, Track it, Wack it</p>
+</div-->

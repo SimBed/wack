@@ -12,7 +12,7 @@ $blue-search: #6cbbf7;
 $black-light: #050617;
 $purple-dark: #635869;
 $greenfly: #126774;
-
+$red-home: #c93e27;
 
 /*taken from https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_variables.scss
 as couldsnt get sass to work*/
@@ -30,6 +30,7 @@ body {
   padding-top: 20px;
   font-size: 1.0em;
   font-family: $font-stack;
+  background-color: #e9ecef;
 }
 
 @media screen and (min-width: 1110px) {
@@ -85,21 +86,34 @@ p {
   font-size: 1.1em;
 }
 
-/* header */
+img.wackLogo {
+  display: block;
+  max-width: 30%;
+  margin: auto;
+}
 
-#logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
-  &:hover {
-    color: white;
-    text-decoration: none;
-  }
+h3.home_header {
+  color: #23232e;
+}
+
+h4.home_header {
+  font-size: 1.0em;
+  font-style: italic;
+  color: #e9ecef;
+  padding-top: 0.5rem;
+}
+
+div.home_thisweekswacks {
+  background-color: #343a40;
+  height: 12rem;
+}
+
+div.home_schedcal {
+  background-color: #e9ecef;
+}
+
+div.home_scores {
+  background-color: #e9ecef;
 }
 
 /* footer */
@@ -910,9 +924,12 @@ div.p-flex {
   border-radius:50%;
   font-size:32px;
   font-weight: bolder;
-  color: $greenfly;
+  /* color: $greenfly; */
+  color: #454a5d;
   text-align:center;
   background-color: $bg-light;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
     &::first-line{
       line-height:70px;
     }
@@ -926,7 +943,6 @@ div.bigcircle {
 div.smallcircle {
   @extend %circle;
   width:40px;  font-weight: bolder;
-  color: $greenfly;
   text-align:center;
   height:40px;
   font-size:16px;
@@ -940,7 +956,8 @@ div.user_score {
   font-family: $font-stack;
   font-size:12px;
   font-weight: normal;
-  color:$black-light;
+  /* color:$black-light; */
+  color: #454a5d;
   letter-spacing: 0.08em;
   display: inline-block;
   line-height: 10px;
@@ -971,37 +988,34 @@ h4.panel-title {
   }
 
 /*Homepage*/
-%wacktext {
-color: $gray-darker;
+%home_text {
+/* color: $gray-darker; */
+color: $red-home;
 font-family: $font-stack;
 /*letter-spacing: 0.08em;*/
-font-size: 1,0em;
-font-weight: bold;
+font-size: 0.9em;
+font-style: italic;
     }
 
-.wacktext1 {
-  @extend %wacktext;
+p.home_text1 {
+  @extend %home_text;
 }
 
-.wacktext2 {
-  @extend %wacktext;
+p.home_text2 {
+  @extend %home_text;
   font-size: 0.7em;
   font-weight: normal;
 }
 
-.wacktext3 {
-  @extend %wacktext;
-  font-size: 1.6em;
+p.home_text3 {
+  @extend %home_text;
+  font-size: 1.5em;
+  font-weight: bold;
   margin-bottom:0;
 }
 
-svg {
-  /*#5b0e0e*/
-  stroke: $gray-darkest;
-  stroke-width: 5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  fill: none;
+a.home_spacelink {
+  color: hotpink;
 }
 
 .login-form {

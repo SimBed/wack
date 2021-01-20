@@ -6,7 +6,7 @@ class UserMailerTest < ActionMailer::TestCase
     user = users(:michael)
     user.activation_token = User.new_token
     mail = UserMailer.account_activation(user)
-    assert_equal "WeeklyWack - Account activation", mail.subject
+    assert_equal "Wack - Account activation", mail.subject
     assert_equal [user.email], mail.to
     assert_equal ["noreply@wack.com"], mail.from
     assert_match user.name,               mail.body.encoded
@@ -18,7 +18,7 @@ class UserMailerTest < ActionMailer::TestCase
     user = users(:michael)
     user.reset_token = User.new_token
     mail = UserMailer.password_reset(user)
-    assert_equal "WeeklyWack - Password reset", mail.subject
+    assert_equal "Wack - Password reset", mail.subject
     assert_equal [user.email], mail.to
     assert_equal ["noreply@wack.com"], mail.from
     assert_match user.reset_token,        mail.body.encoded

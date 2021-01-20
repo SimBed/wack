@@ -1,19 +1,9 @@
 <% if calendar_type.is_a?(Integer) %>
   <%= week_calendar number_of_weeks: calendar_type, events: @schedulings do |date, schedulings| %>
-  <%= date.strftime("%d/%m")  %>
-  <% schedulings.each do |scheduling| %>
-    <div>
-      <%= scheduling.name %>
-    </div>
-  <% end %>
+    <%= render 'shared/calendars/calendarblock', date: date, schedulings: schedulings %>
   <% end %>
 <% else %>
   <%= month_calendar events: @schedulings do |date, schedulings| %>
-  <%= date.strftime("%d/%m")  %>
-  <% schedulings.each do |scheduling| %>
-    <div>
-      <%= scheduling.name %>
-    </div>
-  <% end %>
+    <%= render 'shared/calendars/calendarblock', date: date, schedulings: schedulings %>
   <% end %>
 <% end %>
