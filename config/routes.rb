@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get '/formtest', to: 'static_pages#formtest'
   get '/kitchen_utensils',  to: 'static_pages#new'
   #get 'rel_user_workouts/create'
   #get 'rel_user_workouts/destroy'

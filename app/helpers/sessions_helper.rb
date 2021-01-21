@@ -76,12 +76,6 @@ module SessionsHelper
     !current_user.nil?
   end
 
-  # Returns true for all users except the demo user (who has id 22)
-  # loggedin? should always be true but guards against a 'method on nil' error in case of unforeseen changes
-  def not_demo?
-    logged_in? && current_user.id != 22
-  end
-
  # Forgets a persistent session.
   def forget(user)
     user.forget

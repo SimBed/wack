@@ -3,7 +3,7 @@
 </div>
 
 <div class="container center mb-3">
-  <h3 class="home_header">New Wacker!</h3>
+  <h3 class="home_header"><%= current_user.name + "!" %></h3>
 </div>
 
 <div class="container home_thisweekswacks">
@@ -36,22 +36,6 @@
 </div>
 
 <div class="p-flex">
-
-<% if false %>
-    <% unless logged_in? %>
-    <div class = "container mt-2 text-center">
-      <%= link_to "Sign up Now for Free for the Full Wack!", signup_path, class: "btn btn-lg btn-primary btnpost" %>
-    </div>upcase
-    <% end %>
-
-    <div class = "container mt-2 text-center mb-3">
-      <%= link_to "Just Take me to The Workouts!", workouts_path, class: "btn btn-lg btn-primary btnpost" %>
-    </div>
-
-    <div class="container mb-3">
-        <hr class = "thickbreak"></hr>
-    </div>
-<% end %>
 
     <div class = "container">
       <div class="row bg-dark px-1 pt-2 pb-1 text-center">
@@ -99,21 +83,10 @@
 
     </div>
 
-
-<% unless logged_in? %>
-<div class="container mb-4 mt-4">
-    <%= render partial: 'sessions/loginform', locals: {pagecaller: "welcome"}  %>
-</div>
-
-<!--div class="container">
-  <div class="login-form"
-    <h5>New wacker?</h5>
-    <p>
-      <%= link_to "Sign up for Free for the Full Wack!", signup_path %><br>
-      <%= link_to "Or just head to The Workouts!", workouts_path %>
-    </p>
-</div></div-->
-
+<% if !logged_in? || current_user.demo? %>
+  <div class="container mb-4 mt-4">
+      <%= render partial: 'sessions/loginform', locals: {pagecaller: "welcome"}  %>
+  </div>
 <% end %>
 
 <div class="container center my-4">

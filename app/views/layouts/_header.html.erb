@@ -24,46 +24,42 @@
       <% end %>
     </li>
 
-    <% if logged_in? %>
-      <li class="nav-item">
-        <%= link_to schedulings_path, class: "nav-link" do %>
-          <i class="fa fa-calendar-alt"></i>
-          <span class="link-text">Schedule</span>
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to current_user, class: "nav-link" do %>
-          <!--i class="fa fa-id-card"></i-->
-          <i class="fa fa-user"></i>
-          <span class="link-text">Profile</span>
-        <% end %>
-      </li>
-      <% if not_demo? %>
-      <li class="nav-item">
-        <%= link_to edit_user_path(current_user), class: "nav-link" do %>
-          <i class="fa fa-cog"></i>
-          <span class="link-text">Settings</span>
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to logout_path, method: :delete, class: "nav-link" do %>
-          <!--i class="fa fa-user-alt-slash"></i-->
-          <i class="fa fa-door-open"></i>
-          <span class="link-text">Logout</span>
-        <% end %>
-      </li>
-      <% else %>
-      <li class="nav-item">
-        <%= link_to login_path, class: "nav-link" do %>
-          <i class="fa fa-sign-in-alt"></i>
-          <span class="link-text">Login</span>
-        <% end %>
-      </li>
+    <li class="nav-item">
+      <%= link_to schedulings_path, class: "nav-link" do %>
+        <i class="fa fa-calendar-alt"></i>
+        <span class="link-text">Schedule</span>
       <% end %>
-    <% else %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_to current_user, class: "nav-link" do %>
+        <i class="fa fa-user"></i>
+        <span class="link-text">Profile</span>
+      <% end %>
+    </li>
+
+    <% if current_user && !current_user.demo? %>
+    <li class="nav-item">
+      <%= link_to edit_user_path(current_user), class: "nav-link" do %>
+        <i class="fa fa-cog"></i>
+        <span class="link-text">Settings</span>
+      <% end %>
+    </li>
+    <% end %>
+
+    <% if current_user && !current_user.demo? %>
+    <li class="nav-item">
+      <%= link_to logout_path, method: :delete, class: "nav-link" do %>
+        <i class="fa fa-door-open"></i>
+        <span class="link-text">Logout</span>
+      <% end %>
+    </li>
+    <% end %>
+
+    <% if current_user && current_user.demo? %>
     <li class="nav-item">
       <%= link_to login_path, class: "nav-link" do %>
-        <i class="fa fa-user"></i>
+        <i class="fa fa-sign-in-alt"></i>
         <span class="link-text">Login</span>
       <% end %>
     </li>
