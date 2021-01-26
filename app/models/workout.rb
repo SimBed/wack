@@ -23,4 +23,9 @@ class Workout < ApplicationRecord
                     #format: { with: VALID_URL_REGEX },
                     uniqueness: { case_sensitive: false }
   validates :brand, presence: true, length: { maximum: 24 }
+
+
+  def name_for_cal
+    short_name || name
+  end
 end

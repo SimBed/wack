@@ -8,6 +8,10 @@ class SchedulingsController < ApplicationController
   end
 
   def show
+    @workout = Workout.find(@scheduling.workout_id)
+    @microposts = @workout.microposts.paginate(page: params[:page])
+    @micropost = current_user.microposts.build()
+    session[:linked_from] = params[:linked_from] || session[:linked_from]
   end
 
   def create
@@ -18,12 +22,13 @@ class SchedulingsController < ApplicationController
     # is set as the same name as the corresponding workout (the name can not be edited on the form and
     # workout_id is a hidden field in the form)
     # 2. from the Schedulings index, in which case the user can give the scheduling any name and workout_id is nil
-    @scheduling.name ||= Workout.find(params[:workout_id]).name
+    # name_for_cal returns the short name for the Workout if there is one
+    @scheduling.name ||= Workout.find(params[:workout_id]).name_for_cal
     # ||= instead of = so tests dont fail
     @scheduling.workout_id ||= params[:workout_id]
     if @scheduling.save
       # the js.erb needs to know whether the form submission came from the scheduling or workout index as the calendars are shown differently in each place (bi-weekly/monthly)
-      @setting = params[:setting] == "sch_index" ? "m" : 2
+      @setting = params[:setting] == "sch_index" ? "m" : 14
       @schedulings = current_user.schedulings.order_by_start_time
       respond_to do |format|
          format.html { flash[:success] = "#{@scheduling.name} scheduled!"
@@ -54,7 +59,7 @@ class SchedulingsController < ApplicationController
   def update
     if @scheduling.update_attributes(scheduling_params)
       flash[:success] = "Scheduling updated"
-      redirect_to schedulings_path
+      redirect_to @scheduling
     else
       render 'edit'
     end

@@ -1,0 +1,9 @@
+<% if calendar_type.is_a?(Integer) %>
+  <%= calendar number_of_days: calendar_type, events: @schedulings do |date, schedulings| %>
+    <%= render partial: 'shared/calendar/calendarblock', locals: {date: date, schedulings: schedulings, linked_from: linked_from} %>
+  <% end %>
+<% else %>
+  <%= month_calendar events: @schedulings do |date, schedulings| %>
+    <%= render partial: 'shared/calendar/calendarblock', locals: {date: date, schedulings: schedulings, linked_from: linked_from} %>
+  <% end %>
+<% end %>

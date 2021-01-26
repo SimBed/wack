@@ -19,7 +19,7 @@
           </div>
           <div class ="col-7 p-0">
             <div class="embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" src=<%= workout.url %> allowfullscreen></iframe>
+              <iframe class="embed-responsive-item" src=<%= workout.url + "?modestbranding=1" %> allowfullscreen></iframe>
             </div>
           </div>
         </div>
@@ -58,7 +58,7 @@ render partial: 'schedulings/form', locals: {setting: "sch_index", workout: work
       </div>
 
       <div class="sched_cal">
-      <%= render partial: 'shared/calendar', locals: {calendar_type: 2} %>
+      <%= render partial: 'shared/calendar/calendar', locals: {calendar_type: 14, linked_from: :workout_index} %>
       </div>
 
       <div class="container">

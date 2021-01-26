@@ -1,14 +1,14 @@
 var sched_cal = document.getElementsByClassName("sched_cal");
 n = sched_cal.length;
 for (var i = 0; i <n; i++) {
-  sched_cal[i].innerHTML = "<%= escape_javascript(render partial: 'shared/calendar', locals: {calendar_type: @setting}) %>";
+  sched_cal[i].innerHTML = "<%= escape_javascript(render partial: 'shared/calendar/calendar', locals: {calendar_type: @setting, linked_from: 'schedulings'}) %>";
 }
 
 <% if @setting == "m" %>
   var sched_table = document.getElementsByClassName("sched_table");
   n = sched_table.length;
   for (var i = 0; i <n; i++) {
-    sched_table[i].innerHTML = "<%= escape_javascript(render partial: 'schedule_table') %>";
+    sched_table[i].innerHTML = "<%= escape_javascript(render partial: 'schedule_table', locals: {linked_from: 'schedulings'}) %>";
   }
 <% end %>
 

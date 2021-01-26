@@ -1,9 +1,0 @@
-<% if calendar_type.is_a?(Integer) %>
-  <%= week_calendar number_of_weeks: calendar_type, events: @schedulings do |date, schedulings| %>
-    <%= render 'shared/calendars/calendarblock', date: date, schedulings: schedulings %>
-  <% end %>
-<% else %>
-  <%= month_calendar events: @schedulings do |date, schedulings| %>
-    <%= render 'shared/calendars/calendarblock', date: date, schedulings: schedulings %>
-  <% end %>
-<% end %>

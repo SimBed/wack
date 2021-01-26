@@ -1,12 +1,18 @@
 <p>
-  <strong>Name:</strong>
-  <%= @scheduling.name %>
-</p>
-
-<p>
   <strong>Start time:</strong>
-  <%= @scheduling.start_time %>
+  <%= @scheduling.start_time.strftime('%Y-%m-%d, %H:%M') %>
 </p>
 
 <%= link_to 'Edit', edit_scheduling_path(@scheduling) %> |
-<%= link_to 'Back', schedulings_path %>
+<%= link_to 'Back', scheduling_back %>
+
+<%= render partial: 'workouts/workoutshow', locals: {setting: "addcommentyes"}, object: @workout  %>
+<div class="col-md-8">
+    <% if @workout.microposts.any? %>
+      <h3>#PeopleofTheSpace say... (<%= @workout.microposts.count %>)</h3>
+      <ol class="microposts">
+        <%= render @microposts, setting: "usernameyes" %>
+      </ol>
+      <%= will_paginate @microposts %>
+    <% end %>
+</div>

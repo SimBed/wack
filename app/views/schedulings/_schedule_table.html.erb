@@ -11,9 +11,11 @@
       <tr>
         <td><%= scheduling.name %></td>
         <td><%= scheduling.start_time.strftime('%Y-%m-%d, %H:%M') %></td>
-        <td class="pl-3"><%= link_to ' Show', scheduling %></td>
+        <td class="pl-3"><%= link_to 'Show', scheduling_path(scheduling, linked_from: linked_from) %></td>
+        <% if !current_user.demo? %>
         <td class="pl-1"><%= link_to ' Edit', edit_scheduling_path(scheduling) %></td>
         <td class="pl-1"><%= link_to ' Delete', scheduling, remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

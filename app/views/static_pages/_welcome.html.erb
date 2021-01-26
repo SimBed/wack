@@ -7,9 +7,9 @@
 </div>
 
 <div class="container home_thisweekswacks">
-    <h4 class="home_header">Your Wacks this week</h4>
+    <h4 class="home_header">Your Wack Schedule This Week</h4>
     <div class="home_schedcal">
-      <%= render partial: 'shared/calendar', locals: {calendar_type: 1} %>
+      <%= render partial: 'shared/calendar/calendar', locals: {calendar_type: 7, linked_from: :welcome} %>
     </div>
 </div>
 
@@ -55,7 +55,7 @@
        <div class="row bg-light py-1 mx-0">
         <div class ="col-12">
           <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src=<%= @workout.url %> allowfullscreen></iframe>
+            <iframe class="embed-responsive-item" src=<%= @workout.url + "?modestbranding=1" %> allowfullscreen></iframe>
           </div>
         </div>
       </div>
