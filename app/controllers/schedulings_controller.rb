@@ -19,10 +19,10 @@ class SchedulingsController < ApplicationController
 
     # a scheduling can be created from 2 places:
     # 1. from the Workouts index page, in which case the name of the scheduling
-    # is set as the same name as the corresponding workout (the name can not be edited on the form and
-    # workout_id is a hidden field in the form)
+    # is set as the same name as the corresponding workout [update: the workout's short name]
+    # (the name can not be edited on the form and workout_id is a hidden field in the form)
     # 2. from the Schedulings index, in which case the user can give the scheduling any name and workout_id is nil
-    # name_for_cal returns the short name for the Workout if there is one
+    # name_for_cal returns the short name for the Workout if there is one (defined in workouts model)
     @scheduling.name ||= Workout.find(params[:workout_id]).name_for_cal
     # ||= instead of = so tests dont fail
     @scheduling.workout_id ||= params[:workout_id]

@@ -12,6 +12,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :short_name %>
+    <%= form.text_field :short_name %>
+  </div>
+
+  <div class="field">
     <%= form.label :style, "Style" %>
     <!--see config/workoutinfo.yml-->
     <%= form.select :style, Rails.application.config_for(:workoutinfo)["styles"]%>

@@ -71,7 +71,7 @@ module SessionsHelper
 
 
   # Returns true if the user is logged in, false otherwise.
-  # the demo user is now logged in when none ele is, so this should now always be true
+  # the demo user is now logged in as default, so this should now always be true
   def logged_in?
     !current_user.nil?
   end

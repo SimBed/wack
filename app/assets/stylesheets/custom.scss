@@ -127,6 +127,15 @@ div.scheduling_name {
 font-size:0.7em;
 }
 
+div.scheduling_date {
+font-size:0.7em;
+font-weight: bold;
+}
+
+div.sched_table {
+  font-size:0.8em;
+}
+
 /* footer */
 
 footer {
@@ -1047,6 +1056,11 @@ a.home_spacelink {
   .calendar-heading {
   font-size: 0.8em;
 }
+
+.calendar-title {
+  padding-left: 0.5em;
+}
+
 table {
 font-size: 0.8em;
 }
