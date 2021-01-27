@@ -8,9 +8,11 @@ class SchedulingsController < ApplicationController
   end
 
   def show
-    @workout = Workout.find(@scheduling.workout_id)
-    @microposts = @workout.microposts.paginate(page: params[:page])
-    @micropost = current_user.microposts.build()
+    unless @scheduling.workout_id.nil?
+      @workout = Workout.find(@scheduling.workout_id)
+      @microposts = @workout.microposts.paginate(page: params[:page])
+      @micropost = current_user.microposts.build()
+    end
     session[:linked_from] = params[:linked_from] || session[:linked_from]
   end
 

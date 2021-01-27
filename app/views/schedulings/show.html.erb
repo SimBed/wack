@@ -1,18 +1,25 @@
-<p>
+<% if @workout.nil? %>
+<div>
+  <strong><%= @scheduling.name.capitalize %></strong>
+</div>
+<% end %>
+<div>
   <strong>Start time:</strong>
   <%= @scheduling.start_time.strftime('%d %b %Y, %H:%M') %>
-</p>
+</div>
 
 <%= link_to 'Edit', edit_scheduling_path(@scheduling) %> |
 <%= link_to 'Back', scheduling_back %>
 
+<% if @workout %>
 <%= render partial: 'workouts/workoutshow', locals: {setting: "addcommentyes"}, object: @workout  %>
-<div class="col-md-8">
-    <% if @workout.microposts.any? %>
-      <h3>#PeopleofTheSpace say... (<%= @workout.microposts.count %>)</h3>
-      <ol class="microposts">
-        <%= render @microposts, setting: "usernameyes" %>
-      </ol>
-      <%= will_paginate @microposts %>
-    <% end %>
-</div>
+  <div class="col-md-8">
+      <% if @workout.microposts.any? %>
+        <h3>#PeopleofTheSpace say... (<%= @workout.microposts.count %>)</h3>
+        <ol class="microposts">
+          <%= render @microposts, setting: "usernameyes" %>
+        </ol>
+        <%= will_paginate @microposts %>
+      <% end %>
+  </div>
+<% end %>
