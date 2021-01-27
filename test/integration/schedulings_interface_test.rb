@@ -77,11 +77,11 @@ class SchedulingsInterfaceTest < ActionDispatch::IntegrationTest
 
     # show a scheduling via a specified route (so session[:linked_from] is not nil)
     # unsure why using a helper in the same way as log_in_as didn't work
-    get scheduling_path(@latest_scheduling), params: { linked_from: :welcome  }
+    get scheduling_path(@latest_scheduling), params: { linked_from: :welcome }
     get edit_scheduling_path(@latest_scheduling)
     assert_template 'schedulings/edit'
     t1 = t.advance(days: 1)
-    patch scheduling_path(@latest_scheduling), params: { scheduling: { start_time: t1  } }
+    patch scheduling_path(@latest_scheduling), params: { scheduling: { start_time: t1 } }
     assert_redirected_to scheduling_path(@latest_scheduling)
     follow_redirect!
     assert_not flash.empty?

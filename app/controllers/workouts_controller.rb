@@ -114,7 +114,7 @@ require 'cgi'
   private
   # Never trust parameters from the scary internet, only allow the white list through.
   def workout_params
-    params.require(:workout).permit(:name, :style, :url, :length, :intensity, :spacesays, :brand, :equipment, :eqpitems, :bodyfocus)
+    params.require(:workout).permit(:name, :style, :url, :length, :intensity, :spacesays, :brand, :equipment, :eqpitems, :bodyfocus, :short_name)
   end
 
   def set_workout

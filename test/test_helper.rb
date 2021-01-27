@@ -17,10 +17,6 @@ class ActiveSupport::TestCase
     session[:user_id] = user.id
   end
 
-  def show_scheduling_from(page = 'welcome')
-    session[:linked_from] = page
-  end
-
   def dailypickfortesting
     require 'date'
     srand Date.today.to_time.to_i
