@@ -1,6 +1,6 @@
-<%= form_with model: current_user.rel_user_workouts.build, local: true do |form| %>
+<%= form_with model: current_user.rel_user_workouts.build, local: false do |form| %>
   <div><%= hidden_field_tag :workout_id, workoutshow.id %></div>
-  <%= form.button type: 'submit', class: "btn btn-heart" do %>
-      <i class="fa fa-heart-broken" aria-hidden="true"></i>
+  <%= form.button type: 'submit', class: "btn btn-heart faded" do %>
+      <i class="far fa-heart" aria-hidden="true"></i>
   <% end %>
 <% end %>

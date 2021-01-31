@@ -23,18 +23,20 @@
 
   <div class="smallcircle mr-2" style="margin-left:auto">
     <%#= link_to favourites_path, {class: "search", title: "Favourites", data: { toggle: 'tooltip'}} do%>
+    <!-- faded means something is not activated, so click on it to activated -->
+    <!-- full means something is activated, so click on it to deactivate -->
     <%= link_to favourites_path, {class: "search"} do%>
     <% if session[:favesonly] == true then %>
-          <i class ="far fa-heart"></i>
-       <% else %>
           <i class ="fas fa-heart"></i>
+       <% else %>
+          <i class ="far fa-heart"></i>
       <% end %>
     <% end %>
   </div>
 
   <div class="smallcircle mr-2">
     <button onclick="toggleHidden()" class="advsearch">
-      <i id="advsearch_toggler" class="fa fa-filter <%= "advsearch_toggler_hide" if session[:advsearchshow] == "show" %>"></i>
+      <i id="advsearch_toggler" class="fa fa-filter <%= "advsearch_toggler_hide" if session[:advsearchshow] == "hide" %>"></i>
     </button>
     <!--div id="showsearch" class="wk_options_label"><%#= session[:advsearchshow] == true ? "Hide Search Options" : "Show Search Options" %></div-->
   </div>
@@ -54,7 +56,7 @@
 
   <div class="container mb-1 px=0">
   <div class="row">
-  <div class="col-4 px-0">
+  <div class="col-6 px-0">
   <fieldset>
     <legend>STYLE</legend>
     <% @style.each do |style| %>
@@ -66,6 +68,7 @@
   </fieldset>
   </div>
 
+<% if false %>
   <div class="col-4 px-0">
   <fieldset>
     <legend>INTENSITY</legend>
@@ -77,8 +80,9 @@
     <% end %>
   </fieldset>
   </div>
+<% end %>
 
-  <div class="col-4 px-0">
+  <div class="col-6 px-0">
   <fieldset>
     <legend>FOCUS</legend>
     <% @bodyfocus.each do |bodyfocus| %>

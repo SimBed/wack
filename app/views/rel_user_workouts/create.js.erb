@@ -1,0 +1,5 @@
+$("#favourite_form").html("<%= escape_javascript(render partial: 'workouts/fave_toggle', object: @workout, as: 'workoutshow') %>");
+
+<% flash.each do |type, message| %>
+  $('#flash_messages').html("<div class='alert alert-<%= type %>' ><%= message.html_safe %></div>")
+<% end %>

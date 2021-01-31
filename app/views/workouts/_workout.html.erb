@@ -13,7 +13,8 @@
             <div class="wksummary">
               <div class="wkstyle-i"><%= workout.style%></div>
               <div class="wkstyle-i"><%= workout.bodyfocus%></div>
-              <div class="wkstyle-i"><%= workout.intensity%></div>
+              <div class="wkstyle-i"><%= workout.equipment ? "Equipment: #{workout.eqpitems}" : "No equipment"%></div>
+              <!--div class="wkstyle-i"><%#= workout.intensity%></div-->
               <div class="wkstyle-i"><%= "#{workout.length} minutes"%></div>
             <!--div class="p-goal"><#%= workout.equipment ? workout.eqpitems : "no equipment"%></div-->
             </div>
@@ -38,11 +39,9 @@
       <%#= render partial: 'workouts/clipboard', locals: {workout: workout} %>
       <%= render partial: 'workouts/clipboard', object: workout, as: 'workout' %>
       <!-- the calendar itself does not need to know which workout but the scheduling form does -->
-
       <div class="container bg-light px-1 mt-3">
          <div class="row bg-light py-1 mx-0">
           <div class ="col-12">
-             <section class="mt-1">
 <!-- Every partial also has a local variable with the same name as the partial (minus the
 leading underscore). You can pass an object in to this local variable via the :object option
 https://guides.rubyonrails.org/layouts_and_rendering.html#passing-local-variables -->
@@ -53,7 +52,6 @@ https://guides.rubyonrails.org/layouts_and_rendering.html#local-variables -->
                <%= render partial: 'schedulings/form', locals: {setting: "wk_index"}, object: workout, as: 'workout' %>
 <!-- the above is therefore broadly equivalent to
 render partial: 'schedulings/form', locals: {setting: "sch_index", workout: workout} -->
-             </section>
           </div>
         </div>
       </div>

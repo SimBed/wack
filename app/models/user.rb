@@ -87,7 +87,9 @@ class User < ApplicationRecord
      workouts.delete(workout)
    end
 
-   # Returns true if the current user has the workout as a favourite
+   # instance method applies to an instance of a User e.g. current_user
+   # Returns true if the instance of a User has the workout as a favourite
+   # the self in self.workouts is implicit
    def wkfollowing?(workout)
      workouts.include?(workout)
    end

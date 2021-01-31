@@ -35,6 +35,6 @@ d) if a scheduling is associated with an existing workout, the workout cannot be
   <% end %>
   <div><%= hidden_field_tag :setting, setting %></div>
   <div class="field field_dates">
-    <%= form.datetime_select :start_time %>
+    <%= form.datetime_select :start_time, use_short_month: true, default: Time.parse('10:00') %>
   </div>
 <% end %>

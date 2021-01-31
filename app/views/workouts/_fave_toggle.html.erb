@@ -1,0 +1,5 @@
+<% if current_user.wkfollowing?(workoutshow) %>
+  <%= render partial: 'workouts/unfollow', object: workoutshow, as: 'workoutshow' %>
+<% else %>
+  <%= render partial: 'workouts/follow', object: workoutshow, as: 'workoutshow' %>
+<% end %>

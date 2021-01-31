@@ -1,5 +1,5 @@
 <%= form_with model: current_user.rel_user_workouts.find_by(workout_id: workoutshow.id),
-             local: true, html: { method: :delete } do |form| %>
+             local: false, html: { method: :delete } do |form| %>
      <%= form.button type: 'submit', class: "btn btn-heart" do %>
          <i class="fa fa-heart" aria-hidden="true"></i>
      <% end %>

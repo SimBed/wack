@@ -33,7 +33,7 @@ require 'cgi'
     #session[:workout_id]=@workout.id
     @microposts = @workout.microposts.paginate(page: params[:page])
     @micropost = current_user.microposts.build()
-    @attempt = current_user.attempts.build()
+    # @attempt = current_user.attempts.build()
     #@scheduling = current_user.schedulings.build()
     #@schedulings = current_user.schedulings
   end
@@ -83,7 +83,7 @@ require 'cgi'
 
 #clear_session defined in sessions_helper.rb
   def clear
-    clear_session(:filter_style, :filter_intensity, :filter_bodyfocus, :search_name)
+    clear_session(:filter_style, :filter_bodyfocus, :search_name)
     redirect_to workouts_path
   end
 
@@ -99,15 +99,15 @@ require 'cgi'
   end
 
   def search
-    clear_session(:filter_style, :filter_intensity, :filter_bodyfocus, :search_name)
+    clear_session(:filter_style, :filter_bodyfocus, :search_name)
     #Without the ors (||) the sessions would get set to nil when redirecting to workouts other than through the
     #search form (e.g. by clicking workouts on the navbar) (as the params itmes are nil in these cases)
     session[:search_name] = params[:search_name] || session[:search_name]
     session[:filter_style] = params[:style] || session[:filter_style]
-    session[:filter_intensity] = params[:intensity] || session[:filter_intensity]
+    # session[:filter_intensity] = params[:intensity] || session[:filter_intensity]
     session[:filter_bodyfocus] = params[:bodyfocus] || session[:filter_bodyfocus]
     session[:advsearchshow] = params[:advsearchshow] || session[:advsearchshow]
-    filters = [session[:filter_style], session[:filter_intensity], session[:filter_bodyfocus] ]
+    filters = [session[:filter_style], session[:filter_bodyfocus] ]
     redirect_to workouts_path
   end
 
@@ -168,7 +168,7 @@ require 'cgi'
 
   def handle_advancedsearch
     @workouts = @workouts.where(style: session[:filter_style]) if session[:filter_style].present?
-    @workouts = @workouts.where(intensity: session[:filter_intensity]) if session[:filter_intensity].present?
+    # @workouts = @workouts.where(intensity: session[:filter_intensity]) if session[:filter_intensity].present?
     @workouts = @workouts.where(bodyfocus: session[:filter_bodyfocus]) if session[:filter_bodyfocus].present?
   end
 

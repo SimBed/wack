@@ -998,6 +998,14 @@ div.user_score {
      border-color: $gray-light;
 }
 
+.btn.faded {
+     background-color: $gray-light;
+     border-color: $gray-light;
+     opacity: 0.5;
+}
+
+
+
 h4.panel-title {
   background-color:$bg-light;color: $greenfly;
   padding-top: .4em;
@@ -1058,7 +1066,7 @@ a.home_spacelink {
 }
 
 .calendar-title {
-  padding-left: 0.5em;
+  margin-left: 0.5em;
 }
 
 table {
@@ -1089,4 +1097,5 @@ font-size: 0.8em;
 
 div.field_dates {
   font-size: 0.8em;
+  text-align: center;
 }
