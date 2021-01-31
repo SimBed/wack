@@ -22,6 +22,7 @@ class ActiveSupport::TestCase
     srand Date.today.to_time.to_i
     return rand(Workout.count)
   end
+
 end
 
 class ActionDispatch::IntegrationTest

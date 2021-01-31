@@ -63,11 +63,16 @@ class SchedulingsInterfaceTest < ActionDispatch::IntegrationTest
     # <tr> <td> name </td> <td> date </td> </tr>
     # ended up finding a regexs was the simplest approach
     # ~ is the css general sibling combinator. eg css_select "td~td" matches tds that are siblings of and subsequent to any td (so it wouldn't include the first td). Didn't end up using this.
-    t1 = t.strftime('%Y-%m-%d, %H:%M')
+    t1 = t.strftime('%d/%m, %H:%M')
+    # puts t1
     # pars has class Nokogiri::XML::NodeSet
     pars = css_select "tr"
+    # target = open("test.txt", 'w')
+    # target.write(response.body)
+    # target.close
     # pars.each_with_index{ |val,index| puts "index: #{index} for #{val}" }
-    regexs = /<td>#{workout_name}<\/td>.*<td>#{t1}<\/td>.*Show.*Edit.*Delete/m
+    # using workout_name is OK at the moment for tests while workout_name = scheduling_name
+    regexs = /<td>#{workout_name}<\/td>.*<td.*>#{t1}<\/td>.*Show.*Edit.*Delete/m
     match = false
     pars.each { |i| if i.to_s =~ regexs then match = true end }
     assert match
@@ -135,7 +140,7 @@ class SchedulingsInterfaceTest < ActionDispatch::IntegrationTest
 
     assert_select "tr" do
       assert_select "td", "skipjump"
-      assert_select "td", t.strftime('%Y-%m-%d, %H:%M')
+      assert_select "td", t.strftime('%d/%m, %H:%M')
     end
 
   end
