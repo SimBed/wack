@@ -1004,8 +1004,6 @@ div.user_score {
      opacity: 0.5;
 }
 
-
-
 h4.panel-title {
   background-color:$bg-light;color: $greenfly;
   padding-top: .4em;
@@ -1098,4 +1096,33 @@ font-size: 0.8em;
 div.field_dates {
   font-size: 0.8em;
   text-align: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  grid-gap: 2px;
+  background-color: #343a40; /*#2196F3*/
+  padding: 0.1em;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  text-align: center;
+  font-size: 0.7em;
+}
+
+.grid-container {
+  .c_days_of_week {
+  font-weight: bold;
+  }
+  .c_days_of_month {
+  }
+  .c_scheduling_name {
+    font-size: 1.1em;
+  }
+  .c_scheduling_start {
+  line-height: 1.0;
+  }
 }

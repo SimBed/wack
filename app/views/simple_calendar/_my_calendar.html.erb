@@ -1,0 +1,21 @@
+<%# start_date = params.fetch(:start_date, Date.today).to_date %>
+<%# date_range = (start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week).to_a %>
+
+<%= link_to 'Prev', calendar.url_for_previous_view %>
+<%= link_to 'Next', calendar.url_for_next_view %>
+<div class="grid-container">
+  <% date_range.slice(0,7).each do |day| %>
+    <div class="c_days_of_week"><%= t("date.abbr_day_names")[day.wday] %></div>
+  <% end %>
+  <% date_range.each do |day| %>
+    <div>
+      <div class="c_days_of_month">
+        <%= day.strftime('%d/%m') %>
+      </div>
+      <% @schedulings.select { |m| m.start_time.to_date == day}.sort_by(&:start_time).each do |scheduling| %>
+      <div class="c_scheduling_name"><%= link_to scheduling.name, scheduling %></div>
+      <div class="c_scheduling_start"><%= scheduling.start_time.strftime('%I:%M') %></div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
