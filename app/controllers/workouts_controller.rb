@@ -24,7 +24,7 @@ require 'cgi'
     #@workouts = Workout.all.order(sort_column + " " + sort_direction, :name).paginate(page: params[:page],per_page: 10)
     if current_user
       @scheduling = current_user.schedulings.build()
-      @schedulings = current_user.schedulings
+      @schedulings = current_user.schedulings.order_by_start_time
     end
   end
 

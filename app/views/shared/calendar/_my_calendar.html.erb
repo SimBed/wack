@@ -1,0 +1,22 @@
+<% start_date = params.fetch(:start_date, Date.today).to_date %>
+<% date_range = (start_date..start_date + cal_days - 1).to_a %>
+
+<%= link_to 'Prev', start_date: date_range.first - cal_days %>
+<span class="c_title d-none"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
+<%= link_to 'Next', start_date: date_range.last + 1.day %>
+<div class="grid-container">
+  <% date_range.slice(0,7).each do |day| %>
+    <div class="c_days_of_week"><%= t("date.abbr_day_names")[day.wday] %></div>
+  <% end %>
+  <% date_range.each do |day| %>
+    <div>
+      <div class="c_days_of_month">
+        <%= day.strftime('%d/%m') %>
+      </div>
+      <% @schedulings.select { |s| s.start_time.to_date == day}.each do |scheduling| %>
+      <div class="c_scheduling_name"><%= link_to scheduling.name, scheduling_path(scheduling, linked_from: linked_from, wk_url: wk_url ||= nil) %></div>
+      <div class="c_scheduling_start"><%= scheduling.start_time.strftime('%I:%M') %></div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

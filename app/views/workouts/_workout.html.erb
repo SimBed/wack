@@ -57,7 +57,8 @@ render partial: 'schedulings/form', locals: {setting: "sch_index", workout: work
       </div>
 
       <div class="sched_cal">
-      <%= render partial: 'shared/calendar/calendar', locals: {calendar_type: 14, linked_from: :workout_index} %>
+      <%= render partial: 'shared/calendar/my_calendar', locals: {cal_days: 14, linked_from: :workout_index, wk_url: "http://#{Rails.env.production? ? 'www.wackit.in' : 'localhost:3000'}/workouts/?search_name=#{workout.name}##{workout.name.split.join.downcase}"} %>
+<!---->
       </div>
 
       <div class="container">

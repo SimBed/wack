@@ -14,6 +14,7 @@ class SchedulingsController < ApplicationController
       @micropost = current_user.microposts.build()
     end
     session[:linked_from] = params[:linked_from] || session[:linked_from]
+    session[:wk_url] = params[:wk_url] || session[:wk_url]
   end
 
   def create
@@ -30,7 +31,7 @@ class SchedulingsController < ApplicationController
     @scheduling.workout_id ||= params[:workout_id]
     if @scheduling.save
       # the js.erb needs to know whether the form submission came from the scheduling or workout index as the calendars are shown differently in each place (bi-weekly/monthly)
-      @setting = params[:setting] == "sch_index" ? "m" : 14
+      @setting = params[:setting] == "sch_index" ? 28 : 14
       @schedulings = current_user.schedulings.order_by_start_time
       respond_to do |format|
          format.html { flash[:success] = "#{@scheduling.name} scheduled!"

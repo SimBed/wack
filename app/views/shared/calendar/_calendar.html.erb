@@ -5,9 +5,8 @@
 <% else %>
   <%#= month_calendar events: @schedulings do |date, schedulings| %>
   <%#= calendar partial: 'simple_calendar/bespoke', number_of_days: 28, events: @schedulings do |date, schedulings| %>
-  <%= SimpleCalendar::MyCalendar.new(self, {}).render do |date, schedulings| %>
-    <%= render partial: 'shared/calendar/calendarblock', locals: {date: date, schedulings: schedulings, linked_from: linked_from} %>
-  <% end %>
+    <%= render partial: 'shared/calendar/my_calendar', locals: {date: date, schedulings: schedulings, linked_from: linked_from} %>
+
 
 
 

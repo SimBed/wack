@@ -9,7 +9,7 @@
 </div>
 
 <div class="sched_cal">
-<%= render partial: 'shared/calendar/calendar', locals: {calendar_type: 'm', linked_from: :schedulings} %>
+<%= render partial: 'shared/calendar/my_calendar', locals: {cal_days: 28, linked_from: :schedulings} %>
 </div>
 <div class="sched_table">
 <%= render partial: 'schedule_table', locals: {linked_from: :schedulings} %>
