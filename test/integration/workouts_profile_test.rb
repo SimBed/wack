@@ -11,7 +11,8 @@ class WorkoutsProfileTest < ActionDispatch::IntegrationTest
 
   test "workout display for non-logged in user" do
     get workout_path(@workout)
-    assert_redirected_to login_url
+    assert_template 'workouts/show'
+    # assert_redirected_to login_url
   end
 
   test "workout display for non-admin " do

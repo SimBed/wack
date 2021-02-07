@@ -1,5 +1,6 @@
 class SchedulingsController < ApplicationController
-  before_action :logged_in_user
+  before_action :logged_in_as_real_user, only: [:create, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:show]
   before_action :set_scheduling, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -89,7 +90,10 @@ class SchedulingsController < ApplicationController
       @scheduling = Scheduling.find(params[:id])
       @user = User.find(@scheduling.user_id)
       # can't have users interfering with other users schedulings
-      redirect_to(root_url) unless current_user?(@user)
+      unless current_user?(@user)
+            flash[:danger] = "No access."
+            redirect_to(root_url)
+      end
     end
 
     # not used

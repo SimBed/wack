@@ -29,9 +29,18 @@ class ApplicationController < ActionController::Base
       redirect_to(root_url) unless (current_user && current_user.admin?)
     end
 
-      # Confirms a logged-in user.
-    def logged_in_user
+    # Confirms a logged-in user, but not demo.
+    def logged_in_as_real_user
       unless logged_in_as_real_user? # sessions_helper.rb
+        store_location
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
+    end
+
+    # Confirms a logged-in user.
+    def logged_in_user
+      unless logged_in? # sessions_helper.rb
         store_location
         flash[:danger] = "Please log in."
         redirect_to login_url
