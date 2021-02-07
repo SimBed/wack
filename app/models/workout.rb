@@ -26,6 +26,7 @@ class Workout < ApplicationRecord
 
 
   def name_for_cal
-    short_name || name
+    return short_name unless short_name.blank?
+    return name
   end
 end

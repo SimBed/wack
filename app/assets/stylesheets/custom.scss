@@ -103,15 +103,17 @@ h3.home_header {
 h4.home_header {
   font-size: 1.0em;
   font-style: italic;
-  color: #e9ecef;
+  color: $bg-light ; /*#e9ecef light-grey*/
   padding-top: 0.5rem;
+  text-align: center;
+
 }
 
 div.home_thisweekswacks {
-  background-color: #343a40;
-  /* height: 12rem; */
+  background-color: #343a40; /*black*/
   padding-left: 0.2em;
   padding-right: 0.2em;
+  padding-top: 0.2em;
   padding-bottom: 1em;
 }
 
@@ -121,15 +123,6 @@ div.home_schedcal {
 
 div.home_scores {
   background-color: #e9ecef;
-}
-
-div.scheduling_name {
-font-size:0.7em;
-}
-
-div.scheduling_date {
-font-size:0.7em;
-font-weight: bold;
 }
 
 div.sched_table {
@@ -1058,11 +1051,6 @@ a.home_spacelink {
   }
 }
 
-.simple-calendar {
-  .calendar-heading {
-  font-size: 0.8em;
-}
-
 .calendar-title {
   margin-left: 0.5em;
 }
@@ -1070,7 +1058,9 @@ a.home_spacelink {
 table {
 font-size: 0.8em;
 }
-  .day {}
+
+
+/*  .day {}
 
   .wday-0 {}
   .wday-1 {}
@@ -1091,7 +1081,7 @@ font-size: 0.8em;
   .current-month {}
 
   .has-events {}
-}
+} */
 
 div.field_dates {
   font-size: 0.8em;
@@ -1102,28 +1092,67 @@ div.field_dates {
   display: grid;
   grid-template-columns: auto auto auto auto auto auto auto;
   grid-gap: 2px;
-  background-color: #343a40; /*#2196F3*/
+  /*background-color: #343a40; /*#2196F3*/
   padding: 0.1em;
 }
 
 .grid-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
+/*  background-color: rgba(255, 255, 255, 0.8);*/
   border: none;
-  text-align: center;
-  font-size: 0.7em;
+  text-align: left;
+  font-size: 0.6em;
 }
 
 .grid-container {
-  .c_days_of_week {
-  font-weight: bold;
 
+  .c_days_of_week {
+  font-size: 0.7em;
+  font-weight: bold;
   }
   .c_days_of_month {
   }
   .c_scheduling_name {
-    font-size: 1.1em;
+    font-size: 1.0em;
+    margin-bottom: 0.2em;
+    text-align: center;
+  /*  border: 1px solid;
+    border-color: $bg-light;*/
+      /*box-shadow: 1px 3px 2px $gray-darker inset;*/
+      /*box-shadow: 1px 1px 0.5px #aaaaaa;*/
   }
   .c_scheduling_start {
-  line-height: 1.0;
+
   }
+  .c_button {
+    border-radius: 1rem;
+  /*  color: white;
+    background-color: $red-home;
+    border-style: solid;
+    border-color: white;*/
+    line-height: 1.25;
+    padding: 0.1rem 0.5rem;
+    box-shadow: 0 1px #999;
+    font-size: 0.8rem;
+    color: $red-home;
+   }
+}
+
+/*.grid-container > div:nth-child(-n+7) {
+  background-color: #343a40;
+  color: f4ecec;
+}*/
+
+.grid-container > div:nth-child(14n+8),
+.grid-container > div:nth-child(14n+8),
+.grid-container > div:nth-child(14n+9),
+.grid-container > div:nth-child(14n+10),
+.grid-container > div:nth-child(14n+11),
+.grid-container > div:nth-child(14n+12),
+.grid-container > div:nth-child(14n+13),
+.grid-container > div:nth-child(14n+14) {
+  background-color:rgba(0,0,0,.075);
+}
+
+.paginate_icon {
+  color: $red-home;
 }

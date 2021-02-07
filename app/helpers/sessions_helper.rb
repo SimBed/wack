@@ -41,7 +41,7 @@ module SessionsHelper
       end
     else
       # when noone is logged in, have demo user logged in
-      @current_user = User.find_by(id: 22)
+      @current_user = User.find_by(demo: true)
     end
   end
 
@@ -69,11 +69,15 @@ module SessionsHelper
       #  @current_user
       #end
 
-
   # Returns true if the user is logged in, false otherwise.
   # the demo user is now logged in as default, so this should now always be true
   def logged_in?
     !current_user.nil?
+  end
+
+  # returns true if logged in, but not as the demo user
+  def logged_in_as_real_user?
+    logged_in? && !current_user.demo?
   end
 
  # Forgets a persistent session.

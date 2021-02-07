@@ -20,7 +20,7 @@ class ActiveSupport::TestCase
   def dailypickfortesting
     require 'date'
     srand Date.today.to_time.to_i
-    return rand(Workout.count)
+    return rand(Workout.count) - 1
   end
 
 end

@@ -7,10 +7,16 @@
 </div>
 
 <div class="container home_thisweekswacks">
-    <h4 class="home_header">Your Wack Schedule This Week</h4>
     <div class="home_schedcal">
       <%= render partial: 'shared/calendar/my_calendar', locals: {cal_days: 7, linked_from: :welcome} %>
     </div>
+    <h4 class="home_header">
+    <% if current_user && !current_user.demo? %>
+      Keep on Track With Your Weekly Wacks
+    <% else %>
+      Get on Track With Your Weekly Wacks
+    <% end %>
+    </h4>
 </div>
 
 <div class="container home_scores d-flex justify-content-center pb-5 mb-4">
@@ -30,8 +36,8 @@
 
 <div class="container center mb-4">
   <%= image_tag("DailyWack_Logo.png", class: "wackLogo") %>
-  <p class="home_text1 mt-2 px-3 mb-0">Today's Follow-Along Workout</p>
-  <p class="home_text1 px-3 mb-2">Hand-Picked & Reviewed by our Pros</p>
+  <p class="home_text1 mt-2 px-3 mb-0">Next Wack</p>
+  <p class="home_text1 px-3 mb-2">Selected by our Pros</p>
   <p class="home_text2 px-3">at <a href="https://www.thespacejuhu.in" target="_blank" class="home_spacelink">The Space</a>, Mumbai</p>
 </div>
 

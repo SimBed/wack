@@ -9,6 +9,7 @@ run:
   start_time: <%= Time.now.advance(minutes: 30) %>
     # eg 2020-11-05 11:30:00
   user: archer
+  workout_id: 440534817
 
 walk:
   name: walk
@@ -25,3 +26,14 @@ next_up:
   name: next_up
   start_time: <%= Time.now %>
   user: lana
+
+demo_predefined_workout:
+  name: ZZworkout1
+  start_time: <%= Time.now.advance(minutes: 30) %>
+  user: demo
+  workout_id: 440534817
+
+demo_bespoke_workout:
+  name: run
+  start_time: <%= Time.now.advance(days: 1) %>
+  user: demo

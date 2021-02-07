@@ -1,9 +1,0 @@
-<div class = "scheduling_date"><%= date.strftime("%d/%m") %></div>
-<% schedulings.each do |scheduling| %>
-  <div>
-    <div class = "scheduling_name"><%= scheduling.name %></div>
-    <div class = "scheduling_name"><%= scheduling.start_time.strftime("%I:%M") %></div>
-    <i class="fa fa-dumbbell"></i>
-    <%= link_to 'Show', scheduling_path(scheduling, linked_from: linked_from) %>
-  </div>
-<% end %>
