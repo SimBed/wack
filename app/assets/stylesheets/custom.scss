@@ -1101,6 +1101,8 @@ div.field_dates {
   border: none;
   text-align: left;
   font-size: 0.6em;
+  max-width:99%;
+  overflow: auto;
 }
 
 .grid-container {
