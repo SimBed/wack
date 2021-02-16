@@ -4,9 +4,11 @@ module SchedulingsHelper
   def scheduling_back
       links = {
       'welcome': root_path,
-      'schedulings': schedulings_path,
+      'schedulings_index': schedulings_path,
       'workout_index': session[:wk_url]
     }
+    # session[:linked_from] is set in the index metods of Workouts and Schedulings
+    # Controller and home method of Static_Pages Controller
     links[session[:linked_from].to_sym]
   end
 end

@@ -16,7 +16,7 @@
         <%= day.strftime('%d/%m') %>
       </div>
       <% @schedulings.select { |s| s.start_time.to_date == day}.each do |scheduling| %>
-      <div class="c_scheduling_name"><%= link_to scheduling.name, scheduling_path(scheduling, linked_from: linked_from, wk_url: wk_url ||= nil), class:"c_button btn" %></div>
+      <div class="c_scheduling_name"><%= link_to image_tag(scheduling.style_icon, class: "style_icon"), scheduling_path(scheduling, wk_url: wk_url ||= nil), class:"c_button btn" %></div>
       <div class="c_scheduling_start"><%= scheduling.start_time.strftime('%I:%M') %></div>
       <% end %>
     </div>

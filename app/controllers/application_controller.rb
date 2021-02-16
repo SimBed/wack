@@ -23,7 +23,6 @@ class ApplicationController < ActionController::Base
       [1, 3, 5, 6].include?((Date.today() - 0.day + 6.day).wday)
     end
 
-
       # Confirms an admin user.
     def admin_user
       redirect_to(root_url) unless (current_user && current_user.admin?)

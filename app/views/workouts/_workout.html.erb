@@ -49,7 +49,7 @@ https://guides.rubyonrails.org/layouts_and_rendering.html#passing-local-variable
 <!-- To use a custom local variable name within the partial [rather than the default partial
 name minus the leading underscore], specify the :as option in the call to the partial
 https://guides.rubyonrails.org/layouts_and_rendering.html#local-variables -->
-               <%= render partial: 'schedulings/form', locals: {setting: "wk_index"}, object: workout, as: 'workout' %>
+               <%= render partial: 'schedulings/form', locals: {form_setting: "wk_index", wk_url: "http://#{Rails.env.production? ? 'www.wackit.in' : 'localhost:3000'}/workouts/?search_name=#{workout.name}##{workout.name.split.join.downcase}"}, object: workout, as: 'workout' %>
 <!-- the above is therefore broadly equivalent to
 render partial: 'schedulings/form', locals: {setting: "sch_index", workout: workout} -->
           </div>
@@ -57,7 +57,7 @@ render partial: 'schedulings/form', locals: {setting: "sch_index", workout: work
       </div>
 
       <div class="sched_cal">
-      <%= render partial: 'shared/calendar/my_calendar', locals: {cal_days: 14, linked_from: :workout_index, wk_url: "http://#{Rails.env.production? ? 'www.wackit.in' : 'localhost:3000'}/workouts/?search_name=#{workout.name}##{workout.name.split.join.downcase}"} %>
+      <%= render partial: 'shared/calendar/my_calendar', locals: {cal_days: 14, wk_url: "http://#{Rails.env.production? ? 'www.wackit.in' : 'localhost:3000'}/workouts/?search_name=#{workout.name}##{workout.name.split.join.downcase}"} %>
 <!---->
       </div>
 

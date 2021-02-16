@@ -26,6 +26,7 @@ require 'cgi'
       @scheduling = current_user.schedulings.build()
       @schedulings = current_user.schedulings.order_by_start_time
     end
+    session[:linked_from] = :workout_index
   end
 
   def show

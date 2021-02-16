@@ -1,6 +1,5 @@
 class StaticPagesController < ApplicationController
 
-
   def home
     # default to demo user logged-in
     log_in(User.find_by(demo: true)) if current_user.nil?
@@ -14,6 +13,7 @@ class StaticPagesController < ApplicationController
     else
       @workout = Workout.find(@upcoming_schedulings.first.workout_id)
     end
+    session[:linked_from] = :welcome
   end
 
   def new

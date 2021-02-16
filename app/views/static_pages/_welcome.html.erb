@@ -8,7 +8,7 @@
 
 <div class="container home_thisweekswacks">
     <div class="home_schedcal">
-      <%= render partial: 'shared/calendar/my_calendar', locals: {cal_days: 7, linked_from: :welcome} %>
+      <%= render partial: 'shared/calendar/my_calendar', locals: {cal_days: 7} %>
     </div>
     <h4 class="home_header">
     <% if current_user && !current_user.demo? %>

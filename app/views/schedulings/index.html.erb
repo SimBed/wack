@@ -3,14 +3,14 @@
 <div class="container bg-light px-1 mt-3">
    <div class="row bg-light py-1 mx-0">
     <div class ="col-12">
-         <%= render partial: 'form', locals: {setting: 'sch_index'} %>
+         <%= render partial: 'form', locals: {form_setting: 'sch_index'} %>
     </div>
   </div>
 </div>
 
 <div class="sched_cal mb-4">
-<%= render partial: 'shared/calendar/my_calendar', locals: {cal_days: 28, linked_from: :schedulings} %>
+<%= render partial: 'shared/calendar/my_calendar', locals: {cal_days: 28} %>
 </div>
 <div class="sched_table">
-<%= render partial: 'schedule_table', locals: {linked_from: :schedulings} %>
+<%= render partial: 'schedule_table' %>
 </div>

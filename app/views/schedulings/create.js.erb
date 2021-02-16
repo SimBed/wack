@@ -1,14 +1,14 @@
 var sched_cal = document.getElementsByClassName("sched_cal");
 n = sched_cal.length;
 for (var i = 0; i <n; i++) {
-  sched_cal[i].innerHTML = "<%= escape_javascript(render partial: 'shared/calendar/my_calendar', locals: {cal_days: @setting, linked_from: scheduling_back }) %>";
+  sched_cal[i].innerHTML = "<%= escape_javascript(render partial: 'shared/calendar/my_calendar', locals: {cal_days: @days_display, wk_url: @wk_url }) %>";
 }
 
 <% if @setting == 28 %>
   var sched_table = document.getElementsByClassName("sched_table");
   n = sched_table.length;
   for (var i = 0; i <n; i++) {
-    sched_table[i].innerHTML = "<%= escape_javascript(render partial: 'schedule_table', locals: {linked_from: scheduling_back}) %>";
+    sched_table[i].innerHTML = "<%= escape_javascript(render partial: 'schedule_table') %>";
   }
 <% end %>
 

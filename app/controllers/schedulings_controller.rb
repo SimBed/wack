@@ -6,6 +6,7 @@ class SchedulingsController < ApplicationController
   def index
     @schedulings = current_user.schedulings.order_by_start_time
     @scheduling = current_user.schedulings.build()
+    session[:linked_from] = :schedulings_index
   end
 
   def show
@@ -14,13 +15,12 @@ class SchedulingsController < ApplicationController
       @microposts = @workout.microposts.paginate(page: params[:page])
       @micropost = current_user.microposts.build()
     end
-    session[:linked_from] = params[:linked_from] || session[:linked_from]
-    session[:wk_url] = params[:wk_url] || session[:wk_url]
+    session[:wk_url] = params[:wk_url]
+    # || session[:wk_url]
   end
 
   def create
     @scheduling = current_user.schedulings.build(scheduling_params)
-
     # a scheduling can be created from 2 places:
     # 1. from the Workouts index page, in which case the name of the scheduling
     # is set as the same name as the corresponding workout [update: the workout's short name]
@@ -32,7 +32,8 @@ class SchedulingsController < ApplicationController
     @scheduling.workout_id ||= params[:workout_id]
     if @scheduling.save
       # the js.erb needs to know whether the form submission came from the scheduling or workout index as the calendars are shown differently in each place (bi-weekly/monthly)
-      @setting = params[:setting] == "sch_index" ? 28 : 14
+      @days_display = params[:form_setting] == "sch_index" ? 28 : 14
+      @wk_url = params[:wk_url]
       @schedulings = current_user.schedulings.order_by_start_time
       respond_to do |format|
          format.html { flash[:success] = "#{@scheduling.name} scheduled!"
@@ -85,7 +86,7 @@ class SchedulingsController < ApplicationController
       params.require(:scheduling).permit(:name, :start_time, :workout_id)
     end
 
-    # Before filters
+    # Before filte:start_timers
     def set_scheduling
       @scheduling = Scheduling.find(params[:id])
       @user = User.find(@scheduling.user_id)

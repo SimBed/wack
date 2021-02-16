@@ -9,7 +9,7 @@ d) if a scheduling is associated with an existing workout, the workout cannot be
 <%= form_with model: @scheduling, local: false do |form| %>
   <%= render 'shared/error_messages', object: form.object %>
 
-  <% if setting == 'edit' %>
+  <% if form_setting == 'edit' %>
     <%= form.submit "Update", class: "btn btnpost" %>
     <div><%= hidden_field_tag :workout_id, @scheduling.workout_id %></div>
     <div class="field">
@@ -21,7 +21,7 @@ d) if a scheduling is associated with an existing workout, the workout cannot be
       <% end %>
     </div>
 
-  <% elsif setting == "sch_index" %>
+  <% elsif form_setting == "sch_index" %>
 <!-- new scheduling, not associated with an existing workout -->
     <%= form.submit "Schedule", class: "btn btn-primary btnpost" %>
     <div class="field">
@@ -33,7 +33,7 @@ d) if a scheduling is associated with an existing workout, the workout cannot be
     <%= form.submit "Schedule #{workout.name}", class: "btn btn-primary btnpost" %>
     <div><%= hidden_field_tag :workout_id, workout.id %></div>
   <% end %>
-  <div><%= hidden_field_tag :setting, setting %></div>
+  <!--div><%#= hidden_field_tag :form_setting, form_setting %></div-->
   <div class="field field_dates">
     <%= form.datetime_select :start_time, use_short_month: true, default: Time.parse('10:00') %>
   </div>
