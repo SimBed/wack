@@ -46,4 +46,9 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    # not used
+    def session_workout_names
+      JSON.parse(session[:workout_names])
+    end
+
 end

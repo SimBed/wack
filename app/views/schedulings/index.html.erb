@@ -1,4 +1,4 @@
-<h2>Scheduled Workouts</h2>
+<h2>Scheduled Wacks</h2>
 
 <div class="container bg-light px-1 mt-3">
    <div class="row bg-light py-1 mx-0">
@@ -8,9 +8,10 @@
   </div>
 </div>
 
-<div class="sched_cal mb-4">
-<%= render partial: 'shared/calendar/my_calendar', locals: {cal_days: 28} %>
+<div class="sched_cal">
+<%= render partial: 'shared/calendar/schedule_calendar', locals: {cal_days: 28} %>
 </div>
+
 <div class="sched_table">
-<%= render partial: 'schedule_table' %>
+<%= render partial: 'shared/calendar/schedule_table' %>
 </div>

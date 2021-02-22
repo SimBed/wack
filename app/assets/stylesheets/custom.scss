@@ -50,6 +50,11 @@ textarea {
   vertical-align: top;
 }
 
+/* workout comment want wide, date items of scheduling form don't*/
+textarea.full_width {
+  width: 95%;
+}
+
 .center {
   text-align: center;
   h1 {
@@ -133,7 +138,7 @@ div.home_scores {
 }
 
 div.sched_table {
-  font-size:0.8em;
+  /*font-size:0.8em;*/
 }
 
 /* footer */
@@ -398,11 +403,11 @@ background-image: image-url('down_arrow.gif');
 %WkAttribute {
   color: $gray-darker;
   font-family: $font-stack;
-  font-size: 0.9em;
+  font-size: 0.8em;
   font-weight: bold;
   letter-spacing: 0.08em;
   position: absolute;
-  top:0;
+  top: 0.5em;
   left:0;
   padding-left: 1.0em;
   padding-left: 0.2em;
@@ -437,8 +442,8 @@ div.wksummary {
 color: $gray-darker;
 font-family: $font-stack;
 letter-spacing: 0.08em;
-font-size: 0.9em;
-padding-left: 1.0em;
+font-size: 0.8em;
+padding-left: 0.5em;
 font-weight: bold;
     }
 
@@ -463,7 +468,6 @@ div.wkstyle-s {
   }
 }
 
-
 %wklabel {
   color: black;
   font-style: italic;
@@ -473,12 +477,12 @@ div.wkstyle-s {
 
 div.wkstyle-s-s::after {
   @extend %wklabel;
-  content: " (Style)";
+/*  content: " (Style)";*/
 }
 
 div.wkstyle-f-s::after {
   @extend %wklabel;
-  content: " (Focus)";
+/*  content: " (Focus)";*/
 }
 
 button i.fa-clipboard {
@@ -1095,31 +1099,30 @@ div.field_dates {
   text-align: center;
 }
 
-.grid-container {
+div.field {
+  text-align: center;
+}
+
+
+
+/*scheduling calendar*/
+%grid-container {
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto;
   grid-gap: 2px;
-  /*background-color: #343a40; /*#2196F3*/
   padding: 0.1em;
 }
 
-.grid-container > div {
-/*  background-color: rgba(255, 255, 255, 0.8);*/
-  border: none;
-  text-align: left;
-  font-size: 0.6em;
-  max-width:99%;
-  overflow: auto;
-}
-
-.grid-container {
-
+.grid-container-schedule-cal {
+  @extend %grid-container;
+  grid-template-columns: auto auto auto auto auto auto auto;
   .c_days_of_week {
   font-size: 0.7em;
   font-weight: bold;
   }
+
   .c_days_of_month {
   }
+
   .c_scheduling_name {
     font-size: 1.0em;
     margin-bottom: 0.2em;
@@ -1129,9 +1132,10 @@ div.field_dates {
       /*box-shadow: 1px 3px 2px $gray-darker inset;*/
       /*box-shadow: 1px 1px 0.5px #aaaaaa;*/
   }
-  .c_scheduling_start {
 
+  .c_scheduling_start {
   }
+
   .c_button {
     border-radius: 1rem;
   /*  color: white;
@@ -1146,22 +1150,58 @@ div.field_dates {
    }
 }
 
+
+%grid-container-schedule {
+    border: none;
+    text-align: left;
+    max-width: 99%;
+    overflow: auto;
+}
+
+.grid-container-schedule-cal > div {
+  @extend %grid-container-schedule;
+  font-size: 0.6em;
+}
+
 /*.grid-container > div:nth-child(-n+7) {
   background-color: #343a40;
   color: f4ecec;
 }*/
 
-.grid-container > div:nth-child(14n+8),
-.grid-container > div:nth-child(14n+8),
-.grid-container > div:nth-child(14n+9),
-.grid-container > div:nth-child(14n+10),
-.grid-container > div:nth-child(14n+11),
-.grid-container > div:nth-child(14n+12),
-.grid-container > div:nth-child(14n+13),
-.grid-container > div:nth-child(14n+14) {
+.grid-container-schedule-cal > div:nth-child(14n+8),
+.grid-container-schedule-cal > div:nth-child(14n+9),
+.grid-container-schedule-cal > div:nth-child(14n+10),
+.grid-container-schedule-cal > div:nth-child(14n+11),
+.grid-container-schedule-cal > div:nth-child(14n+12),
+.grid-container-schedule-cal > div:nth-child(14n+13),
+.grid-container-schedule-cal > div:nth-child(14n+14) {
   background-color:rgba(0,0,0,.075);
 }
 
 .paginate_icon {
-  color: $red-home;
+  /*color: $red-home;*/
+  color: $gray-darkest;
+}
+
+.cell {
+	color: black;
+	font-family: "Quicksand", "Arial";
+	font-size: 0.8em;
+	flex: 1;
+	border: 0.05em solid white;
+	background-color: #e9ecef;
+	padding-top: 0.3em;
+	padding-bottom: 0.3em;
+}
+
+.c-rowheader {
+	text-align:left;
+	padding-left: 0.5em;
+  	flex: 1;
+}
+
+.c-detail {
+	text-align:left;
+	padding-left: 0.5em;
+	flex: 2;
 }

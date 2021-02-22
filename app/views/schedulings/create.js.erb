@@ -1,14 +1,29 @@
-var sched_cal = document.getElementsByClassName("sched_cal");
-n = sched_cal.length;
-for (var i = 0; i <n; i++) {
-  sched_cal[i].innerHTML = "<%= escape_javascript(render partial: 'shared/calendar/my_calendar', locals: {cal_days: @days_display, wk_url: @wk_url }) %>";
-}
+<% if session[:linked_from] == "workout_index" %>
+  <% @workout_names.each_with_index do |w_name, i| %>
+  var sched_cal = document.getElementById("<%= w_name.split.join.downcase + '_cal' %>");
+    sched_cal.innerHTML = "<%= escape_javascript(render partial: 'shared/calendar/schedule_calendar', locals: { cal_days: @days_display, wk_url: wk_find_url(w_name) }) %>";
+  <% end %>
+<% end %>
 
-<% if @setting == 28 %>
+/* var sched_cal = document.getElementsByClassName("sched_cal");
+ n = sched_cal.length;
+for (var i = 0; i <n; i++) {
+wk_url = "localhost:3000/workouts/?search_name=#" + sched_cal[i] + "#" + sched_cal[i].toLowerCase().split(" ").join("")
+  sched_cal[i].innerHTML = "<%= escape_javascript(render partial: 'shared/calendar/schedule_calendar', locals: {cal_days: @days_display, wk_url: @wk_url }) %>";
+}*/
+
+<% if session[:linked_from] == "schedulings_index" %>
+  var sched_cal = document.getElementsByClassName("sched_cal");
+  sched_cal[0].innerHTML = "<%= escape_javascript(render partial: 'shared/calendar/schedule_calendar', locals: {cal_days: @days_display, wk_url: scheduling_back }) %>";
+
+
+
+
+<%# if @days_display == 28 %>
   var sched_table = document.getElementsByClassName("sched_table");
   n = sched_table.length;
   for (var i = 0; i <n; i++) {
-    sched_table[i].innerHTML = "<%= escape_javascript(render partial: 'schedule_table') %>";
+    sched_table[i].innerHTML = "<%= escape_javascript(render partial: 'shared/calendar/schedule_table') %>";
   }
 <% end %>
 

@@ -1,0 +1,51 @@
+<% start_date = params.fetch(:start_date_table, Date.today).to_date %>
+<% date_range = (start_date..start_date + 6).to_a %>
+
+<% if current_user && !current_user.demo? %>
+  <%= link_to '<<', {start_date_table: date_range.first - 7.day}, {class: "paginate_icon"} %>
+  <%= link_to '>>', {start_date_table: date_range.last + 1.day}, {class: "paginate_icon pl-2"} %>
+<% end %>
+
+<!--div class="grid-container-schedule-table<%#="-admin" if true%>"-->
+  <div class="d-flex bg-light">
+    <div class="cell c-rowheader">Name</div>
+    <div class="cell c-detail">Start time</div>
+    <% if current_user && !current_user.demo? %>
+      <div class="cell c-rowheader"></div>
+      <div class="cell c-rowheader"></div>
+    <% end %>
+  </div>
+
+<% @schedulings.select { |s| date_range.include?(s.start_time.to_date) }.sort_by(&:start_time).each do |scheduling| %>
+  <div class="d-flex bg-light">
+    <div class="cell c-rowheader"><%= link_to scheduling.name, scheduling %></div>
+    <div class="cell c-detail"><%= scheduling.start_time.strftime('%d %b, %I:%M%p') %></div>
+    <% if current_user && !current_user.demo? %>
+      <div class="cell c-rowheader"><%= link_to 'Edit', edit_scheduling_path(scheduling) %></div>
+      <div class="cell c-rowheader"><%= link_to 'Delete', scheduling, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+    <% end %>
+  </div>
+<% end %>
+
+<table class="d-none">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th class="pl-3">Start time</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @schedulings.each do |scheduling| %>
+      <tr>
+        <td><%= scheduling.name %></td>
+        <td class="pl-3"><%= scheduling.start_time.strftime('%d/%m, %H:%M') %></td>
+        <td class="pl-3"><%= link_to 'Show', scheduling_path(scheduling) %></td>
+        <% if !current_user.demo? %>
+        <td class="pl-1"><%= link_to ' Edit', edit_scheduling_path(scheduling) %></td>
+        <td class="pl-1"><%= link_to ' Delete', scheduling, remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

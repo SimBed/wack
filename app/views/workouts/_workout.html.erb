@@ -1,47 +1,47 @@
-    <div class="p-flex" id="<%= workout.name.split.join.downcase %>" ><!--div class="p-flex-in"-->
-      <%#= render partial: 'update', object: workout, as: 'workout' %>
-      <div class = "container bg-light p-1 mb-1">
-        <h4 class="WorkoutName-i">
-            <%= link_to workout.name.upcase, workout%>
-        </h4>
-      </div>
-      <div class="container p-1 bg-light">
-         <div class="row bg-light py-1 mx-0">
+<div class="p-flex" id="<%= workout.name.split.join.downcase %>" >
+  <%#= render partial: 'update', object: workout, as: 'workout' %>
+  <div class = "container bg-light p-1 mb-1">
+    <h4 class="WorkoutName-i">
+        <%= link_to workout.name.upcase, workout%>
+    </h4>
+  </div>
+  <div class="container p-1 bg-light">
+     <div class="row bg-light py-1 mx-0">
 
-          <div class ="col-5 p-0">
-            <div class="brand-i mb-1"><%= workout.brand ? workout.brand.upcase : "BRAND" %></div>
-            <div class="wksummary">
-              <div class="wkstyle-i"><%= workout.style%></div>
-              <div class="wkstyle-i"><%= workout.bodyfocus%></div>
-              <div class="wkstyle-i"><%= workout.equipment ? "Equipment: #{workout.eqpitems}" : "No equipment"%></div>
-              <!--div class="wkstyle-i"><%#= workout.intensity%></div-->
-              <div class="wkstyle-i"><%= "#{workout.length} minutes"%></div>
-            <!--div class="p-goal"><#%= workout.equipment ? workout.eqpitems : "no equipment"%></div-->
-            </div>
-          </div>
-          <div class ="col-7 p-0">
-            <div class="embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" src=<%= workout.url + "?modestbranding=1" %> allowfullscreen></iframe>
-            </div>
-          </div>
-        </div>
-
-        <div class="row bg-dark py-1 mx-0">
-          <div class ="col-12">
-             <div class="spacesays-i"><%= "\"#{workout.spacesays}\""%></div>
-             <div class="comment-i"><%= link_to "#{pluralize(workout.microposts.count, "comment")}", workout%></div>
-          </div>
+      <div class ="col-5 p-0">
+        <div class="brand-i mb-1"><%= workout.brand.upcase %></div>
+        <div class="wksummary">
+          <div class="wkstyle-i"><%= workout.style%></div>
+          <div class="wkstyle-i"><%= workout.bodyfocus%></div>
+          <% if workout.equipment %>
+            <div class="wkstyle-i"><%= "Equipment: #{workout.eqpitems}" %></div>
+          <% end %>
+          <div class="wkstyle-i"><%= "#{workout.length} minutes"%></div>
         </div>
       </div>
+      <div class ="col-7 p-0">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src=<%= workout.url + "?modestbranding=1" %> allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
 
-      <% if current_user %>
-      <!-- this is equivalent to [see explanation lower down] -->
-      <%#= render partial: 'workouts/clipboard', locals: {workout: workout} %>
-      <%= render partial: 'workouts/clipboard', object: workout, as: 'workout' %>
-      <!-- the calendar itself does not need to know which workout but the scheduling form does -->
-      <div class="container bg-light px-1 mt-3">
-         <div class="row bg-light py-1 mx-0">
-          <div class ="col-12">
+    <div class="row bg-dark py-1 mx-0">
+      <div class ="col-12">
+         <div class="spacesays-i"><%= "\"#{workout.spacesays}\""%></div>
+         <div class="comment-i"><%= link_to "#{pluralize(workout.microposts.count, "comment")}", workout%></div>
+      </div>
+    </div>
+  </div>
+
+  <% if current_user %>
+  <!-- this is equivalent to [see explanation lower down] -->
+  <%#= render partial: 'workouts/clipboard', locals: {workout: workout} %>
+  <%= render partial: 'workouts/clipboard', object: workout, as: 'workout' %>
+  <!-- the calendar itself does not need to know which workout but the scheduling form does -->
+  <div class="container bg-light px-1 mt-3">
+     <div class="row bg-light py-1 mx-0">
+      <div class ="col-12">
 <!-- Every partial also has a local variable with the same name as the partial (minus the
 leading underscore). You can pass an object in to this local variable via the :object option
 https://guides.rubyonrails.org/layouts_and_rendering.html#passing-local-variables -->
@@ -49,34 +49,32 @@ https://guides.rubyonrails.org/layouts_and_rendering.html#passing-local-variable
 <!-- To use a custom local variable name within the partial [rather than the default partial
 name minus the leading underscore], specify the :as option in the call to the partial
 https://guides.rubyonrails.org/layouts_and_rendering.html#local-variables -->
-               <%= render partial: 'schedulings/form', locals: {form_setting: "wk_index", wk_url: "http://#{Rails.env.production? ? 'www.wackit.in' : 'localhost:3000'}/workouts/?search_name=#{workout.name}##{workout.name.split.join.downcase}"}, object: workout, as: 'workout' %>
-<!-- the above is therefore broadly equivalent to
-render partial: 'schedulings/form', locals: {setting: "sch_index", workout: workout} -->
-          </div>
-        </div>
+        <%= render partial: 'schedulings/form', locals: { form_setting: 'wk_index', wk_url: workout.wk_find_url }, object: workout, as: 'workout' %>
       </div>
+    </div>
+  </div>
 
-      <div class="sched_cal">
-      <%= render partial: 'shared/calendar/my_calendar', locals: {cal_days: 14, wk_url: "http://#{Rails.env.production? ? 'www.wackit.in' : 'localhost:3000'}/workouts/?search_name=#{workout.name}##{workout.name.split.join.downcase}"} %>
-<!---->
+<!-- html_safe unescapes out so non-asci characters don't get affected eg avoid & going to &amp;-->
+  <div class="sched_cal" id ="<%= workout.name.split.join.downcase.html_safe + '_cal' %>">
+  <%= render partial: 'shared/calendar/schedule_calendar', locals: {cal_days: 14, wk_url: workout.wk_find_url } %>
+  </div>
+
+  <div class="container">
+     <div class="row bg-light py-1 mx-0">
+      <div class="col-12">
+         <% if setting == 'addcommentyes' %>
+         <section class="mt-1"><%= render 'shared/micropost_form' %></section>
+         <% end %>
       </div>
+    </div>
+  </div>
+  <% end %>
 
-      <div class="container">
-         <div class="row bg-light py-1 mx-0">
-          <div class ="col-12">
-             <% if setting == "addcommentyes" %>
-             <section class="mt-1"><%= render 'shared/micropost_form' %></section>
-             <% end %>
-          </div>
-        </div>
-      </div>
-      <% end %>
+  <div class = "container bg-light p-1 mb-1">
+    <% if current_user && current_user.admin? %>
+    <div class="p-edit pl-0"><%= link_to 'Edit', edit_workout_path(workout), class: "admin" %></div>
+    <div class="p-edit pl-0"><%= link_to 'Delete', workout, method: :delete, data: { confirm: "Are you sure? All workout data for #{workout.name} will be lost." }, class: "admin" %></div>
+    <% end %>
+  </div>
 
-      <div class = "container bg-light p-1 mb-1">
-        <% if current_user && current_user.admin? %>
-        <div class="p-edit pl-0"><%= link_to 'Edit', edit_workout_path(workout), class: "admin" %></div>
-        <div class="p-edit pl-0"><%= link_to 'Delete', workout, method: :delete, data: { confirm: "Are you sure? All workout data for #{workout.name} will be lost." }, class: "admin" %></div>
-        <% end %>
-      </div>
-
-      <!--/div--></div>
+</div>

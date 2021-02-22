@@ -2,7 +2,7 @@ class SchedulingsController < ApplicationController
   before_action :logged_in_as_real_user, only: [:create, :edit, :update, :destroy]
   before_action :logged_in_user, only: [:show]
   before_action :set_scheduling, only: [:show, :edit, :update, :destroy]
-
+  require 'cgi'
   def index
     @schedulings = current_user.schedulings.order_by_start_time
     @scheduling = current_user.schedulings.build()
@@ -32,9 +32,15 @@ class SchedulingsController < ApplicationController
     @scheduling.workout_id ||= params[:workout_id]
     if @scheduling.save
       # the js.erb needs to know whether the form submission came from the scheduling or workout index as the calendars are shown differently in each place (bi-weekly/monthly)
-      @days_display = params[:form_setting] == "sch_index" ? 28 : 14
+      @days_display = session[:linked_from] == "schedulings_index" ? 28 : 14
+      #@days_display = params[:form_setting] == "sch_index" ? 28 : 14
       @wk_url = params[:wk_url]
+      # see application controller - session_workout_names method not used
+      # byebug
+      # reverse the JSON-isation from the index controller neeeded to store an array in a cookie
+      @workout_names = JSON.parse session[:workout_names] if session[:workout_names]
       @schedulings = current_user.schedulings.order_by_start_time
+      #@temp = @workout_names.map { |e| e.downcase.split.join.downcase + '_cal' }
       respond_to do |format|
          format.html { flash[:success] = "#{@scheduling.name} scheduled!"
                        redirect_to request.referrer }
@@ -101,5 +107,10 @@ class SchedulingsController < ApplicationController
     def correct_user_or_admin
       redirect_to(root_url) unless (current_user?(@scheduling.user) or (current_user && current_user.admin?))
     end
+
+    def wk_find_url(name)
+      "http://#{Rails.env.production? ? 'www.wackit.in' : 'localhost:3000'}/workouts/?search_name=#{name}##{name.split.join.downcase}"
+    end
+
 
 end

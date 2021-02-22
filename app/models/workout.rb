@@ -23,10 +23,16 @@ class Workout < ApplicationRecord
                     #format: { with: VALID_URL_REGEX },
                     uniqueness: { case_sensitive: false }
   validates :brand, presence: true, length: { maximum: 24 }
-
+  require 'cgi'
 
   def name_for_cal
     return short_name unless short_name.blank?
     return name
+  end
+
+  # didn't use this as a Workout instance variable in the end due to cookie size
+  # operated on the workout name array saved as a session in the schedulings controller instead.
+  def wk_find_url
+    "http://#{Rails.env.production? ? 'www.wackit.in' : 'localhost:3000'}/workouts/?search_name=#{name}##{name.split.join.downcase}"
   end
 end

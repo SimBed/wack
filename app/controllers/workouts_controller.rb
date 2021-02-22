@@ -3,7 +3,7 @@ class WorkoutsController < ApplicationController
   before_action :logged_in_user, only: [:show]
   before_action :set_workout, only: [:edit, :update, :destroy]
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
-require 'cgi'
+  require 'cgi'
   def index
     #if a particular workout is added as a query parameter
     session[:search_name] = CGI.unescape params[:search_name] if params[:search_name]
@@ -27,6 +27,9 @@ require 'cgi'
       @schedulings = current_user.schedulings.order_by_start_time
     end
     session[:linked_from] = :workout_index
+    # see if this help build the wk_urls
+    # Cookie values are String based. Other data types need to be serialized
+    session[:workout_names] = JSON.generate(@workouts.map(&:name))
   end
 
   def show

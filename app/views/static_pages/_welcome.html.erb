@@ -8,7 +8,7 @@
 
 <div class="container home_thisweekswacks">
     <div class="home_schedcal">
-      <%= render partial: 'shared/calendar/my_calendar', locals: {cal_days: 7} %>
+      <%= render partial: 'shared/calendar/schedule_calendar', locals: {cal_days: 7} %>
     </div>
     <h4 class="home_header">
     <% if current_user && !current_user.demo? %>
@@ -17,6 +17,12 @@
       Get on Track With Your Weekly Wacks
     <% end %>
     </h4>
+</div>
+
+<div class="container home_thisweekswacks">
+<div class="sched_table">
+<%= render partial: 'shared/calendar/schedule_table' %>
+</div>
 </div>
 
 <div class="container home_scores d-flex justify-content-center pb-5 mb-4">
