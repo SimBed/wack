@@ -6,7 +6,12 @@
   <h3 class="home_header"><%= current_user.name + "!" %></h3>
 </div>
 
-<div class="container home_thisweekswacks">
+<div class="container tab">
+  <%= button_tag image_tag("Calendar.png", class: "edit_icon"), id:"Calendar_btn", class:"tablinks", onclick:"openView(event, 'calendarView')" %>
+  <%= button_tag image_tag("List.png", class: "edit_icon"), id:"Table_btn", class:"tablinks", onclick:"openView(event, 'tableView')" %>
+</div>
+
+<div id = "calendarView" class="container home_thisweekswacks tabcontent">
     <div class="home_schedcal">
       <%= render partial: 'shared/calendar/schedule_calendar', locals: {cal_days: 7} %>
     </div>
@@ -19,10 +24,17 @@
     </h4>
 </div>
 
-<div class="container home_thisweekswacks">
-<div class="sched_table">
+<div id="tableView" class="container home_thisweekswacks tabcontent">
+<div class="home_schedcal">
 <%= render partial: 'shared/calendar/schedule_table' %>
 </div>
+<h4 class="home_header">
+<% if current_user && !current_user.demo? %>
+  Keep on Track With Your Weekly Wacks
+<% else %>
+  Get on Track With Your Weekly Wacks
+<% end %>
+</h4>
 </div>
 
 <div class="container home_scores d-flex justify-content-center pb-5 mb-4">
@@ -105,8 +117,29 @@
   <p class="home_text3 mt-2">Work it, Track it, Wack it</p>
 </div>
 
-<!--div class="center jumbotron mb-0" style="position:relative;margin-left:-15px;margin-right:-15px;">
-  <ul class= "wacktext1" style="list-style-type:none;padding-inline-start:0;">
-    </ul>
-    <p class="wacktext3">Work it, Track it, Wack it</p>
-</div-->
+<script>
+// room features tabs
+	function openView(evt, featureName) {
+	  // Declare all variables
+	  var i, tabcontent, tablinks;
+
+	  // Get all elements with class="tabcontent" and hide them
+	  tabcontent = document.getElementsByClassName("tabcontent");
+	  for (i = 0; i < tabcontent.length; i++) {
+		tabcontent[i].style.display = "none";
+	  }
+
+	  // Get all elements with class="tablinks" and remove the class "active"
+	  tablinks = document.getElementsByClassName("tablinks");
+	  for (i = 0; i < tablinks.length; i++) {
+		tablinks[i].className = tablinks[i].className.replace(" active", "");
+	  }
+
+	  // Show the current tab, and add an "active" class to the button that opened the tab
+	  document.getElementById(featureName).style.display = "block";
+	  evt.currentTarget.className += " active";
+	}
+
+  // Click on default option
+  document.getElementById("Calendar_btn").click();
+</script>

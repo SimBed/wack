@@ -1,7 +1,8 @@
 <% if session[:linked_from] == "workout_index" %>
-  <% @workout_names.each_with_index do |w_name, i| %>
-  var sched_cal = document.getElementById("<%= w_name.split.join.downcase + '_cal' %>");
-    sched_cal.innerHTML = "<%= escape_javascript(render partial: 'shared/calendar/schedule_calendar', locals: { cal_days: @days_display, wk_url: wk_find_url(w_name) }) %>";
+  <% @workout_names.each do |w_name| %>
+  /* stength & conditioning causes an error without this extra replace code. Worrying that other characters in the future might also cause a problem.*/
+  var sched_cal = document.getElementById("<%= w_name.split.join.downcase + '_cal' %>".replace(/&amp;/g, "&"));
+    sched_cal.innerHTML = "<%= j(render partial: 'shared/calendar/schedule_calendar', locals: { cal_days: @days_display, wk_url: wk_find_url(w_name, session[:page]) }) %>";
   <% end %>
 <% end %>
 
@@ -15,9 +16,6 @@ wk_url = "localhost:3000/workouts/?search_name=#" + sched_cal[i] + "#" + sched_c
 <% if session[:linked_from] == "schedulings_index" %>
   var sched_cal = document.getElementsByClassName("sched_cal");
   sched_cal[0].innerHTML = "<%= escape_javascript(render partial: 'shared/calendar/schedule_calendar', locals: {cal_days: @days_display, wk_url: scheduling_back }) %>";
-
-
-
 
 <%# if @days_display == 28 %>
   var sched_table = document.getElementsByClassName("sched_table");

@@ -31,7 +31,7 @@ d) if a scheduling is associated with an existing workout, the workout cannot be
 <!-- new scheduling, associated with an existing workout -->
     <%= form.submit "Schedule #{workout.name}", class: "btn btn-primary btnpost" %>
     <div><%= hidden_field_tag :workout_id, workout.id %></div>
-    <div><%= hidden_field_tag :wk_url, wk_url %></div>
+
   <% end %>
 
   <div class="field field_dates">

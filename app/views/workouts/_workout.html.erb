@@ -1,8 +1,12 @@
 <div class="p-flex" id="<%= workout.name.split.join.downcase %>" >
+  <!--temp code used for updating workout_short_name through the browser-->
   <%#= render partial: 'update', object: workout, as: 'workout' %>
   <div class = "container bg-light p-1 mb-1">
     <h4 class="WorkoutName-i">
-        <%= link_to workout.name.upcase, workout%>
+      <%= link_to workout.name.upcase, workout%>
+      <!-- this is equivalent to [see explanation lower down] -->
+      <%#= render partial: 'workouts/clipboard', locals: {workout: workout} %>
+      <span class="pl-2"><%= render partial: 'workouts/clipboard', object: workout, as: 'workout' %></span>
     </h4>
   </div>
   <div class="container p-1 bg-light">
@@ -35,10 +39,6 @@
   </div>
 
   <% if current_user %>
-  <!-- this is equivalent to [see explanation lower down] -->
-  <%#= render partial: 'workouts/clipboard', locals: {workout: workout} %>
-  <%= render partial: 'workouts/clipboard', object: workout, as: 'workout' %>
-  <!-- the calendar itself does not need to know which workout but the scheduling form does -->
   <div class="container bg-light px-1 mt-3">
      <div class="row bg-light py-1 mx-0">
       <div class ="col-12">
@@ -49,14 +49,14 @@ https://guides.rubyonrails.org/layouts_and_rendering.html#passing-local-variable
 <!-- To use a custom local variable name within the partial [rather than the default partial
 name minus the leading underscore], specify the :as option in the call to the partial
 https://guides.rubyonrails.org/layouts_and_rendering.html#local-variables -->
-        <%= render partial: 'schedulings/form', locals: { form_setting: 'wk_index', wk_url: workout.wk_find_url }, object: workout, as: 'workout' %>
+        <%= render partial: 'schedulings/form', locals: { form_setting: 'wk_index' }, object: workout, as: 'workout' %>
       </div>
     </div>
   </div>
 
 <!-- html_safe unescapes out so non-asci characters don't get affected eg avoid & going to &amp;-->
   <div class="sched_cal" id ="<%= workout.name.split.join.downcase.html_safe + '_cal' %>">
-  <%= render partial: 'shared/calendar/schedule_calendar', locals: {cal_days: 14, wk_url: workout.wk_find_url } %>
+  <%= render partial: 'shared/calendar/schedule_calendar', locals: {cal_days: 14, wk_url: workout.wk_find_url(session[:page]) } %>
   </div>
 
   <div class="container">

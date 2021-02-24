@@ -1,13 +1,13 @@
 var sched_cal = document.getElementsByClassName("sched_cal");
 n = sched_cal.length;
 for (var i = 0; i <n; i++) {
-  sched_cal[i].innerHTML = "<%= escape_javascript(render partial: 'shared/calendar/my_calendar', locals: {cal_days: 28}) %>";
+  sched_cal[0].innerHTML = "<%= escape_javascript(render partial: 'shared/calendar/schedule_calendar', locals: {cal_days: 28}) %>";
 }
 
 var sched_table = document.getElementsByClassName("sched_table");
 n = sched_table.length;
 for (var i = 0; i <n; i++) {
-  sched_table[i].innerHTML = "<%= escape_javascript(render partial: 'schedule_table') %>";
+  sched_table[i].innerHTML = "<%= escape_javascript(render partial: 'shared/calendar/schedule_table') %>";
 }
 
 <% flash.each do |type, message| %>

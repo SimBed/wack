@@ -108,6 +108,13 @@ img.style_icon {
   margin: auto;
 }
 
+img.edit_icon {
+  display: block;
+  width: 1.0rem;
+  height: 1.0rem;
+  margin: auto;
+}
+
 h3.home_header {
   color: #23232e;
 }
@@ -384,6 +391,7 @@ background-image: image-url('down_arrow.gif');
 /* i is for the index view */
 .WorkoutName-i {
   @extend %WorkoutName0;
+  font-size: 1.1em;
   a{
     font-weight: bold;
     color:$bg-dark;
@@ -1100,7 +1108,7 @@ div.field_dates {
 }
 
 div.field {
-  text-align: center;
+  text-align: left;
 }
 
 
@@ -1134,6 +1142,9 @@ div.field {
   }
 
   .c_scheduling_start {
+    text-align: center;
+    font-size: 0.9em;
+    margin-bottom: 0.2em;
   }
 
   .c_button {
@@ -1194,14 +1205,46 @@ div.field {
 	padding-bottom: 0.3em;
 }
 
-.c-rowheader {
+.c-name {
 	text-align:left;
 	padding-left: 0.5em;
-  	flex: 1;
+  flex: 3;
 }
 
-.c-detail {
+.c-time {
 	text-align:left;
 	padding-left: 0.5em;
 	flex: 2;
+}
+
+.c-edit-del {
+	flex: 1;
+}
+
+/* Style the tab */
+.tab {
+  background-color: #f1f1f1;
+  text-align: right;
+  padding-right: 0.1em;
+  padding-left: 0.1em;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  border: 1px solid #ccc;
+  outline: none;
+  cursor: pointer;
+  padding: 0.3em 0.3em;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
 }

@@ -26,13 +26,16 @@ class Workout < ApplicationRecord
   require 'cgi'
 
   def name_for_cal
-    return short_name unless short_name.blank?
+    #return short_name unless short_name.blank?
     return name
   end
 
-  # didn't use this as a Workout instance variable in the end due to cookie size
-  # operated on the workout name array saved as a session in the schedulings controller instead.
-  def wk_find_url
-    "http://#{Rails.env.production? ? 'www.wackit.in' : 'localhost:3000'}/workouts/?search_name=#{name}##{name.split.join.downcase}"
+  # use this Workout instance method in _workout.html
+  # originally also used it in the Workouts controller to populate an array of urls to feed the AJAX code (create.js)
+  # and store in a session. But sessions/cookies have a limit on size, so
+  # carried this same operation out through a method in the schedulings controller directly in the AJAX
+  def wk_find_url(page)
+    "http://#{Rails.env.production? ? 'www.wackit.in' : 'localhost:3000'}/workouts/?page=#{page}##{name.split.join.downcase}"
+    # http://#{Rails.env.production? ? 'www.wackit.in' : 'localhost:3000'}/workouts/?search_name=#{name}##{name.split.join.downcase}"
   end
 end

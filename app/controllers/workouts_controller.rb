@@ -27,9 +27,13 @@ class WorkoutsController < ApplicationController
       @schedulings = current_user.schedulings.order_by_start_time
     end
     session[:linked_from] = :workout_index
-    # see if this help build the wk_urls
+    # list of workout names is needed for AJAX to identify the IDs of divs to add code
+    # to for calendar update after scheduling creation. Cookies/sessions cannot be
+    # larger than 4kb, so this approach is dangerous (storing an array in a session) and will not scale.
+    # Eventually in production above a certain number of workouts, this may fail. Consider storing in a model.
     # Cookie values are String based. Other data types need to be serialized
     session[:workout_names] = JSON.generate(@workouts.map(&:name))
+    session[:page] = params[:page] || 1
   end
 
   def show
@@ -104,14 +108,14 @@ class WorkoutsController < ApplicationController
 
   def search
     clear_session(:filter_style, :filter_bodyfocus, :search_name)
-    #Without the ors (||) the sessions would get set to nil when redirecting to workouts other than through the
-    #search form (e.g. by clicking workouts on the navbar) (as the params itmes are nil in these cases)
+    # Without the ors (||) the sessions would get set to nil when redirecting to workouts other than through the
+    # search form (e.g. by clicking workouts on the navbar) (as the params itmes are nil in these cases)
     session[:search_name] = params[:search_name] || session[:search_name]
     session[:filter_style] = params[:style] || session[:filter_style]
     # session[:filter_intensity] = params[:intensity] || session[:filter_intensity]
     session[:filter_bodyfocus] = params[:bodyfocus] || session[:filter_bodyfocus]
     session[:advsearchshow] = params[:advsearchshow] || session[:advsearchshow]
-    filters = [session[:filter_style], session[:filter_bodyfocus] ]
+    filters = [session[:filter_style], session[:filter_bodyfocus]]
     redirect_to workouts_path
   end
 
@@ -126,21 +130,21 @@ class WorkoutsController < ApplicationController
   end
 
   def sort_column
-    #params[:sort] || "name"
+    # params[:sort] || "name"
     Workout.column_names.include?(params[:sort]) ? params[:sort] : "name"
   end
 
   def sort_direction
-    #params[:direction] || "asc"
-    #additional code provides robust sanitisation of what goes into the order clause
+    # params[:direction] || "asc"
+    # additional code provides robust sanitisation of what goes into the order clause
     %w[asc desc].include?(params[:direction]) ? params[:direction]  : "asc"
   end
 
   def initialize_sort
     session[:sort_option] = params[:sort_option] || session[:sort_option] || "date_created_desc"
 
-    #session[:advsearchshow] = filters.any? { |filter| filter.present? }
-    #session[:favesonly] is set through the favourties method
+    # session[:advsearchshow] = filters.any? { |filter| filter.present? }
+    # session[:favesonly] is set through the favourties method
   end
 
   def handle_favourites

@@ -108,9 +108,4 @@ class SchedulingsController < ApplicationController
       redirect_to(root_url) unless (current_user?(@scheduling.user) or (current_user && current_user.admin?))
     end
 
-    def wk_find_url(name)
-      "http://#{Rails.env.production? ? 'www.wackit.in' : 'localhost:3000'}/workouts/?search_name=#{name}##{name.split.join.downcase}"
-    end
-
-
 end

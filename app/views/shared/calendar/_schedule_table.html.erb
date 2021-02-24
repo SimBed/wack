@@ -1,28 +1,31 @@
 <% start_date = params.fetch(:start_date_table, Date.today).to_date %>
 <% date_range = (start_date..start_date + 6).to_a %>
 
-<% if current_user && !current_user.demo? %>
-  <%= link_to '<<', {start_date_table: date_range.first - 7.day}, {class: "paginate_icon"} %>
-  <%= link_to '>>', {start_date_table: date_range.last + 1.day}, {class: "paginate_icon pl-2"} %>
-<% end %>
+<div class="bg-light">
+  <% if current_user && !current_user.demo? %>
+    <%= link_to '<<', {start_date_table: date_range.first - 7.day}, {class: "paginate_icon"} %>
+    <%= link_to '>>', {start_date_table: date_range.last + 1.day}, {class: "paginate_icon pl-2"} %>
+  <% end %>
+  </div>
 
-<!--div class="grid-container-schedule-table<%#="-admin" if true%>"-->
   <div class="d-flex bg-light">
-    <div class="cell c-rowheader">Name</div>
-    <div class="cell c-detail">Start time</div>
+
+
+    <div class="cell c-name">Name</div>
+    <div class="cell c-time">Start time</div>
     <% if current_user && !current_user.demo? %>
-      <div class="cell c-rowheader"></div>
-      <div class="cell c-rowheader"></div>
+      <div class="cell c-edit-del"></div>
+      <div class="cell c-edit-del"></div>
     <% end %>
   </div>
 
 <% @schedulings.select { |s| date_range.include?(s.start_time.to_date) }.sort_by(&:start_time).each do |scheduling| %>
   <div class="d-flex bg-light">
-    <div class="cell c-rowheader"><%= link_to scheduling.name, scheduling %></div>
-    <div class="cell c-detail"><%= scheduling.start_time.strftime('%d %b, %I:%M%p') %></div>
+    <div class="cell c-name"><%= link_to scheduling.name, scheduling %></div>
+    <div class="cell c-time"><%= scheduling.start_time.strftime('%d %b, %I:%M%P') %></div>
     <% if current_user && !current_user.demo? %>
-      <div class="cell c-rowheader"><%= link_to 'Edit', edit_scheduling_path(scheduling) %></div>
-      <div class="cell c-rowheader"><%= link_to 'Delete', scheduling, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+      <div class="cell c-edit-del"><%= link_to image_tag("Edit.png", class: "edit_icon"), edit_scheduling_path(scheduling) %></div>
+      <div class="cell c-edit-del"><%= link_to image_tag("Delete.png", class: "edit_icon"), scheduling, method: :delete,  remote: true %></div>
     <% end %>
   </div>
 <% end %>
