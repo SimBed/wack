@@ -466,14 +466,10 @@ div.wkstyle-s {
   color: $gray-darkest;
 }
 
-@media (max-width: 360px) {
-  div.wkstyle-i {
-    line-height:130%;
-    font-size: 0.8em;
-  }
-  div.brand-i {
-    font-size: 0.8em;
-  }
+div.wkeqp-i {
+  @extend %wkstyle;
+  font-size: 0.6em;
+  padding-left: 0.7em;
 }
 
 %wklabel {

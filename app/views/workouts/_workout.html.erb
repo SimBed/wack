@@ -17,10 +17,10 @@
         <div class="wksummary">
           <div class="wkstyle-i"><%= workout.style%></div>
           <div class="wkstyle-i"><%= workout.bodyfocus%></div>
-          <% if workout.equipment %>
-            <div class="wkstyle-i"><%= "Equipment: #{workout.eqpitems}" %></div>
-          <% end %>
           <div class="wkstyle-i"><%= "#{workout.length} minutes"%></div>
+          <% if workout.equipment %>
+            <div class="wkeqp-i"><%= workout.eqpitems %></div>
+          <% end %>
         </div>
       </div>
       <div class ="col-7 p-0">
