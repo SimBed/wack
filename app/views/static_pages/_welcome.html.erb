@@ -54,7 +54,7 @@
 </div>
 
 <div class="container center mb-4">
-  <%= image_tag("DailyWack_Logo.png", class: "wackLogo") %>
+  <%#= image_tag("DailyWack_Logo.png", class: "wackLogo") %>
   <p class="home_text1 mt-2 px-3 mb-0">Next Wack</p>
   <p class="home_text1 px-3 mb-2">Selected by our Pros</p>
   <p class="home_text2 px-3">at <a href="https://www.thespacejuhu.in" target="_blank" class="home_spacelink">The Space</a>, Mumbai</p>
@@ -92,7 +92,6 @@
               <div class="wkstyle-s-s"><%= @workout.style %></div>
               <div class="wkstyle-f-s"><%= @workout.bodyfocus %></div>
               <div><%= @workout.equipment ? "Equipment: #{@workout.eqpitems}" : "No equipment"%></div>
-              <div><%= @workout.intensity%></div>
               <div><%= "#{@workout.length} minutes"%></div>
           </div>
 
@@ -148,6 +147,8 @@
 <script>
   //create a timeline instance
   var t1 = gsap.timeline();
-  t1.from(".wackLogo", {duration: 1.0, x:0.3, rotation:360, ease: "bounce"});
-  t1.from(".style_icon", {duration: 1.0, scale: 0.3, rotation:360});
+  // t1.from(".wackLogo", {duration: 1.0, rotation:360, ease: "bounce"});
+  //t1.from(".style_icon", {duration: 1.0, scale: 0.3, rotation:360});
+  t1.staggerFromTo('.style_icon', 0.7, {scale: 0}, {scale: 1.5}, 0.7);
+  t1.to(".style_icon", {duration: 1.0, scale: 1.0})
 </script>
