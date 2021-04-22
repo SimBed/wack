@@ -1,3 +1,4 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
 <div class="container center mb-3">
   <%= image_tag("Wack_Logo.png", class: "wackLogo") %>
 </div>
@@ -142,4 +143,11 @@
 
   // Click on default option
   document.getElementById("Calendar_btn").click();
+</script>
+
+<script>
+  //create a timeline instance
+  var t1 = gsap.timeline();
+  t1.from(".wackLogo", {duration: 1.0, x:0.3, rotation:360, ease: "bounce"});
+  t1.from(".style_icon", {duration: 1.0, scale: 0.3, rotation:360});
 </script>
