@@ -1,11 +1,26 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+
+<div class="container">
+
+
+<div class="d-flex justify-content-center">
+  <%= image_tag("Callisthenics.png", class: "style_icon_intro") %>
+  <%= image_tag("Cardio.png", class: "style_icon_intro") %>
+  <%= image_tag("Dancefitness.png", class: "style_icon_intro") %>
+  <%= image_tag("Flexibility.png", class: "style_icon_intro") %>
+  <%= image_tag("Mind.png", class: "style_icon_intro") %>
+  <%= image_tag("Strength.png", class: "style_icon_intro") %>
+  <%= image_tag("Therapeutic.png", class: "style_icon_intro") %>
+  <%= image_tag("Yoga.png", class: "style_icon_intro") %>
+</div>
 <div class="container center mb-3">
   <%= image_tag("Wack_Logo.png", class: "wackLogo") %>
 </div>
-
-<div class="container center mb-3">
-  <h3 class="home_header"><%= current_user.name + "!" %></h3>
 </div>
+
+<!--div class="container center mb-3">
+  <h3 class="home_header"><%= current_user.name + "!" %></h3>
+</div-->
 
 <div class="container tab">
   <%= button_tag image_tag("Calendar.png", class: "edit_icon"), id:"Calendar_btn", class:"tablinks", onclick:"openView(event, 'calendarView')" %>
@@ -20,7 +35,10 @@
     <% if current_user && !current_user.demo? %>
       Keep on Track With Your Weekly Wacks
     <% else %>
-      Get on Track With Your Weekly Wacks
+    <div id="demo_wack_text">
+      Get on Track With This Weeks Wacks<br>
+      <small>(or <a href=#signup_section> sign up</a> to schedule your own)</small>
+      </div>
     <% end %>
     </h4>
 </div>
@@ -38,6 +56,7 @@
 </h4>
 </div>
 
+<% if true %>
 <div class="container home_scores d-flex justify-content-center pb-5 mb-4">
   <div class="bigcircle mr-5">
     <%= 0 %>
@@ -49,11 +68,12 @@
     <%= 0 %><div class="user_score">WACKS LAST<span class="pl-1">WEEK</span></div>
   </div>
   <div class="bigcircle ml-5">
-    0.0<div class="user_score">WACK AVERAGE</div>
+    <%= 0 %><div class="user_score">WACK AVERAGE</div>
   </div>
 </div>
+<% end %>
 
-<div class="container center mb-4">
+<div class="container center mb-4 mt-4">
   <%#= image_tag("DailyWack_Logo.png", class: "wackLogo") %>
   <p class="home_text1 mt-2 px-3 mb-0">Next Wack</p>
   <p class="home_text1 px-3 mb-2">Selected by our Pros</p>
@@ -108,7 +128,7 @@
     </div>
 
 <% if !logged_in? || current_user.demo? %>
-  <div class="container mb-4 mt-4">
+  <div id="signup_section" class="container mb-4 mt-4">
       <%= render partial: 'sessions/loginform', locals: {pagecaller: "welcome"}  %>
   </div>
 <% end %>
@@ -146,9 +166,10 @@
 
 <script>
   //create a timeline instance
-  var t1 = gsap.timeline();
-  // t1.from(".wackLogo", {duration: 1.0, rotation:360, ease: "bounce"});
-  //t1.from(".style_icon", {duration: 1.0, scale: 0.3, rotation:360});
-  t1.staggerFromTo('.style_icon', 0.7, {scale: 0}, {scale: 1.5}, 0.7);
-  t1.to(".style_icon", {duration: 1.0, scale: 1.0})
+  var t1 = gsap.timeline()
+  //t1.staggerFromTo('.style_icon', 0.7, {scale: 0}, {scale: 1.5}, 0.7);
+    .to(".wackLogo", {duration: 1, rotation:360, repeat: 0, ease:"linear"})
+    .from(".style_icon_intro", {opacity:0, ease:"back", stagger: 0.15}, "<")
+    .from("#demo_wack_text", {x:600, opacity:0}, "+=0.1")
+    .to(".style_icon", {duration: 1, scale: 1.3, opacity: 0.3, repeat: 3, yoyo:true})
 </script>
