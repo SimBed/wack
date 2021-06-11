@@ -24,7 +24,7 @@ most_recent:
 
 <% 10.times do |n| %>
 micropost_<%= n %>:
-  content: <%= Faker::Lorem.sentence(5) %>
+  content: <%= Faker::Lorem.sentence(word_count: 5) %>
   created_at: <%= 22.days.ago %>
   user: michael
   workout: workouttwo
@@ -32,7 +32,7 @@ micropost_<%= n %>:
 
 <% 10.times do |n| %>
 micropost_<%= n+10 %>:
-  content: <%= Faker::Lorem.sentence(5) %>
+  content: <%= Faker::Lorem.sentence(word_count: 5) %>
   created_at: <%= 42.days.ago %>
   user: archer
   workout: workouttwo
@@ -40,7 +40,7 @@ micropost_<%= n+10 %>:
 
 <% 20.times do |n| %>
 micropost_<%= n+20 %>:
-  content: <%= Faker::Lorem.sentence(5) %>
+  content: <%= Faker::Lorem.sentence(word_count: 5) %>
   created_at: <%= 42.days.ago %>
   user: archer
   workout: workoutthree

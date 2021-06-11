@@ -1,0 +1,5 @@
+rubocop -A --only Layout/SpaceAfterComma,Layout/LineLength,Layout/ExtraSpacing,Layout/HashAlignment,Layout/ArgumentAlignment,Layout/IndentationWidth,Layout/IndentationConsistency,Layout/TrailingWhitespace,Layout/BlockAlignment app/models
+rubocop -A --only Layout/EmptyLinesAroundClassBody,Layout/CommentIndentation,Style/StringLiterals,Style/AndOr,Style/RedundantParentheses,Layout/CommentIndentation app/models
+rubocop -A --only Layout/DefEndAlignment,Layout/EmptyLinesAroundMethodBody,Layout/LeadingCommentSpace,Rails/RequestReferer,Style/MethodCallWithoutArgsParentheses app/models
+rubocop -A --only Layout/SpaceInsideBlockBraces,Style/EmptyMethod,Layout/ArrayAlignment,Layout/BlockAlignment,Layout/SpaceAroundOperators,Layout/EmptyLinesAroundModuleBody,Style/Sample,Style/RedundantReturn,Layout/EmptyLines,Style/SafeNavigation,Layout/FirstHashElementIndentation,Lint/SymbolConversion,Layout/HashAlignment,Layout/SpaceInsideHashLiteralBraces app/models
+rubocop -A --only Layout/EmptyLineAfterGuardClause,Layout/EmptyLinesAroundAttributeAccessor,Layout/MultilineHashBraceLayout app/models

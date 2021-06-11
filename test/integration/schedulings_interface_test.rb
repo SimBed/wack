@@ -6,7 +6,7 @@ class SchedulingsInterfaceTest < ActionDispatch::IntegrationTest
     @workout = workouts(:workouttwo)
   end
 
-  test "valid input for new scheduling (for pre-defined Wack)" do
+  test 'create new scheduling with valid input (for pre-defined Wack)' do
     log_in_as(@user)
     # ActiveSupport::TimeWithZone rather than a similar Time object for consistency with the database field start_time
     t = Time.zone.now.advance(days: 3)
@@ -15,8 +15,8 @@ class SchedulingsInterfaceTest < ActionDispatch::IntegrationTest
       # scheduling name will get set in controller
       # request.referrer is nil in test environment, headers approach above is a workaround
       post schedulings_path, params: { scheduling: { start_time: t },
-                                       workout_id: @workout.id  } ,
-                             headers: { "HTTP_REFERER" => "http://www.example.com/workouts" }
+                                       workout_id: @workout.id },
+                             headers: { 'HTTP_REFERER' => 'http://www.example.com/workouts' }
     end
 
     assert_redirected_to workouts_url
@@ -41,11 +41,12 @@ class SchedulingsInterfaceTest < ActionDispatch::IntegrationTest
     # <td>" 20/11 "<div>wack</div> </td>
     # My workaround was to search  by REGEXS instead)
 
-    # on 29 December, the test failed. 3 days advanced is 1 Jan, where t.day returns 1 not 01 required, hence the change in code.
+    # on 29 December, the test failed. 3 days advanced is 1 Jan, where t.day returns
+    # 1 not 01 required, hence the change in code.
     # assert_select "td", {text: /#{t.day}\/#{t.month}/}, true do
 
     # assert_select "td", {text: /#{t.strftime("%d/%m")}/}, true do
-      # assert_select "div", {text: workout_name}, true
+    # assert_select "div", {text: workout_name}, true
     # end
 
     get schedulings_path
@@ -62,24 +63,33 @@ class SchedulingsInterfaceTest < ActionDispatch::IntegrationTest
     # see my stackoverflow question - experimented with how to match
     # <tr> <td> name </td> <td> date </td> </tr>
     # ended up finding a regexs was the simplest approach
-    # ~ is the css general sibling combinator. eg css_select "td~td" matches tds that are siblings of and subsequent to any td (so it wouldn't include the first td). Didn't end up using this.
+    # ~ is the css general sibling combinator. eg css_select "td~td" matches tds
+    # that are siblings of and subsequent to any td (so it wouldn't include the
+    # first td). Didn't end up using this.
     t1 = t.strftime('%d/%m, %H:%M')
     # puts t1
     # pars has class Nokogiri::XML::NodeSet
-    pars = css_select "tr"
+    pars = css_select 'tr'
     # target = open("test.txt", 'w')
     # target.write(response.body)
     # target.close
     # pars.each_with_index{ |val,index| puts "index: #{index} for #{val}" }
     # using workout_name is OK at the moment for tests while workout_name = scheduling_name
-    regexs = /<td>#{workout_name}<\/td>.*<td.*>#{t1}<\/td>.*Show.*Edit.*Delete/m
+    regexs = %r{<td>#{workout_name}</td>.*<td.*>#{t1}</td>.*Show.*Edit.*Delete}m
     match = false
-    pars.each { |i| if i.to_s =~ regexs then match = true end }
+    pars.each { |i| match = true if i.to_s =~ regexs }
     assert match
+  end
 
+  test 'edit and delete scheduling' do
+    log_in_as(@user)
+    t = Time.zone.now.advance(days: 3)
+    post schedulings_path, params: { scheduling: { start_time: t },
+                                     workout_id: @workout.id },
+                           headers: { 'HTTP_REFERER' => 'http://www.example.com/workouts' }
+    get schedulings_path
     # Edit the scheduling
     @latest_scheduling = Scheduling.order(created_at: :desc).first
-
     # show a scheduling via a specified route (so session[:linked_from] is not nil)
     # unsure why using a helper in the same way as log_in_as didn't work
     get scheduling_path(@latest_scheduling), params: { linked_from: :welcome }
@@ -98,7 +108,7 @@ class SchedulingsInterfaceTest < ActionDispatch::IntegrationTest
     # hence the conversion to string before the comparison
     # puts (t + 60 * 60 * 24).strftime('%Y-%m-%d %H:%M:%S.%L')
     # puts @latest_scheduling.start_time.strftime('%Y-%m-%d %H:%M:%S.%L')
-    assert_equal t.advance(days: 1).to_s,  @latest_scheduling.start_time.to_s
+    assert_equal t.advance(days: 1).to_s, @latest_scheduling.start_time.to_s
     # t.day + 1 directly into the curly brackets in the REGEXS failed
     # t1_day = t.day + 1
 
@@ -117,16 +127,14 @@ class SchedulingsInterfaceTest < ActionDispatch::IntegrationTest
     # assert_select "td", {text: /#{t1.strftime("%d/%m")}/}, true do
     #   assert_select "div", false
     # end
-
   end
 
-  test "valid input for new scheduling (for bespoke Wack)" do
+  test 'valid input for new scheduling (for bespoke Wack)' do
     log_in_as(@user)
     t = Time.zone.now.advance(minutes: 5)
     assert_difference '@user.schedulings.count', 1 do
-      post schedulings_path, params: { scheduling: { name: "skipjump", start_time: t }},
-                             headers: { "HTTP_REFERER" => "http://www.example.com/schedulings" }
-
+      post schedulings_path, params: { scheduling: { name: 'skipjump', start_time: t } },
+                             headers: { 'HTTP_REFERER' => 'http://www.example.com/schedulings' }
     end
 
     assert_redirected_to schedulings_url
@@ -138,11 +146,9 @@ class SchedulingsInterfaceTest < ActionDispatch::IntegrationTest
     #   assert_select "div", "skipjump"
     # end
 
-    assert_select "tr" do
-      assert_select "td", "skipjump"
-      assert_select "td", t.strftime('%d/%m, %H:%M')
+    assert_select 'tr' do
+      assert_select 'td', 'skipjump'
+      assert_select 'td', t.strftime('%d/%m, %H:%M')
     end
-
   end
-
 end

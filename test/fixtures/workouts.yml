@@ -23,7 +23,7 @@ workoutthree:
   brand: myBrand
 
 <% 30.times do |n| %>
-workout_<%= n %>:
+workout<%= n %>:
   name:  <%= "Workout#{n}" %>
   style: Yoga
   url: <%= "www.workout#{n}.com" %>

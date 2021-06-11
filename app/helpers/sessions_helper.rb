@@ -1,5 +1,4 @@
 module SessionsHelper
-
   def clear_session(*args)
     args.each do |session_key|
       session[session_key] = nil
@@ -18,15 +17,15 @@ module SessionsHelper
     cookies.permanent[:remember_token] = user.remember_token
   end
 
- # Returns true if the given user is the current user.
+  # Returns true if the given user is the current user.
   def current_user?(user)
     user == current_user
   end
 
   # Returns true if the given user is the current user or admin.
-   def current_user_or_admin?(user)
-     (user == current_user) or (current_user.admin?)
-   end
+  def current_user_or_admin?(user)
+    (user == current_user) or current_user.admin?
+  end
 
   # Returns the user corresponding to the remember token cookie.
   def current_user
@@ -35,7 +34,7 @@ module SessionsHelper
       @current_user ||= User.find_by(id: user_id)
     elsif (user_id = cookies.signed[:user_id])
       user = User.find_by(id: user_id)
-      if user && user.authenticated?(:remember, cookies[:remember_token])
+      if user&.authenticated?(:remember, cookies[:remember_token])
         log_in user
         @current_user = user
       end
@@ -45,29 +44,28 @@ module SessionsHelper
     end
   end
 
+  # more understandable code in (without the 'assignment')
+  # if session[:user_id]
+  # @current_user ||= User.find_by(id: session[:user_id])
+  # elsif cookies.signed[:user_id]
+  # user = User.find_by(id: cookies.signed[:user_id])
+  # if user && user.authenticated?(cookies[:remember_token])
+  # log_in user
+  # @current_user = user
+  # end
+  # end
 
-  #more understandable code in (without the 'assignment')
-  #if session[:user_id]
-  #@current_user ||= User.find_by(id: session[:user_id])
-#elsif cookies.signed[:user_id]
- #user = User.find_by(id: cookies.signed[:user_id])
-  #if user && user.authenticated?(cookies[:remember_token])
-    #log_in user
-   # @current_user = user
-  #end
-#end
+  # @current_user ||= User.find_by(id: session[:user_id])
+  # complicated version of
 
-      #@current_user ||= User.find_by(id: session[:user_id])
-      # complicated version of
+  # @current_user = @current_user || User.find_by(id: session[:user_id])
+  # itself a slightly complicated version of
 
-      #@current_user = @current_user || User.find_by(id: session[:user_id])
-      #itself a slightly complicated version of
-
-      #if @current_user.nil?
-      #  @current_user = User.find_by(id: session[:user_id])
-      #else
-      #  @current_user
-      #end
+  # if @current_user.nil?
+  #  @current_user = User.find_by(id: session[:user_id])
+  # else
+  #  @current_user
+  # end
 
   # Returns true if the user is logged in, false otherwise.
   # the demo user is now logged in as default, so this should now always be true
@@ -80,7 +78,7 @@ module SessionsHelper
     logged_in? && !current_user.demo?
   end
 
- # Forgets a persistent session.
+  # Forgets a persistent session.
   def forget(user)
     user.forget
     cookies.delete(:user_id)

@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_action :logged_in_as_real_user, only: [:edit, :update, :destroy]
-  before_action :correct_user,   only: [:edit, :update]
-  before_action :correct_user_or_admin,   only: [:show]
-  before_action :admin_user,     only: [:index, :destroy]
+  before_action :correct_user, only: [:edit, :update]
+  before_action :correct_user_or_admin, only: [:show]
+  before_action :admin_user, only: [:index, :destroy]
 
   def index
     @users = User.where(activated: true).paginate(page: params[:page])
@@ -10,10 +10,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page])
-    @attempts = @user.attempts.paginate(page: params[:page])
-    @attslw = @user.attempts.where("doa > ?", 1.week.ago)
     redirect_to root_url and return unless @user.activated
+
+    @microposts = @user.microposts.paginate(page: params[:page])
+    attempt_old_to_delete
   end
 
   def new
@@ -24,12 +24,12 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user.send_activation_email
-      flash[:info] = "Please check your email to activate your account."
+      flash[:info] = 'Please check your email to activate your account.'
       redirect_to root_url
-     #log_in @user
-     #flash[:success] = "Welcome to the Sample App!"
-      #redirect_to @user
-      #equivalent to redirect_to user_url(@user) as Rail infers the user_url bit
+      # log_in @user
+      # flash[:success] = "Welcome to the Sample App!"
+      # redirect_to @user
+      # equivalent to redirect_to user_url(@user) as Rail infers the user_url bit
     else
       render 'new'
     end
@@ -41,8 +41,8 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
+    if @user.update(user_params)
+      flash[:success] = 'Profile updated'
       redirect_to @user
     else
       render 'edit'
@@ -51,29 +51,33 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "User deleted"
+    flash[:success] = 'User deleted'
     redirect_to users_url
   end
 
- private
+  private
 
-    def user_params
-      params.require(:user).permit(:name, :email, :password,
-                                     :password_confirmation)
-    end
+  def user_params
+    params.require(:user).permit(:name, :email, :password,
+                                 :password_confirmation)
+  end
 
-    # Before filters
+  def attempt_old_to_delete
+    @attempts = @user.attempts.paginate(page: params[:page])
+    @attslw = @user.attempts.where('doa > ?', 1.week.ago)
+  end
 
-    # Confirms the correct user.
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
-    end
+  # Before filters
 
-    # Confirms the correct user or admin.
-    def correct_user_or_admin
-      @user = User.find(params[:id])
-      redirect_to(root_url) unless (current_user?(@user) or (current_user && current_user.admin?))
-    end
+  # Confirms the correct user.
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_url) unless current_user?(@user)
+  end
 
+  # Confirms the correct user or admin.
+  def correct_user_or_admin
+    @user = User.find(params[:id])
+    redirect_to(root_url) unless current_user?(@user) || current_user&.admin?
+  end
 end
