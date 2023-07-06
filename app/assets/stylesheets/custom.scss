@@ -889,31 +889,6 @@ a {
   }
 a.admin {color: $blue-search;}
 
-
-div.pagination {
-  justify-content: flex-end;
-}
-
-div.pagination li {
-  padding-right: .4em;
-}
-
-div.pagination li.previous_page a {
-    font-size: 16px;
-  }
-
-div.pagination li.next_page a{
-    font-size: 16px;
-  }
-
-div.pagination a {
-      line-height: 20px;
-      color: $gray-darker;
-      /*color: $gray-darker;*/
-      font-size: 16px;
-      font-weight: bold;
-    }
-
 select.search {
   color: $gray-darker;
   border: solid;
