@@ -29,14 +29,16 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_match content, response.body
     # Delete the post
-    first_micropost = @workout.microposts.paginate(page: 1).first
+    pagy, first_micropost = pagy(@workout.microposts, page: 1)    
+    # first_micropost = @workout.microposts.paginate(page: 1).first
     assert_difference '@workout.microposts.count', -1 do
-      delete micropost_path(first_micropost)
+      delete micropost_path(first_micropost.first)
     end
     # Delete the next post (which won't be Archer's)
-    first_micropost = @workout.microposts.paginate(page: 1).first
+    pagy, first_micropost = pagy(@workout.microposts, page: 1)        
+    # first_micropost = @workout.microposts.paginate(page: 1).first
     assert_difference '@workout.microposts.count', 0 do
-      delete micropost_path(first_micropost)
+      delete micropost_path(first_micropost.first)
     end
   end
 
@@ -57,9 +59,10 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_match content, response.body
     # Delete the post
-    first_micropost = @workout.microposts.paginate(page: 1).first
+    # first_micropost = @workout.microposts.paginate(page: 1).first
+    pagy, first_micropost = pagy(@workout.microposts, page:1)
     assert_difference '@workout.microposts.count', -1 do
-      delete micropost_path(first_micropost)
+      delete micropost_path(first_micropost.first)
     end
 
     # add a post by non-admin to be sure we are testing deleting ad ifferent user's post
@@ -68,9 +71,10 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
 
     log_in_as(@admin)
     # have admin delete the last post by nonadmin
-    first_micropost = @workout.microposts.paginate(page: 1).first
+    # first_micropost = @workout.microposts.paginate(page: 1).first
+    pagy, first_micropost = pagy(@workout.microposts, page: 1)
     assert_difference '@workout.microposts.count', - 1 do
-      delete micropost_path(first_micropost)
+      delete micropost_path(first_micropost.first)
     end
   end
 end

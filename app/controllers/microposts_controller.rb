@@ -58,7 +58,8 @@ class MicropostsController < ApplicationController
 
   def reset_instances_after_fail
     @workout = Workout.find(@micropost.workout_id)
-    @microposts = @workout.microposts.paginate(page: params[:page])
+    # @microposts = @workout.microposts.paginate(page: params[:page])
+    @pagy, @microposts = pagy(@workout.microposts)        
     # more simple but less helpful to user is to set microposts to blank following an error
     # @microposts=[]
     @attempt = current_user.attempts.build

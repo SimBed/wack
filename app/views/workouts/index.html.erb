@@ -21,7 +21,6 @@ clipboard.on('error', function(e) {
 </script>
 
 <div class="container px-1 mb-0">
-  <%= will_paginate %>
-    <%= render @workouts, setting: "addcommentno" %>
-  <%= will_paginate %>
+  <%== pagy_nav @pagy %> 
+  <%= render @workouts, setting: "addcommentno" %>
 </div>

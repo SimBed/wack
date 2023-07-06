@@ -19,7 +19,7 @@
         <ol class="microposts">
           <%= render @microposts, setting: "usernameyes" %>
         </ol>
-        <%= will_paginate @microposts %>
+        <%== pagy_nav @pagy %>
       <% end %>
   </div>
 <% end %>

@@ -13,7 +13,8 @@ class SchedulingsController < ApplicationController
   def show
     unless @scheduling.workout_id.nil?
       @workout = Workout.find(@scheduling.workout_id)
-      @microposts = @workout.microposts.paginate(page: params[:page])
+      # @microposts = @workout.microposts.paginate(page: params[:page])
+      @pagy, @microposts = pagy(@workout.microposts)      
       @micropost = current_user.microposts.build
     end
     session[:wk_url] = params[:wk_url]
@@ -100,8 +101,10 @@ class SchedulingsController < ApplicationController
 
   def reset_instances_after_fail
     @workout = Workout.find(@scheduling.workout_id)
-    @attempts = @workout.attempts.paginate(page: params[:page])
-    @microposts = @workout.microposts.paginate(page: params[:page])
+    # @attempts = @workout.attempts.paginate(page: params[:page])
+    @pagy, @attempts = pagy(@workout.attempts)    
+    # @microposts = @workout.microposts.paginate(page: params[:page])
+    @pagy, @microposts = pagy(@workout.microposts)    
     @micropost = current_user.microposts.build
   end
 
