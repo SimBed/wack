@@ -5,9 +5,9 @@ class ProblemsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    #    @problems = Problem.all.order(params[:sort], :name).paginate(page: params[:page],per_page: 10)
-    @problems = Problem.all.order("#{sort_column} #{sort_direction}", :name).paginate(page: params[:page],
-                                                                                      per_page: 10)
+    # @problems = Problem.all.order("#{sort_column} #{sort_direction}", :name).paginate(page: params[:page],
+    #                                                                                   per_page: 10)
+    @pagy, @problems = pagy(Problem.all.order("#{sort_column} #{sort_direction}", :name))
   end
 
   def new

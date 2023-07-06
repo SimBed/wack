@@ -28,8 +28,8 @@ class WorkoutsProfileTest < ActionDispatch::IntegrationTest
     assert_select 'a[href=?]', workout_path(@workout), text: 'Delete', count: 0
     # improved test for the admin below but retained this for posterity
     assert_match @workout.microposts.count.to_s, response.body
-
-    @workout.microposts.paginate(page: 1).each do |micropost|
+    pagy, micropost = pagy(@workout.microposts, page: 1)
+    micropost.each do |micropost|
       assert_select 'a', text: micropost.user.name
       assert_select 'a', text: @workout.name
       assert_match micropost.content, response.body
@@ -52,7 +52,8 @@ class WorkoutsProfileTest < ActionDispatch::IntegrationTest
     assert_select 'a[href=?]', workout_path(@workout), text: 'Delete', count: 1
     assert_select 'h3', text: "#PeopleofTheSpace say... (#{@workout.microposts.count})"
     # assert_select 'div.pagination'
-    @workout.microposts.paginate(page: 1).each do |micropost|
+    pagy, microposts = pagy(@workout.microposts, page: 1)       
+    microposts.each do |micropost|
       assert_select 'a', text: micropost.user.name
       assert_select 'a', text: @workout.name
       assert_match micropost.content, response.body

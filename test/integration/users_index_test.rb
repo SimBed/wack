@@ -1,4 +1,5 @@
 require 'test_helper'
+include Pagy::Backend
 
 class UsersIndexTest < ActionDispatch::IntegrationTest
   def setup
@@ -10,8 +11,9 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     log_in_as(@admin)
     get users_path
     assert_template 'users/index'
-    assert_select 'div.pagination'
-    first_page_of_users = User.paginate(page: 1)
+    assert_select 'nav.pagination'
+    pagy, first_page_of_users = pagy(User.all, page: 1)
+    # first_page_of_users = User.paginate(page: 1)
     first_page_of_users.each do |user|
       assert_select 'a[href=?]', user_path(user), text: user.name
       assert_select 'a[href=?]', user_path(user), text: 'delete' unless user == @admin

@@ -10,7 +10,8 @@ class WorkoutsController < ApplicationController
     handle_favourites
     handle_search_name
     handle_advancedsearch
-    @workouts = @workouts.send("order_by_#{session[:sort_option]}").paginate(page: params[:page], per_page: 10)
+    # @workouts = @workouts.send("order_by_#{session[:sort_option]}").paginate(page: params[:page], per_page: 10)
+    @pagy, @workouts = pagy(@workouts.send("order_by_#{session[:sort_option]}"))
     @intensity = Workout.distinct.pluck(:intensity).sort!
     @style = Workout.distinct.pluck(:style).sort!
     # sort bodyfocus not alphabetically but in anatomical order set in config/workoutinfo.yml
@@ -35,12 +36,9 @@ class WorkoutsController < ApplicationController
 
   def show
     @workout = Workout.find(params[:id])
-    # session[:workout_id]=@workout.id
-    @microposts = @workout.microposts.paginate(page: params[:page])
+    # @microposts = @workout.microposts.paginate(page: params[:page])
+    @pagy, @microposts = pagy(@workout.microposts)    
     @micropost = current_user.microposts.build
-    # @attempt = current_user.attempts.build()
-    # @scheduling = current_user.schedulings.build()
-    # @schedulings = current_user.schedulings
   end
 
   def new
@@ -55,22 +53,17 @@ class WorkoutsController < ApplicationController
       flash[:success] = "New workout, #{@workout.name} added!"
       redirect_to workouts_path
     else
-      # required instance variables are lost on re-render - see notes in create of MicropostsController
       @brand = Workout.distinct.pluck(:brand)
       render :new
     end
   end
 
   def edit
-    # set_workout occurs via callback
     # if @brand doesn't exist the form can't be built, as it relies on @brand for populating a dropdown
     @brand = Workout.distinct.pluck(:brand)
   end
 
   def update
-    # set_workout occurs via callback
-    # at one point this was just "update" not "update_attributes".
-    # SQLite was OK but posgres didnt like it. No idea how it got like that??
     if @workout.update(workout_params)
       flash[:success] = "#{@workout.name} updated"
       redirect_to workouts_path
@@ -81,7 +74,6 @@ class WorkoutsController < ApplicationController
   end
 
   def destroy
-    # set_workout occurs via callback
     @workout.destroy
     flash[:success] = "#{@workout.name} deleted"
     redirect_to workouts_path

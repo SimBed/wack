@@ -27,8 +27,10 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     assert_select 'h4', text: @nonadmin.name.upcase
     assert_select 'div>img.gravatar'
     assert_match @nonadmin.microposts.count.to_s, response.body
-    assert_select 'div.pagination'
-    @nonadmin.microposts.paginate(page: 1).each do |micropost|
+    assert_select 'nav.pagination'
+    pagy, microposts = pagy(@nonadmin.microposts, page: 1) 
+    # @nonadmin.microposts.paginate(page: 1).each do |micropost|
+    microposts.each do |micropost|
       assert_match micropost.content, response.body
       assert_select 'a', text: micropost.workout.name
       assert_select 'span', text: @nonadmin.name, count: 0

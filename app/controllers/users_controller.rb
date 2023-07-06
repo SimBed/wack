@@ -5,14 +5,16 @@ class UsersController < ApplicationController
   before_action :admin_user, only: [:index, :destroy]
 
   def index
-    @users = User.where(activated: true).paginate(page: params[:page])
+    # @users = User.where(activated: true).paginate(page: params[:page])
+    @pagy, @users = pagy(User.where(activated: true))
   end
 
   def show
     @user = User.find(params[:id])
     redirect_to root_url and return unless @user.activated
 
-    @microposts = @user.microposts.paginate(page: params[:page])
+    # @microposts = @user.microposts.paginate(page: params[:page])
+    @pagy, @microposts = pagy(@user.microposts)    
     attempt_old_to_delete
   end
 
@@ -63,7 +65,8 @@ class UsersController < ApplicationController
   end
 
   def attempt_old_to_delete
-    @attempts = @user.attempts.paginate(page: params[:page])
+    # @attempts = @user.attempts.paginate(page: params[:page])
+    @pagy, @attempts = pagy(@user.attempts)    
     @attslw = @user.attempts.where('doa > ?', 1.week.ago)
   end
 

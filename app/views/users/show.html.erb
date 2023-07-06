@@ -43,7 +43,7 @@
           <ol class="microposts">
             <%= render @microposts, setting: "usernameno" %>
           </ol>
-          <%= will_paginate @microposts %>
+          <%== pagy_nav @pagy %>  
         <% end %>
       </div>
     </div>
@@ -63,7 +63,7 @@
           <ol class="attempts">
             <%= render @attempts%>
           </ol>
-          <%= will_paginate @attempts %>
+          <%== pagy_nav @pagy %>  
         <% end %>
       </div>
     </div>
