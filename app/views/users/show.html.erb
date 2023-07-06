@@ -4,13 +4,13 @@
     <%= gravatar_for @user %>
   </div>
   <div style="flex-grow: 8" class ="bg-dark pl-2">
-       <h4 class="WorkoutName-s">
-         <%= @user.name.upcase %>
-       </h4>
-       <div class="user-profile">
-         <div class="user-date"><%= date_reformat @user.activated_at %></div>
-         <div class="user-rank">Wack Newbie</div>
-       </div>
+    <h4 class="WorkoutName-s">
+      <%= @user.name.upcase %>
+    </h4>
+    <div class="user-profile">
+      <div class="user-date"><%= date_reformat @user.activated_at %></div>
+      <div class="user-rank">Wack Newbie</div>
+    </div>
   </div>
 </div>
 
@@ -29,44 +29,43 @@
   </div>
 </div>
 
-<div class="panel-group" id="accordion">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Reiews (<%= @user.microposts.count %>)</a>
-      </h4>
-    </div>
-    <div id="collapse1" class="panel-collapse collapse in">
-    <div class="panel-body">
-      <div class = "container mt-3">
-        <% if @user.microposts.any? %>
-          <ol class="microposts">
-            <%= render @microposts, setting: "usernameno" %>
-          </ol>
-          <%== pagy_nav @pagy %>  
-        <% end %>
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Reiews (<%= @user.microposts.count %>)
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div class = "container mt-3">
+          <% if @user.microposts.any? %>
+            <ol class="microposts">
+              <%= render @microposts, setting: "usernameno" %>
+            </ol>
+            <%== pagy_nav @pagy %>  
+          <% end %>
+        </div>
       </div>
-    </div>
     </div>
   </div>
-
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Wacks (<%= @user.attempts.count %>)</a>
-      </h4>
-    </div>
-    <div id="collapse2" class="panel-collapse collapse in">
-    <div class="panel-body">
-      <div class = "container">
-        <% if @user.attempts.any? %>
-          <ol class="attempts">
-            <%= render @attempts%>
-          </ol>
-          <%== pagy_nav @pagy %>  
-        <% end %>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Wacks (<%= @user.attempts.count %>)
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div class = "container mt-3">
+          <% if @user.microposts.any? %>
+            <ol class="microposts">
+              <%= render @microposts, setting: "usernameno" %>
+            </ol>
+            <%== pagy_nav @pagy %>  
+          <% end %>
+        </div>
       </div>
-    </div>
     </div>
   </div>
 </div>
