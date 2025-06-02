@@ -27,6 +27,14 @@ module ActiveSupport
   end
 end
 
+def youtube_embed(url)
+  if url =~ /.youtube\.com.*(?:\/|v=)([\w-]+)/
+    "https://www.youtube.com/embed/#{$1}?modestbranding=1"
+  else
+    url # fallback
+  end
+end
+
 module ActionDispatch
   class IntegrationTest
     # Log in as a particular user.

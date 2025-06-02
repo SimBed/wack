@@ -17,4 +17,12 @@ module ApplicationHelper
     link_to coltitle, { sort: column, direction: direction },
             { title: tooltiptitle, 'data-toggle' => 'tooltip', class: css_class }
   end
+
+  def youtube_embed(url)
+    if url =~ /.youtube\.com.*(?:\/|v=)([\w-]+)/
+      "https://www.youtube.com/embed/#{$1}?modestbranding=1"
+    else
+      url # fallback
+    end
+  end
 end

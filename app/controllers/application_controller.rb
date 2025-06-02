@@ -26,6 +26,8 @@ class ApplicationController < ActionController::Base
   end
 
   def nothing_scheduled?
+    return true unless demo_user && demo_user.schedulings.present?
+
     Time.zone.now.beginning_of_day + 6.days > demo_user.schedulings.last.start_time.beginning_of_day
   end
 

@@ -19,8 +19,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select 'a[href=?]', login_path
     assert_select 'a[href=?]', logout_path, count: 0
     assert_select 'a[href=?]', signup_path
-    assert_select 'iframe[src=?]',
-                  "#{Workout.find(schedulings(:demo_predefined_workout).workout_id).url}?modestbranding=1"
+    assert_select 'iframe[src=?]', youtube_embed(Workout.find(schedulings(:demo_predefined_workout).workout_id).url)
     # want test for when no future bespoke workout scheduling (only theoretical)
   end
 
@@ -37,7 +36,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select 'a[href=?]', login_path, count: 0
     assert_select 'a[href=?]', logout_path
     assert_select 'a[href=?]', signup_path, count: 0
-    assert_select 'iframe[src=?]', "#{Workout.find(schedulings(:run).workout_id).url}?modestbranding=1"
+    assert_select 'iframe[src=?]', youtube_embed(Workout.find(schedulings(:run).workout_id).url)
   end
 
   test 'layout links when logged-in as admin' do
@@ -53,6 +52,6 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select 'a[href=?]', login_path, count: 0
     assert_select 'a[href=?]', logout_path
     assert_select 'a[href=?]', signup_path, count: 0
-    assert_select 'iframe[src=?]', "#{Workout.all[dailypickfortesting].url}?modestbranding=1"
+    assert_select 'iframe[src=?]', youtube_embed(Workout.all[dailypickfortesting].url)
   end
 end
