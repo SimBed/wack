@@ -14,5 +14,5 @@ test:
 production:
   <<: *default
   database: wack_production
-  username: wack
-  password: <%= ENV['SAMPLE_APP_DATABASE_PASSWORD'] %>
+  username: railsapps
+  password: <%= Rails.application.credentials.dig(:production, :database_password) %>

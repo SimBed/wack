@@ -29,7 +29,8 @@ User.create!(name: 'Wacky Raki',
              password_confirmation: 'foobar',
              admin: false,
              activated: true,
-             activated_at: Time.zone.now)
+             activated_at: Time.zone.now,
+	           demo: true)
 
 10.times do |n|
   name  = Faker::Name.name
@@ -132,26 +133,23 @@ Workout.create!(name: 'HIIT Abs Focus Workout',
                 created_at: Date.new(2020, 6, 4))
 
 # Posts
-exampleposts = ['Absolutely brill!', 'I loved this one', \
-                'Disappointing workout. Seemed like instructor was doing this for the first time', \
-                'Still recovering...', "Instructor's hair too long", 'This is wrong', \
-                'Very distracted by shapeliness of instructors buttock', \
-                'How can workout do such bosom is there only', 'bahut sundar workout hai', \
-                'perhaps more focus on technique and less on the infuencermania', \
-                'an instructive follow-on by a highly experienced instructor', 'meh', \
-                'is mainly for beginner only', 'too easy for an Olympian like me', \
-                "Her:Don't forget to breath.  Me:I'm not forgetting, I just can't.", \
-                'after 7 minutes the screen turned black. 10 minutes later im sitting with god', \
-                'Luckily my life insurance is already activated.', \
-                'Is it normal to see angels while doing this exercise?', \
-                'I am doing this for past 15 days. Initially I was not able to complete 15 minutes \
-                but now I can complete 25 minutes. \
-                I will hit 28 mins soon', \
-                'me and mine pati get sweaty doing the same', \
-                'make sure to have yours protein after this workouts', 'my coffee spilt itself while I doing', \
-                'soon i will get up from chair and try this for real', \
-                "i think is a good on but i haven't tried, as i have a knee pain and my \
-                doctor is says for to rest some more weeks"]
+exampleposts = ['Absolutely brill!', 'I loved this one',
+                'Disappointing workout. Seemed like instructor was doing this for the first time',
+                'Still recovering...', "Instructor's hair too long", 'This is wrong',
+                'Very distracted by shapeliness of instructors buttock',
+                'How can workout do such bosom is there only', 'bahut sundar workout hai',
+                'perhaps more focus on technique and less on the infuencermania',
+                'an instructive follow-on by a highly experienced instructor', 'meh',
+                'is mainly for beginner only', 'too easy for an Olympian like me',
+                "Her:Don't forget to breath.  Me:I'm not forgetting, I just can't.",
+                'after 7 minutes the screen turned black. 10 minutes later im sitting with god',
+                'Luckily my life insurance is already activated.',
+                'Is it normal to see angels while doing this exercise?',
+                'I am doing this for past 15 days. Initially I was not able to complete 15 minutes but now I can complete 25 minutes. I will hit 28 mins soon', \
+                'me and mine pati get sweaty doing the same',
+                'make sure to have yours protein after this workouts', 'my coffee spilt itself while I doing',
+                'soon i will get up from chair and try this for real',
+                "i think is a good on but i haven't tried, as i have a knee pain and my doctor is says for to rest some more weeks"]
 users = User.order(:created_at).take(10)
 5.times do
   users.each do |user|
