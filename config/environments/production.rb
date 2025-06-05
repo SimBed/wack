@@ -94,15 +94,18 @@ Rails.application.configure do
   # DPS:
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
-  host = 'wackit.herokuapp.com'
-  config.action_mailer.default_url_options = { host: host }
+  host = 'wack.simbed.duckdns.org'
+  # config.action_mailer.default_url_options = { host: host }
+  config.action_mailer.default_url_options = { host: host, protocol: 'https' }
   ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.sendgrid.net',
-    :port           => '587',
-    :authentication => :plain,
-    :user_name      => 'apikey',
-    :password       => ENV['SENDGRID_API_KEY'],
-    :domain         => 'heroku.com',
-    :enable_starttls_auto => true
+    address:        'smtp.sendgrid.net',
+    port:           '587',
+    authentication: :plain,
+    user_name:      Rails.application.credentials.dig(:sendgrid, :user_name),
+    # :password       => ENV['SENDGRID_API_KEY'],
+    password:        Rails.application.credentials.dig(:sendgrid, :api_key),
+    # :domain         => 'heroku.com',
+    domain:         'simbed.duckdns.org',
+    enable_starttls_auto: true
   } 
 end
