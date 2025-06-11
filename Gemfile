@@ -17,7 +17,7 @@ gem 'pg'
 gem 'puma', '~> 3.11'
 # gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
 # gem 'rails', '~> 6.1', '>= 6.1.7.4'
-gem "rails", "~> 7.0.0"
+gem "rails", "~> 7.0.8"
 gem "sprockets-rails"
 gem 'rubocop-rails'
 gem 'sass-rails', '>= 6'
