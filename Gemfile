@@ -26,6 +26,7 @@ gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 # for copying to clipboard
 gem 'clipboard-rails'
+gem 'ffi', '>= 1.17.4'
 gem 'nokogiri', '>= 1.18.10'
 
 group :development, :test do

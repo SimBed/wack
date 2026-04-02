@@ -1,5 +1,6 @@
 module ApplicationHelper
   include Pagy::Frontend
+  include Pagy::Backend
   # Returns the full title on a per-page basis.
   def full_title(page_title = '')
     base_title = 'Wack'

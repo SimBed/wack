@@ -12,7 +12,7 @@ class WorkoutsIndexTest < ActionDispatch::IntegrationTest
     log_in_as(@admin)
     get workouts_path
     assert_template 'workouts/index'
-    assert_select 'nav.pagination'
+    assert_select 'nav.pagy'
     # first_page_of_workouts = Workout.all.paginate(page: 1, per_page: 5)
     pagy, first_page_of_workouts = pagy(Workout.all, page: 1, per_page: 5)    
     first_page_of_workouts.each do |workout|
@@ -29,7 +29,7 @@ class WorkoutsIndexTest < ActionDispatch::IntegrationTest
     log_in_as(@non_admin)
     get workouts_path
     assert_template 'workouts/index'
-    assert_select 'nav.pagination'
+    assert_select 'nav.pagy'
     # first_page_of_workouts = Workout.all.paginate(page: 1, per_page: 5)
     pagy, first_page_of_workouts = pagy(Workout.all, page: 1, per_page: 5)        
     first_page_of_workouts.each do |workout|
