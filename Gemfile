@@ -2,12 +2,12 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # ruby '2.7.2'
-ruby File.read(".ruby-version").strip
+ruby File.read('.ruby-version').strip
 # to avoid Psych::BadAlias errors after 3.1 upgrade
-gem 'psych', '< 4'
 gem 'bcrypt'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bootstrap'
+gem 'psych', '< 4'
 # gem 'bootstrap-will_paginate', '1.0.0'
 gem 'coffee-rails', '~> 5.0.0'
 gem 'faker'
@@ -17,15 +17,16 @@ gem 'pg'
 gem 'puma', '~> 3.11'
 # gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
 # gem 'rails', '~> 6.1', '>= 6.1.7.4'
-gem "rails", "~> 7.0.0"
-gem "sprockets-rails"
+gem 'pagy'
+gem 'rails', '~> 7.0.0'
 gem 'rubocop-rails'
 gem 'sass-rails', '>= 6'
+gem 'sprockets-rails'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
-gem 'pagy'
 # for copying to clipboard
 gem 'clipboard-rails'
+gem 'nokogiri', '>= 1.18.10'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
